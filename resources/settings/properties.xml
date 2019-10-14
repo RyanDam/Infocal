@@ -1,0 +1,31 @@
+<properties>
+    <property id="theme_code" type="number">0</property>
+	<property id="power_save_mode" type="boolean">false</property>
+	
+    <property id="white_background" type="boolean">false</property>
+    <property id="always_on_second" type="boolean">false</property>
+    <property id="use_analog" type="boolean">false</property>
+    <property id="digital_style" type="number">0</property>
+    <property id="always_on_style" type="number">0</property>
+    <property id="minimal_data" type="boolean">false</property>
+    <property id="big_num_stripes" type="boolean">true</property>
+    <property id="left_digital_info" type="boolean">false</property>
+    <property id="force_date_english" type="boolean">true</property>
+    <property id="big_number_type" type="number">0</property>
+    <property id="render_arc_line" type="boolean">true</property>
+    
+    <property id="comp12h" type="number">1</property>
+    <property id="comp2h" type="number">4</property>
+    <property id="comp4h" type="number">3</property>
+    <property id="comp6h" type="number">2</property>
+    <property id="comp8h" type="number">5</property>
+    <property id="comp10h" type="number">6</property>
+    <!-- <property id="compbart" type="number">9</property>
+    <property id="compbarb" type="number">9</property> -->
+    <property id="compbart" type="number">9</property>
+    <property id="compbarb" type="number">9</property>
+    
+    <property id="utc_timezone" type="number">0</property>
+    <property id="utc_shift" type="boolean">false</property>
+    <property id="date_format" type="number">0</property>
+</properties>

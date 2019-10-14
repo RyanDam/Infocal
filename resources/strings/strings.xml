@@ -1,0 +1,106 @@
+<strings>
+    <string id="AppName">Huwaii</string>
+    <string id="power_save_mode">Reduce refresh rate to 1 per minute to save power</string>
+    <string id="white_background">Use white background</string>
+    <string id="comp12h">12h angle complication</string>
+    <string id="comp2h">2h angle complication</string>
+    <string id="comp4h">4h angle complication</string>
+    <string id="comp6h">6h angle complication</string>
+    <string id="comp8h">8h angle complication</string>
+    <string id="comp10h">10h angle complication</string>
+    
+    <string id="compbart">Top bar complication</string>
+    <string id="compbarb">Bottom bar complication</string>
+    
+    <string id="always_on_second">Always-on second (for digital)</string>
+    <string id="minimal_data">Full number instead of reduced (K)</string>
+    <string id="big_num_stripes">Render stripes on big number</string>
+    <string id="left_digital_info">Move right digital info to left</string>
+    <string id="render_arc_line">Render arc line with curved complication</string>
+    
+    <string id="force_date_english">Force date to English (prevent rectangle on unsupported chars)</string>
+    
+    <string id="big_number_type">Center number</string>
+    <string id="minute_major">Minute</string>
+    <string id="hour_major">Hour</string>
+    
+    <string id="use_analog">Analog watch face</string>
+    <string id="digital_style">Digital number style</string>
+    <string id="always_on_style">Always-on number style</string>
+    <string id="digital_style_big">Big center style</string>
+    <string id="digital_style_xbig">Extra Big center style</string>
+    <string id="digital_style_small">Small style</string>
+    <string id="digital_style_medium">Medium style</string>
+    
+    <string id="empty">Empty</string>
+    <string id="battery">Battery</string>
+    <string id="calories">Calories total-active (Experimental)</string>
+    <string id="distance">Distance (day)</string>
+    <string id="distanceweek">Distance (week)</string>
+    <string id="movebar">Move bar</string>
+    <string id="steps">Steps</string>
+    <string id="active">Active minutes</string>
+    <string id="heartrate">Heart rate</string>
+    <string id="date">Date</string>
+    <string id="time">Digital time</string>
+    <string id="time_secondary">Digital time (Secondary timezone)</string>
+    
+    <string id="notification">Notification count</string>
+    <string id="alarm">Alarm count</string>
+    <string id="phonestatus">Phone connection status</string>
+    <string id="altitude">Altitude</string>
+    <string id="temperature">Temperature (on device sensor)</string>
+    <string id="sunriseset">Sun time</string>
+    <string id="floorclimbed">Floor climbed</string>
+    <string id="groupnoti">Group notification</string>
+    <string id="barometer">Barometer (hector pascal)</string>
+    
+    <string id="date_format">Date format</string>
+    <string id="datef1">ddd d (TUE 2)</string>
+    <string id="datef2">dd.mm (2.9)</string>
+    <string id="datef21">mm.dd (9.2)</string>
+    <string id="datef3">dd.mm.yy (2.9.19)</string>
+    <string id="datef31">mm.dd.yy (9.2.19)</string>
+    
+    <string id="utc_timezone">Secondary timezone</string>
+    <string id="utc_shift">Shift timezone for +30min</string>
+    <string id="utc0">UTC 0</string>
+    <string id="utc1">UTC +1</string>
+    <string id="utc2">UTC +2</string>
+    <string id="utc3">UTC +3</string>
+    <string id="utc4">UTC +4</string>
+    <string id="utc5">UTC +5</string>
+    <string id="utc6">UTC +6</string>
+    <string id="utc7">UTC +7</string>
+    <string id="utc8">UTC +8</string>
+    <string id="utc9">UTC +9</string>
+    <string id="utc10">UTC +10</string>
+    <string id="utc11">UTC +11</string>
+    <string id="utc12">UTC +12</string>
+    <string id="utc1m">UTC -1</string>
+    <string id="utc2m">UTC -2</string>
+    <string id="utc3m">UTC -3</string>
+    <string id="utc4m">UTC -4</string>
+    <string id="utc5m">UTC -5</string>
+    <string id="utc6m">UTC -6</string>
+    <string id="utc7m">UTC -7</string>
+    <string id="utc8m">UTC -8</string>
+    <string id="utc9m">UTC -9</string>
+    <string id="utc10m">UTC -10</string>
+    <string id="utc11m">UTC -11</string>
+    <string id="utc12m">UTC -12</string>
+    
+    
+    <string id="theme_code">Theme color</string>
+    <string id="theme_dark">Dark</string>
+    <string id="theme_light">Light</string>
+    <string id="theme_ocean">Ocean</string>
+    <string id="theme_orange">Orange</string>
+    <string id="theme_radioactive">Radioactive</string>
+    <string id="theme_flashlight">Flash light</string>
+    <string id="theme_dusk">Dusk</string>
+    <string id="theme_dark_blue">Dark blue</string>
+    <string id="theme_light_blue">Light blue</string>
+    <string id="theme_gray">Gray</string>
+    <string id="theme_lgray">Light gray</string>
+</strings>

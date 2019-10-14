@@ -1,0 +1,53 @@
+<layout id="WatchFace">
+	<drawable id="background" class="BackgroundView"></drawable>
+	
+	<drawable id="aBarDisplay" class="Complication">	             
+        <param name="base">270</param>	             
+        <param name="angle">12</param>
+        <param name="text">"BATT 90"</param>
+        <param name="field_type">1</param>
+    </drawable>
+    <drawable id="bBarDisplay" class="Complication">	             
+        <param name="base">210</param>
+        <param name="angle">10</param>
+        <param name="text">"STEP 9K"</param>
+        <param name="field_type">2</param>
+    </drawable>
+    <drawable id="cBarDisplay" class="Complication">	             
+        <param name="base">330</param>
+        <param name="angle">2</param>
+        <param name="text">"HR 72"</param>
+        <param name="field_type">9</param>
+    </drawable>
+    <drawable id="dBarDisplay" class="Complication">	             
+        <param name="base">30</param>
+        <param name="angle">4</param>
+        <param name="text">"STEP 9K"</param>
+        <param name="field_type">3</param>
+    </drawable>
+    <drawable id="eBarDisplay" class="Complication">	             
+        <param name="base">90</param>
+        <param name="angle">6</param>
+        <param name="text">"BATT 90"</param>
+        <param name="field_type">4</param>
+    </drawable>
+    <drawable id="fBarDisplay" class="Complication">	             
+        <param name="base">150</param>
+        <param name="angle">8</param>
+        <param name="text">"HR 72"</param>
+        <param name="field_type">5</param>
+    </drawable>
+    
+    <drawable id="bUBarDisplay" class="BarDataComplication">	             
+        <param name="position">1</param>
+        <param name="field_type">6</param>
+    </drawable>
+    <drawable id="tUBarDisplay" class="BarDataComplication">	             
+        <param name="position">0</param>
+        <param name="field_type">5</param>
+    </drawable>
+    
+    <drawable id="digital" class="MainDialHand"></drawable>
+    <drawable id="analog" class="AnalogDial"></drawable>
+    
+</layout>

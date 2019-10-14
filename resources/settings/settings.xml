@@ -1,0 +1,309 @@
+<settings>
+
+	<!-- <setting propertyKey="@Properties.white_background" title="@Strings.white_background">
+        <settingConfig type="boolean" />
+    </setting> -->
+    
+    <setting propertyKey="@Properties.theme_code" title="@Strings.theme_code">
+        <settingConfig type="list">
+        	<listEntry value="0">@Strings.theme_dark</listEntry>
+        	<listEntry value="1">@Strings.theme_light</listEntry>
+        	<listEntry value="2">@Strings.theme_ocean</listEntry>
+        	<listEntry value="3">@Strings.theme_orange</listEntry>
+        	<listEntry value="4">@Strings.theme_radioactive</listEntry>
+        	<!-- <listEntry value="5">@Strings.theme_flashlight</listEntry>
+        	<listEntry value="6">@Strings.theme_dusk</listEntry> -->
+        	<listEntry value="7">@Strings.theme_dark_blue</listEntry>
+        	<listEntry value="8">@Strings.theme_light_blue</listEntry>
+        	<listEntry value="9">@Strings.theme_gray</listEntry>
+        	<listEntry value="10">@Strings.theme_lgray</listEntry>
+        </settingConfig>
+    </setting>
+    
+	<setting propertyKey="@Properties.power_save_mode" title="@Strings.power_save_mode">
+        <settingConfig type="boolean" />
+    </setting>
+    <setting propertyKey="@Properties.always_on_second" title="@Strings.always_on_second">
+        <settingConfig type="boolean" />
+    </setting>
+    
+    <setting propertyKey="@Properties.use_analog" title="@Strings.use_analog">
+        <settingConfig type="boolean" />
+    </setting>
+    <setting propertyKey="@Properties.digital_style" title="@Strings.digital_style">
+        <settingConfig type="list">
+        	<listEntry value="2">@Strings.digital_style_xbig</listEntry>
+        	<listEntry value="0">@Strings.digital_style_big</listEntry>
+        	<listEntry value="3">@Strings.digital_style_medium</listEntry>
+        	<listEntry value="1">@Strings.digital_style_small</listEntry>
+        </settingConfig>
+    </setting>
+    <setting propertyKey="@Properties.always_on_style" title="@Strings.always_on_style">
+        <settingConfig type="list">
+        	<listEntry value="1">@Strings.digital_style_medium</listEntry>
+        	<listEntry value="0">@Strings.digital_style_small</listEntry>
+        </settingConfig>
+    </setting>
+    <setting propertyKey="@Properties.big_number_type" title="@Strings.big_number_type">
+        <settingConfig type="list">
+        	<listEntry value="0">@Strings.minute_major</listEntry>
+        	<listEntry value="1">@Strings.hour_major</listEntry>
+        </settingConfig>
+    </setting>
+    <setting propertyKey="@Properties.minimal_data" title="@Strings.minimal_data">
+        <settingConfig type="boolean" />
+    </setting>
+    <setting propertyKey="@Properties.big_num_stripes" title="@Strings.big_num_stripes">
+        <settingConfig type="boolean" />
+    </setting>
+    <setting propertyKey="@Properties.left_digital_info" title="@Strings.left_digital_info">
+        <settingConfig type="boolean" />
+    </setting>
+    <setting propertyKey="@Properties.render_arc_line" title="@Strings.render_arc_line">
+        <settingConfig type="boolean" />
+    </setting>
+    <setting propertyKey="@Properties.comp12h" title="@Strings.comp12h">
+        <settingConfig type="list">
+        	<listEntry value="9">@Strings.empty</listEntry>
+        	<listEntry value="7">@Strings.date</listEntry>
+            <listEntry value="8">@Strings.time</listEntry>
+            <listEntry value="19">@Strings.time_secondary</listEntry>
+            <listEntry value="1">@Strings.battery</listEntry>
+            <listEntry value="2">@Strings.calories</listEntry>
+            <listEntry value="0">@Strings.heartrate</listEntry>
+            <listEntry value="3">@Strings.distance</listEntry>
+            <listEntry value="17">@Strings.distanceweek</listEntry>
+            <listEntry value="4">@Strings.movebar</listEntry>
+            <listEntry value="5">@Strings.steps</listEntry>
+            <listEntry value="6">@Strings.active</listEntry>
+            <listEntry value="10">@Strings.notification</listEntry>
+            <listEntry value="11">@Strings.alarm</listEntry>
+            <listEntry value="20">@Strings.phonestatus</listEntry>
+            <listEntry value="16">@Strings.groupnoti</listEntry>
+            <listEntry value="12">@Strings.altitude</listEntry>
+            <listEntry value="13">@Strings.temperature</listEntry>
+            <listEntry value="14">@Strings.sunriseset</listEntry>
+            <listEntry value="15">@Strings.floorclimbed</listEntry>
+            <listEntry value="18">@Strings.barometer</listEntry>
+        </settingConfig>
+    </setting>
+    <setting propertyKey="@Properties.comp2h" title="@Strings.comp2h">
+        <settingConfig type="list">
+        	<listEntry value="9">@Strings.empty</listEntry>
+        	<listEntry value="7">@Strings.date</listEntry>
+            <listEntry value="8">@Strings.time</listEntry>
+            <listEntry value="19">@Strings.time_secondary</listEntry>
+            <listEntry value="1">@Strings.battery</listEntry>
+            <listEntry value="2">@Strings.calories</listEntry>
+            <listEntry value="0">@Strings.heartrate</listEntry>
+            <listEntry value="3">@Strings.distance</listEntry>
+            <listEntry value="17">@Strings.distanceweek</listEntry>
+            <listEntry value="4">@Strings.movebar</listEntry>
+            <listEntry value="5">@Strings.steps</listEntry>
+            <listEntry value="6">@Strings.active</listEntry>
+            <listEntry value="10">@Strings.notification</listEntry>
+            <listEntry value="11">@Strings.alarm</listEntry>
+            <listEntry value="20">@Strings.phonestatus</listEntry>
+            <listEntry value="16">@Strings.groupnoti</listEntry>
+            <listEntry value="12">@Strings.altitude</listEntry>
+            <listEntry value="13">@Strings.temperature</listEntry>
+            <listEntry value="14">@Strings.sunriseset</listEntry>
+            <listEntry value="15">@Strings.floorclimbed</listEntry>
+            <listEntry value="18">@Strings.barometer</listEntry>
+        </settingConfig>
+    </setting>
+    <setting propertyKey="@Properties.comp4h" title="@Strings.comp4h">
+        <settingConfig type="list">
+        	<listEntry value="9">@Strings.empty</listEntry>
+        	<listEntry value="7">@Strings.date</listEntry>
+            <listEntry value="8">@Strings.time</listEntry>
+            <listEntry value="19">@Strings.time_secondary</listEntry>
+            <listEntry value="1">@Strings.battery</listEntry>
+            <listEntry value="2">@Strings.calories</listEntry>
+            <listEntry value="0">@Strings.heartrate</listEntry>
+            <listEntry value="3">@Strings.distance</listEntry>
+            <listEntry value="17">@Strings.distanceweek</listEntry>
+            <listEntry value="4">@Strings.movebar</listEntry>
+            <listEntry value="5">@Strings.steps</listEntry>
+            <listEntry value="6">@Strings.active</listEntry>
+            <listEntry value="10">@Strings.notification</listEntry>
+            <listEntry value="11">@Strings.alarm</listEntry>
+            <listEntry value="20">@Strings.phonestatus</listEntry>
+            <listEntry value="16">@Strings.groupnoti</listEntry>
+            <listEntry value="12">@Strings.altitude</listEntry>
+            <listEntry value="13">@Strings.temperature</listEntry>
+            <listEntry value="14">@Strings.sunriseset</listEntry>
+            <listEntry value="15">@Strings.floorclimbed</listEntry>
+            <listEntry value="18">@Strings.barometer</listEntry>
+        </settingConfig>
+    </setting>
+    <setting propertyKey="@Properties.comp6h" title="@Strings.comp6h">
+        <settingConfig type="list">
+        	<listEntry value="9">@Strings.empty</listEntry>
+        	<listEntry value="7">@Strings.date</listEntry>
+            <listEntry value="8">@Strings.time</listEntry>
+            <listEntry value="19">@Strings.time_secondary</listEntry>
+            <listEntry value="1">@Strings.battery</listEntry>
+            <listEntry value="2">@Strings.calories</listEntry>
+            <listEntry value="0">@Strings.heartrate</listEntry>
+            <listEntry value="3">@Strings.distance</listEntry>
+            <listEntry value="17">@Strings.distanceweek</listEntry>
+            <listEntry value="4">@Strings.movebar</listEntry>
+            <listEntry value="5">@Strings.steps</listEntry>
+            <listEntry value="6">@Strings.active</listEntry>
+            <listEntry value="10">@Strings.notification</listEntry>
+            <listEntry value="11">@Strings.alarm</listEntry>
+            <listEntry value="20">@Strings.phonestatus</listEntry>
+            <listEntry value="16">@Strings.groupnoti</listEntry>
+            <listEntry value="12">@Strings.altitude</listEntry>
+            <listEntry value="13">@Strings.temperature</listEntry>
+            <listEntry value="14">@Strings.sunriseset</listEntry>
+            <listEntry value="15">@Strings.floorclimbed</listEntry>
+            <listEntry value="18">@Strings.barometer</listEntry>
+        </settingConfig>
+    </setting>
+    <setting propertyKey="@Properties.comp8h" title="@Strings.comp8h">
+        <settingConfig type="list">
+        	<listEntry value="9">@Strings.empty</listEntry>
+        	<listEntry value="7">@Strings.date</listEntry>
+            <listEntry value="8">@Strings.time</listEntry>
+            <listEntry value="19">@Strings.time_secondary</listEntry>
+            <listEntry value="1">@Strings.battery</listEntry>
+            <listEntry value="2">@Strings.calories</listEntry>
+            <listEntry value="0">@Strings.heartrate</listEntry>
+            <listEntry value="3">@Strings.distance</listEntry>
+            <listEntry value="17">@Strings.distanceweek</listEntry>
+            <listEntry value="4">@Strings.movebar</listEntry>
+            <listEntry value="5">@Strings.steps</listEntry>
+            <listEntry value="6">@Strings.active</listEntry>
+            <listEntry value="10">@Strings.notification</listEntry>
+            <listEntry value="11">@Strings.alarm</listEntry>
+            <listEntry value="20">@Strings.phonestatus</listEntry>
+            <listEntry value="16">@Strings.groupnoti</listEntry>
+            <listEntry value="12">@Strings.altitude</listEntry>
+            <listEntry value="13">@Strings.temperature</listEntry>
+            <listEntry value="14">@Strings.sunriseset</listEntry>
+            <listEntry value="15">@Strings.floorclimbed</listEntry>
+            <listEntry value="18">@Strings.barometer</listEntry>
+        </settingConfig>
+    </setting>
+    <setting propertyKey="@Properties.comp10h" title="@Strings.comp10h">
+        <settingConfig type="list">
+        	<listEntry value="9">@Strings.empty</listEntry>
+        	<listEntry value="7">@Strings.date</listEntry>
+            <listEntry value="8">@Strings.time</listEntry>
+            <listEntry value="19">@Strings.time_secondary</listEntry>
+            <listEntry value="1">@Strings.battery</listEntry>
+            <listEntry value="2">@Strings.calories</listEntry>
+            <listEntry value="0">@Strings.heartrate</listEntry>
+            <listEntry value="3">@Strings.distance</listEntry>
+            <listEntry value="17">@Strings.distanceweek</listEntry>
+            <listEntry value="4">@Strings.movebar</listEntry>
+            <listEntry value="5">@Strings.steps</listEntry>
+            <listEntry value="6">@Strings.active</listEntry>
+            <listEntry value="10">@Strings.notification</listEntry>
+            <listEntry value="11">@Strings.alarm</listEntry>
+            <listEntry value="20">@Strings.phonestatus</listEntry>
+            <listEntry value="16">@Strings.groupnoti</listEntry>
+            <listEntry value="12">@Strings.altitude</listEntry>
+            <listEntry value="13">@Strings.temperature</listEntry>
+            <listEntry value="14">@Strings.sunriseset</listEntry>
+            <listEntry value="15">@Strings.floorclimbed</listEntry>
+            <listEntry value="18">@Strings.barometer</listEntry>
+        </settingConfig>
+    </setting>
+    <setting propertyKey="@Properties.compbart" title="@Strings.compbart">
+        <settingConfig type="list">
+        	<listEntry value="9">@Strings.empty</listEntry>
+        	<listEntry value="7">@Strings.date</listEntry>
+            <listEntry value="8">@Strings.time</listEntry>
+            <listEntry value="19">@Strings.time_secondary</listEntry>
+            <listEntry value="1">@Strings.battery</listEntry>
+            <listEntry value="2">@Strings.calories</listEntry>
+            <listEntry value="0">@Strings.heartrate</listEntry>
+            <listEntry value="3">@Strings.distance</listEntry>
+            <listEntry value="17">@Strings.distanceweek</listEntry>
+            <listEntry value="4">@Strings.movebar</listEntry>
+            <listEntry value="5">@Strings.steps</listEntry>
+            <listEntry value="6">@Strings.active</listEntry>
+            <listEntry value="10">@Strings.notification</listEntry>
+            <listEntry value="11">@Strings.alarm</listEntry>
+            <listEntry value="20">@Strings.phonestatus</listEntry>
+            <listEntry value="16">@Strings.groupnoti</listEntry>
+            <listEntry value="12">@Strings.altitude</listEntry>
+            <listEntry value="13">@Strings.temperature</listEntry>
+            <listEntry value="14">@Strings.sunriseset</listEntry>
+            <listEntry value="15">@Strings.floorclimbed</listEntry>
+            <listEntry value="18">@Strings.barometer</listEntry>
+        </settingConfig>
+    </setting>
+    <setting propertyKey="@Properties.compbarb" title="@Strings.compbarb">
+        <settingConfig type="list">
+        	<listEntry value="9">@Strings.empty</listEntry>
+        	<listEntry value="7">@Strings.date</listEntry>
+            <listEntry value="8">@Strings.time</listEntry>
+            <listEntry value="19">@Strings.time_secondary</listEntry>
+            <listEntry value="1">@Strings.battery</listEntry>
+            <listEntry value="2">@Strings.calories</listEntry>
+            <listEntry value="0">@Strings.heartrate</listEntry>
+            <listEntry value="3">@Strings.distance</listEntry>
+            <listEntry value="17">@Strings.distanceweek</listEntry>
+            <listEntry value="4">@Strings.movebar</listEntry>
+            <listEntry value="5">@Strings.steps</listEntry>
+            <listEntry value="6">@Strings.active</listEntry>
+            <listEntry value="10">@Strings.notification</listEntry>
+            <listEntry value="11">@Strings.alarm</listEntry>
+            <listEntry value="20">@Strings.phonestatus</listEntry>
+            <listEntry value="16">@Strings.groupnoti</listEntry>
+            <listEntry value="12">@Strings.altitude</listEntry>
+            <listEntry value="13">@Strings.temperature</listEntry>
+            <listEntry value="14">@Strings.sunriseset</listEntry>
+            <listEntry value="15">@Strings.floorclimbed</listEntry>
+            <listEntry value="18">@Strings.barometer</listEntry>
+        </settingConfig>
+    </setting>
+    <setting propertyKey="@Properties.utc_timezone" title="@Strings.utc_timezone">
+        <settingConfig type="list">
+        	<listEntry value="0">@Strings.utc0</listEntry>
+        	<listEntry value="1">@Strings.utc1</listEntry>
+        	<listEntry value="2">@Strings.utc2</listEntry>
+        	<listEntry value="3">@Strings.utc3</listEntry>
+        	<listEntry value="4">@Strings.utc4</listEntry>
+        	<listEntry value="5">@Strings.utc5</listEntry>
+        	<listEntry value="6">@Strings.utc6</listEntry>
+        	<listEntry value="7">@Strings.utc7</listEntry>
+        	<listEntry value="8">@Strings.utc8</listEntry>
+        	<listEntry value="9">@Strings.utc9</listEntry>
+        	<listEntry value="10">@Strings.utc10</listEntry>
+        	<listEntry value="11">@Strings.utc11</listEntry>
+        	<listEntry value="12">@Strings.utc12</listEntry>
+        	<listEntry value="-1">@Strings.utc1m</listEntry>
+        	<listEntry value="-2">@Strings.utc2m</listEntry>
+        	<listEntry value="-3">@Strings.utc3m</listEntry>
+        	<listEntry value="-4">@Strings.utc4m</listEntry>
+        	<listEntry value="-5">@Strings.utc5m</listEntry>
+        	<listEntry value="-6">@Strings.utc6m</listEntry>
+        	<listEntry value="-7">@Strings.utc7m</listEntry>
+        	<listEntry value="-8">@Strings.utc8m</listEntry>
+        	<listEntry value="-9">@Strings.utc9m</listEntry>
+        	<listEntry value="-10">@Strings.utc10m</listEntry>
+        	<listEntry value="-11">@Strings.utc11m</listEntry>
+        	<listEntry value="-12">@Strings.utc12m</listEntry>
+        </settingConfig>
+    </setting>
+    <setting propertyKey="@Properties.utc_shift" title="@Strings.utc_shift">
+        <settingConfig type="boolean" />
+    </setting>
+    <setting propertyKey="@Properties.date_format" title="@Strings.date_format">
+        <settingConfig type="list">
+        	<listEntry value="0">@Strings.datef1</listEntry>
+        	<listEntry value="1">@Strings.datef2</listEntry>
+        	<listEntry value="2">@Strings.datef21</listEntry>
+        	<listEntry value="3">@Strings.datef3</listEntry>
+        	<listEntry value="4">@Strings.datef31</listEntry>
+        </settingConfig>
+    </setting>
+    <setting propertyKey="@Properties.force_date_english" title="@Strings.force_date_english">
+        <settingConfig type="boolean" />
+    </setting>
+</settings>
