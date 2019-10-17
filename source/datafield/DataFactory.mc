@@ -34,6 +34,7 @@ enum /* FIELD_TYPES */ {
 	FIELD_TYPE_BAROMETER,
 	FIELD_TYPE_TIME_SECONDARY,
 	FIELD_TYPE_PHONE_STATUS,
+	FIELD_TYPE_COUNTDOWN,
 }
 
 function buildFieldObject(type) {
@@ -79,6 +80,8 @@ function buildFieldObject(type) {
 		return new TimeSecondaryField(FIELD_TYPE_TIME_SECONDARY);
 	} else if (type==FIELD_TYPE_PHONE_STATUS) {
 		return new PhoneField(FIELD_TYPE_PHONE_STATUS);
+	} else if (type==FIELD_TYPE_COUNTDOWN) {
+		return new CountdownField(FIELD_TYPE_COUNTDOWN);
 	}
 	
 	return new EmptyDataField(FIELD_TYPE_EMPTY);
@@ -169,6 +172,64 @@ class EmptyDataField {
 		return false;
 	}
 }
+
+/////////////////////
+// Countdown stage //
+/////////////////////
+
+class CountdownField extends BaseDataField {
+
+	function initialize(id) {
+		BaseDataField.initialize(id);
+	}
+
+	function min_val() {
+    	return 0.0;
+	}
+	
+	function max_val() {
+	    return 1.0;
+	}
+	
+	function cur_val() {
+	    return 0.999;
+	}
+	
+	function min_label(value) {
+		return "0";
+	}
+	
+	function max_label(value) {
+		return "0";
+	}
+	
+	function cur_label(value) {
+		var set_end_date = new Time.Moment(App.getApp().getProperty("countdown_date"));
+	    var now_d = new Time.Moment(Time.today().value());
+	    var dif_e_n = -(now_d.compare(set_end_date))/86400;
+	    if (dif_e_n>1 || dif_e_n<-1) {
+	    	return Lang.format("$1$ days",[dif_e_n.toString()]);
+	    } else {
+	    	return Lang.format("$1$ day",[dif_e_n.toString()]);
+	    }
+	}
+	
+	function min_pad() {
+		return 0;
+	}
+	
+	function max_pad() {
+		return 0;
+	}
+	
+	function cur_pad() {
+		return 0;
+	}
+}
+
+/////////////////////////
+// end countdown stage //
+/////////////////////////
 
 //////////////////////////
 // time secondary stage //
@@ -492,9 +553,9 @@ class PhoneField extends BaseDataField {
 	function cur_label(value) {
 		var settings = Sys.getDeviceSettings();
 		if (settings.phoneConnected) {
-			return "CON";
+			return "CONN";
 		} else {
-			return "DIS";
+			return "--";
 		}
 	}
 	
@@ -1727,7 +1788,7 @@ class BatteryField extends BaseDataField {
 	}
 	
 	function cur_val() {
-		return Sys.getSystemStats().battery;
+		return Math.round(Sys.getSystemStats().battery);
 	}
 	
 	function min_label(value) {

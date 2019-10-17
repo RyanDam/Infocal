@@ -24,6 +24,9 @@
     <string id="minute_major">Minute</string>
     <string id="hour_major">Hour</string>
     
+    <string id="countdown_date">Date for countdown</string>
+    <string id="countdown">Countdown to event</string>
+    
     <string id="use_analog">Analog watch face</string>
     <string id="digital_style">Digital number style</string>
     <string id="always_on_style">Always-on number style</string>
@@ -32,6 +35,10 @@
     <string id="digital_style_small">Small style</string>
     <string id="digital_style_medium">Medium style</string>
     
+    <string id="ticks_style">Ticks style</string>
+    <string id="ticks_style_arc">Arc style</string>
+    <string id="ticks_style_marks">Mark style</string>
+
     <string id="empty">Empty</string>
     <string id="battery">Battery</string>
     <string id="calories">Calories total-active (Experimental)</string>
@@ -90,7 +97,6 @@
     <string id="utc11m">UTC -11</string>
     <string id="utc12m">UTC -12</string>
     
-    
     <string id="theme_code">Theme color</string>
     <string id="theme_dark">Dark</string>
     <string id="theme_light">Light</string>
@@ -103,4 +109,6 @@
     <string id="theme_light_blue">Light blue</string>
     <string id="theme_gray">Gray</string>
     <string id="theme_lgray">Light gray</string>
+    <string id="theme_pink">Pink</string>
+    <string id="theme_deep_ocean">Deep ocean</string>
 </strings>

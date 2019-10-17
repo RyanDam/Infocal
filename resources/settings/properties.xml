@@ -12,6 +12,8 @@
     <property id="left_digital_info" type="boolean">false</property>
     <property id="force_date_english" type="boolean">true</property>
     <property id="big_number_type" type="number">0</property>
+
+    <property id="ticks_style" type="number">0</property>
     <property id="render_arc_line" type="boolean">true</property>
     
     <property id="comp12h" type="number">1</property>
@@ -28,4 +30,6 @@
     <property id="utc_timezone" type="number">0</property>
     <property id="utc_shift" type="boolean">false</property>
     <property id="date_format" type="number">0</property>
+    
+    <property id="countdown_date" type="number">1546300800</property>
 </properties>

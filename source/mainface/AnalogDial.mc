@@ -53,47 +53,51 @@ class AnalogDial extends Ui.Drawable {
     	secondHandDisabled = false;
     }
     
+    function removeFont() {
+    	hour_font_1 = null;
+		hour_1 = null;
+		hour_font_2 = null;
+		hour_2 = null;
+		hour_font_3 = null;
+		hour_3 = null;
+		hour_font_4 = null;
+		hour_4 = null;
+		hour_font_5 = null;
+		hour_5 = null;
+		hour_font_6 = null;
+		hour_6 = null;
+		
+		minu_font_1 = null;
+		minu_1 = null;
+		minu_font_2 = null;
+		minu_2 = null;
+		minu_font_3 = null;
+		minu_3 = null;
+		minu_font_4 = null;
+		minu_4 = null;
+		minu_font_5 = null;
+		minu_5 = null;
+		minu_font_6 = null;
+		minu_6 = null;
+		
+//		seco_font_1 = null;
+//		seco_1 = null;
+//		seco_font_2 = null;
+//		seco_2 = null;
+//		seco_font_3 = null;
+//		seco_3 = null;
+//		seco_font_4 = null;
+//		seco_4 = null;
+//		seco_font_5 = null;
+//		seco_5 = null;
+//		seco_font_6 = null;
+//		seco_6 = null;
+    }
+    
     function checkCurrentFont() {
     
     	if (Application.getApp().getProperty("use_analog") == false) {
-    		hour_font_1 = null;
-    		hour_1 = null;
-    		hour_font_2 = null;
-    		hour_2 = null;
-    		hour_font_3 = null;
-    		hour_3 = null;
-    		hour_font_4 = null;
-    		hour_4 = null;
-    		hour_font_5 = null;
-    		hour_5 = null;
-    		hour_font_6 = null;
-    		hour_6 = null;
-    		
-    		minu_font_1 = null;
-    		minu_1 = null;
-    		minu_font_2 = null;
-    		minu_2 = null;
-    		minu_font_3 = null;
-    		minu_3 = null;
-    		minu_font_4 = null;
-    		minu_4 = null;
-    		minu_font_5 = null;
-    		minu_5 = null;
-    		minu_font_6 = null;
-    		minu_6 = null;
-    		
-//    		seco_font_1 = null;
-//    		seco_1 = null;
-//    		seco_font_2 = null;
-//    		seco_2 = null;
-//    		seco_font_3 = null;
-//    		seco_3 = null;
-//    		seco_font_4 = null;
-//    		seco_4 = null;
-//    		seco_font_5 = null;
-//    		seco_5 = null;
-//    		seco_font_6 = null;
-//    		seco_6 = null;
+    		removeFont();
     		return;
     	}
     
@@ -574,9 +578,8 @@ class AnalogDial extends Ui.Drawable {
     		return;
     	}
     	
-//    	dc.setColor(gsecondary_color, Graphics.COLOR_TRANSPARENT);
-//    	drawSecondHandAntiAlias(dc);
-    	
+        dc.setColor(gsecondary_color, Graphics.COLOR_TRANSPARENT);
+        drawSecondHand(dc);
     	
     }
     
@@ -616,6 +619,22 @@ class AnalogDial extends Ui.Drawable {
     	}
     }
     
+    function drawSecondHand(dc) {
+        var base_radius = centerX==109 ? 0.0 : 11.0;
+        var minu_radius = centerX-23.0;
+        var base_thick = 3.0;
+        var radian = 2*(getSecondHandFragment()/60.0)*Math.PI;
+
+        var startx = convertCoorX(radian, base_radius);
+        var starty = convertCoorY(radian, base_radius);
+        var endx = convertCoorX(radian, minu_radius);
+        var endy = convertCoorY(radian, minu_radius);
+
+        dc.setColor(gsecondary_color, Graphics.COLOR_TRANSPARENT);
+        dc.setPenWidth(base_thick);
+        dc.drawLine(startx, starty, endx, endy);
+    }
+
 //    function drawSecondHandAntiAlias(dc) {
 //    	checkSecondHandFont();
 //    	

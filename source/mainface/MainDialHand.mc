@@ -45,16 +45,20 @@ class MainDialHand extends Ui.Drawable {
     	secondHandDisabled = false;
     }
     
+    function removeFont() {
+    	midBoldFont = null;
+		midSemiFont = null;
+		xmidBoldFont = null;
+		xmidSemiFont = null;
+		xdigitalFont = null;
+		digitalFont = null;
+		midDigitalFont = null;
+    }
+    
     function checkCurrentFont() {
     
     	if (Application.getApp().getProperty("use_analog") == true) {
-    		midBoldFont = null;
-			midSemiFont = null;
-    		xmidBoldFont = null;
-			xmidSemiFont = null;
-			xdigitalFont = null;
-			digitalFont = null;
-			midDigitalFont = null;
+    		removeFont();
     		return;
     	}
     

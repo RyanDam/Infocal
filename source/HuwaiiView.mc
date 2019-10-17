@@ -42,6 +42,7 @@ class HuwaiiView extends WatchUi.WatchFace {
 	var font_height_half = 7;
 	
 	var face_radius;
+	var current_is_analogue = false;
 	
     function initialize() {
         WatchFace.initialize();
@@ -70,6 +71,7 @@ class HuwaiiView extends WatchUi.WatchFace {
 //    	} else if (view_width==280) {
 //    	
 //    	}
+    	current_is_analogue = Application.getApp().getProperty("use_analog");
     	
     	System.println("" + view_width + " " + view_height);
     	
@@ -110,6 +112,7 @@ class HuwaiiView extends WatchUi.WatchFace {
 //    	System.println("update");
 //    	System.println("" + clockTime.min + ":" + clockTime.sec);
     	
+    	force_render_component = true;
     	if (Application.getApp().getProperty("power_save_mode")) {
     		if (restore_from_resume) {
 				var current_mili = System.getTimer();
@@ -148,6 +151,7 @@ class HuwaiiView extends WatchUi.WatchFace {
     		mainDrawComponents(dc);
     		force_render_component = false;
     	}
+    	force_render_component = false;
     	
     	
     	onPartialUpdate(dc);
@@ -158,16 +162,27 @@ class HuwaiiView extends WatchUi.WatchFace {
 		
 		checkTheme();
 		
-		var analogDisplay = View.findDrawableById("analog");
-		analogDisplay.checkCurrentFont();
-		var digitalDisplay = View.findDrawableById("digital");
-		digitalDisplay.checkCurrentFont();
-		
 		if (force_render_component) {
 			dc.setColor(Graphics.COLOR_TRANSPARENT, gbackground_color);
 			dc.clear();
 			dc.setColor(gbackground_color, Graphics.COLOR_TRANSPARENT);
     		dc.fillRectangle(0,0,centerX*2,centerY*2);
+		}
+		
+		var analogDisplay = View.findDrawableById("analog");
+		var digitalDisplay = View.findDrawableById("digital");
+		
+		if (current_is_analogue != Application.getApp().getProperty("use_analog")){
+			// switch style
+			if (current_is_analogue) {
+				// turned to digital
+				analogDisplay.removeFont();
+				digitalDisplay.checkCurrentFont();
+			} else {
+				// turned to analogue
+				digitalDisplay.removeFont();
+				analogDisplay.checkCurrentFont();
+			}
 		}
 		
 		var backgroundView = View.findDrawableById("background");
@@ -358,7 +373,7 @@ class HuwaiiView extends WatchUi.WatchFace {
 			gbackground_color = 0x555555;
 			gmain_color = 0xFFFFFF;
 			gsecondary_color = 0x000000;
-			garc_color = 0x555555;
+			garc_color = 0x000000;
 			gbar_color_indi = 0xFFFFFF;
 			gbar_color_back = 0xAAAAAA;
 			gbar_color_0 = 0xFFFF00;
@@ -373,6 +388,26 @@ class HuwaiiView extends WatchUi.WatchFace {
 			gbar_color_back = 0x555555;
 			gbar_color_0 = 0xFFFF00;
 			gbar_color_1 = 0x0000FF;
+		} else if (theme_code == 11) {
+			// pink
+			gbackground_color = 0xFF0055;
+			gmain_color = 0xFFFFFF;
+			gsecondary_color = 0xAAAAAA;
+			garc_color = 0xAAAAAA;
+			gbar_color_indi = 0xFFFFFF;
+			gbar_color_back = 0xAA0055;
+			gbar_color_0 = 0xFFFF00;
+			gbar_color_1 = 0x0000FF;
+		} else if (theme_code == 12) {
+			// deep ocean
+			gbackground_color = 0x000055;
+			gmain_color = 0xFFFFFF;
+			gsecondary_color = 0x0000FF;
+			garc_color = 0x0000AA;
+			gbar_color_indi = 0xFFFFFF;
+			gbar_color_back = 0x0000AA;
+			gbar_color_0 = 0xFFFF00;
+			gbar_color_1 = 0x00AAFF;
 		} 
 	}
 

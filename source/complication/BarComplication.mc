@@ -17,9 +17,11 @@ class BarComplication extends Ui.Drawable {
     	var size = Application.getApp().getView().getViewSize();
         centerX = size[0]/2;
     	centerY = size[1]/2;
-    	
     	position = params.get(:position);
-    	if (position == 0) {
+    }
+	
+	function load_font() {
+		if (position == 0) {
     		// up
     		if (centerX == 120) {
 	    		font = Ui.loadResource(Rez.Fonts.cur_up);
@@ -172,8 +174,7 @@ class BarComplication extends Ui.Drawable {
     		}
     		
     	}
-//    	textFont = Ui.loadResource(Rez.Fonts.smadigi);
-    }
+	}
 	
 	function min_val() {
     	return 0.0;
@@ -201,7 +202,8 @@ class BarComplication extends Ui.Drawable {
     
     function draw(dc) {
 //    	var start = System.getTimer();
-
+		load_font();
+		
 		var primaryColor = position == 1 ? gbar_color_1 : gbar_color_0;
     	
     	var bonus_padding = 0;
@@ -216,7 +218,18 @@ class BarComplication extends Ui.Drawable {
 	    	} else if (cu <= mi) {
 	    		i = -1;
 	    	} else {
-	    		i = ((4*(cu-mi)/(ma-mi))).toNumber();
+	    		var fraction = (cu-mi)/(ma-mi);
+	    		if (fraction >= 0.8) {
+	    			i = 4;
+	    		} else if (fraction >= 0.6) {
+	    			i = 3;
+	    		} else if (fraction >= 0.4) {
+	    			i = 2;
+	    		} else if (fraction >= 0.2) {
+	    			i = 1;
+	    		} else {
+	    			i = 0;
+	    		}
 	    	}
 	    	
 	    	var start2 = System.getTimer();
@@ -246,6 +259,11 @@ class BarComplication extends Ui.Drawable {
     	
 //    	var end = System.getTimer();
 //        System.println("bar draw " + (end-start) + "ms: " + title + " text draw " + (end-startt));
+
+		font = null;
+		fontInfo = null;
+		arrFont = null;
+		arrInfo = null;
     }
     
     function drawTiles(packed_array,font,dc) {
