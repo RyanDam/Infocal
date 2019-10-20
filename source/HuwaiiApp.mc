@@ -120,14 +120,14 @@ class HuwaiiApp extends Application.AppBase {
 			var date = Date.info(now, Time.FORMAT_SHORT);
 			var year = date.year;
 			var yy = year/100.0;
-			yy = ((yy-yy.toNumber())*100.0).toNumber();
+			yy = Math.round((yy-yy.toNumber())*100.0);
 			return Lang.format("$1$.$2$.$3$",[date.day.format("%d"), date.month.format("%d"), yy.format("%d")]);
 		} else if (date_formater == 4) {
 			// mm/dd/yyyy
 			var date = Date.info(now, Time.FORMAT_SHORT);
 			var year = date.year;
 			var yy = year/100.0;
-			yy = ((yy-yy.toNumber())*100.0).toNumber();
+			yy = Math.round((yy-yy.toNumber())*100.0);
 			return Lang.format("$1$.$2$.$3$",[date.month.format("%d"), date.day.format("%d"), yy.format("%d")]);
 		}
 	}
