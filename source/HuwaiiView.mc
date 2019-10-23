@@ -108,6 +108,7 @@ class HuwaiiView extends WatchUi.WatchFace {
     		second_font_height_half = 14;
     		second_clip_size = [26, 22];
     	}
+//    	System.println("1");
     	
 //    	System.println("update");
 //    	System.println("" + clockTime.min + ":" + clockTime.sec);
@@ -153,6 +154,7 @@ class HuwaiiView extends WatchUi.WatchFace {
     	}
     	force_render_component = false;
     	
+//    	System.println("2");
     	
     	onPartialUpdate(dc);
     }
@@ -161,6 +163,8 @@ class HuwaiiView extends WatchUi.WatchFace {
 		var start = System.getTimer();
 		
 		checkTheme();
+		
+//		System.println("3");
 		
 		if (force_render_component) {
 			dc.setColor(Graphics.COLOR_TRANSPARENT, gbackground_color);
@@ -196,20 +200,35 @@ class HuwaiiView extends WatchUi.WatchFace {
 		var bbar2 = View.findDrawableById("tUBarDisplay");
 		
 		bar1.draw(dc);
+//		System.println("4");
 		bar2.draw(dc);
+//		System.println("5");
 		bar3.draw(dc);
+//		System.println("6");
 		bar4.draw(dc);
+//		System.println("7");
 		bar5.draw(dc);
+//		System.println("8");
 		bar6.draw(dc);
+//		System.println("9");
 		
         dc.setColor(gbackground_color, Graphics.COLOR_TRANSPARENT);
 //        dc.setColor(0x555555, Graphics.COLOR_TRANSPARENT);
         dc.fillCircle(centerX, centerY, face_radius);
 		
 		backgroundView.draw(dc);
+//		System.println("10");
 		
 		bbar1.draw(dc);
 		bbar2.draw(dc);
+//		System.println("11");
+
+
+		var bgraph1 = View.findDrawableById("tGraphDisplay");
+		var bgraph2 = View.findDrawableById("bGraphDisplay");
+		bgraph1.draw(dc);
+		bgraph2.draw(dc);
+//		System.println("12");
         
         // Call the parent onUpdate function to redraw the layout
         if (Application.getApp().getProperty("use_analog")) {
@@ -218,6 +237,7 @@ class HuwaiiView extends WatchUi.WatchFace {
         	digitalDisplay.draw(dc);
         }
         
+//		System.println("13");
 //        View.onUpdate(dc);
         var end = System.getTimer();
         

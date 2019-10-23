@@ -254,6 +254,8 @@ class MainDialHand extends Ui.Drawable {
 	    	second_y  = centerY - second_font_height_half/2 - (alwayon_style == 0 ? 3 : 6);
 		}
 		
+		removeFont();
+		
 //		var end = System.getTimer();
 //        System.println("digital draw  " + (end-start) + "ms");
     }

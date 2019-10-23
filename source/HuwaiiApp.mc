@@ -19,7 +19,6 @@ class HuwaiiApp extends Application.AppBase {
 	
     function initialize() {
         AppBase.initialize();
-        
         days = {Date.DAY_MONDAY => "MON", 
 				Date.DAY_TUESDAY => "TUE", 
 				Date.DAY_WEDNESDAY => "WED", 

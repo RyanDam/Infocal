@@ -27,6 +27,9 @@
     <property id="compbart" type="number">9</property>
     <property id="compbarb" type="number">9</property>
     
+    <property id="compgrapht" type="number">0</property>
+    <property id="compgraphb" type="number">0</property>
+    
     <property id="utc_timezone" type="number">0</property>
     <property id="utc_shift" type="boolean">false</property>
     <property id="date_format" type="number">0</property>

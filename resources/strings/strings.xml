@@ -12,6 +12,9 @@
     <string id="compbart">Top bar complication</string>
     <string id="compbarb">Bottom bar complication</string>
     
+    <string id="compgrapht">Top graph complication</string>
+    <string id="compgraphb">Bottom graph complication</string>
+    
     <string id="always_on_second">Always-on second (for digital)</string>
     <string id="minimal_data">Full number instead of reduced (K)</string>
     <string id="big_num_stripes">Render stripes on big number</string>

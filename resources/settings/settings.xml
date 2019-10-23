@@ -279,6 +279,26 @@
             <listEntry value="21">@Strings.countdown</listEntry>
         </settingConfig>
     </setting>
+    
+    <setting propertyKey="@Properties.compgrapht" title="@Strings.compgrapht">
+        <settingConfig type="list">
+        	<listEntry value="0">@Strings.empty</listEntry>
+            <listEntry value="1">@Strings.heartrate</listEntry>
+            <listEntry value="2">@Strings.altitude</listEntry>
+            <listEntry value="3">@Strings.barometer</listEntry>
+            <listEntry value="4">@Strings.temperature</listEntry>
+        </settingConfig>
+    </setting>
+    <setting propertyKey="@Properties.compgraphb" title="@Strings.compgraphb">
+        <settingConfig type="list">
+        	<listEntry value="0">@Strings.empty</listEntry>
+            <listEntry value="1">@Strings.heartrate</listEntry>
+            <listEntry value="2">@Strings.altitude</listEntry>
+            <listEntry value="3">@Strings.barometer</listEntry>
+            <listEntry value="4">@Strings.temperature</listEntry>
+        </settingConfig>
+    </setting>
+    
     <setting propertyKey="@Properties.utc_timezone" title="@Strings.utc_timezone">
         <settingConfig type="list">
         	<listEntry value="0">@Strings.utc0</listEntry>

@@ -47,6 +47,13 @@
         <param name="field_type">5</param>
     </drawable>
     
+    <drawable id="bGraphDisplay" class="GraphComplication">	             
+        <param name="position">1</param>
+    </drawable>
+    <drawable id="tGraphDisplay" class="GraphComplication">	             
+        <param name="position">0</param>
+    </drawable>
+    
     <drawable id="digital" class="MainDialHand"></drawable>
     <drawable id="analog" class="AnalogDial"></drawable>
     

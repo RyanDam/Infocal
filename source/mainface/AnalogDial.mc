@@ -558,6 +558,7 @@ class AnalogDial extends Ui.Drawable {
     	
 		draw_analog_hands(dc);
 		
+		removeFont();
 //		var end = System.getTimer();
 //        System.println("analogue draw " + (end-start) + "ms");
     }
