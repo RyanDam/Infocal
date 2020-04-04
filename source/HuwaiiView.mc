@@ -6,11 +6,14 @@ using Toybox.Lang;
 using Toybox.Time.Gregorian as Date;
 using Toybox.Application as App;
 using Toybox.ActivityMonitor as Mon;
+using Toybox.UserProfile;
 
 var smallDigitalFont = null;
 var second_digi_font = null;
 var second_x = 160;
 var second_y = 140;
+var heart_x = 80;
+
 var second_font_height_half = 7;
 var second_background_color = 0x000000;
 var second_font_color = 0xFFFFFF;
@@ -28,52 +31,38 @@ var gbar_color_1 = 0x0000FF;
 
 var force_render_component = false;
 
+var last_battery_percent = -1;
+var last_hour_consumtion = -1;
+
 class HuwaiiView extends WatchUi.WatchFace {
 
 	var last_draw_minute = -1;
 	var restore_from_resume = false;
 	var last_resume_mili = 0;
 	
-	var view_width = 240;
-	var view_height = 240;
-	var centerX = 120;
-	var centerY = 120;
+	var last_battery_hour = null;
+	
 	var font_padding = 12;
 	var font_height_half = 7;
 	
 	var face_radius;
 	var current_is_analogue = false;
 	
+	var did_clear = false;
+	
     function initialize() {
         WatchFace.initialize();
     }
 
-	function getViewSize() {
-		return [view_width, view_height];
-	}
-
     // Load your resources here
     function onLayout(dc) {
     	smallDigitalFont = WatchUi.loadResource(Rez.Fonts.smadigi);
-    	view_width = dc.getWidth();
-    	view_height = dc.getHeight();
-    	centerX = view_width/2;
-    	centerY = view_height/2;
+    	centerX = dc.getWidth()/2;
+    	centerY = dc.getHeight()/2;
     	
-    	face_radius = view_width/2 - 18;
-    	
-//    	if (view_width==218) {
-//    		face_radius = ;
-//    	} else if (view_width==240) {
-//    	
-//    	} else if (view_width==260) {
-//    	
-//    	} else if (view_width==280) {
-//    	
-//    	}
+    	face_radius = centerX - (18*centerX/120).toNumber();
+
     	current_is_analogue = Application.getApp().getProperty("use_analog");
-    	
-    	System.println("" + view_width + " " + view_height);
     	
         setLayout(Rez.Layouts.WatchFace(dc));
         if (HuwaiiApp has :checkPendingWebRequests) { // checkPendingWebRequests() can be excluded to save memory.
@@ -86,9 +75,7 @@ class HuwaiiView extends WatchUi.WatchFace {
     // loading resources into memory.
     function onShow() {
     	 var clockTime = System.getClockTime(); 
-    	 System.println("show");
-    	 System.println("" + clockTime.min + ":" + clockTime.sec);
-    	 
+
     	last_draw_minute = -1;
     	restore_from_resume = true;
     	last_resume_mili = System.getTimer();
@@ -96,7 +83,48 @@ class HuwaiiView extends WatchUi.WatchFace {
 
     // Update the view
     function onUpdate(dc) {
+    	
     	var clockTime = System.getClockTime(); 
+    	
+    	
+    	var current_tick = System.getTimer();
+    	
+//		System.println("" + current_time_duration + ", " + sleep_time + ", " + wake_time);
+		
+////		System.println("" + is_in_sleep + ", " + Application.getApp().getProperty("sleep_time_behaviour") + ", " + did_clear);
+//		var sleep_time_behaviour = Application.getApp().getProperty("sleep_time_behaviour");
+//		if (sleep_time_behaviour == 1) {
+//			var profile = UserProfile.getProfile();
+//			var current_time_duration = clockTime.hour*3600 + clockTime.min*60 + clockTime.sec;
+//	    	var sleep_time = profile.sleepTime.value();
+//	    	var wake_time = profile.wakeTime.value();
+//		
+//			var is_in_sleep = false;
+//			if (wake_time < sleep_time) {
+//				// sleep before 24h wake after 24
+//				if (current_time_duration >= sleep_time) {
+//					is_in_sleep = true;
+//				} else if (current_time_duration <= wake_time) {
+//					is_in_sleep = true;
+//				}
+//			} else {
+//				// sleep & wake after 24
+//				if ((current_time_duration >= sleep_time) && (current_time_duration <= wake_time)) {
+//					is_in_sleep = true;
+//				}
+//			}
+//			
+//			if (is_in_sleep) {
+//				if (!did_clear) {
+//					dc.setColor(0x000000, 0x000000);
+//					dc.clear();
+//					did_clear = true;
+//				}
+//				return;
+//			} else {
+//				did_clear = false;
+//			}
+//		}
     	
     	var always_on_style = Application.getApp().getProperty("always_on_style");
     	if (always_on_style == 0) {
@@ -113,10 +141,46 @@ class HuwaiiView extends WatchUi.WatchFace {
 //    	System.println("update");
 //    	System.println("" + clockTime.min + ":" + clockTime.sec);
     	
+    	var time_now = Time.now();
+    	if (last_battery_hour == null) {
+    		last_battery_hour = time_now;
+    		last_battery_percent = System.getSystemStats().battery;
+    		last_hour_consumtion = -1;
+    	} else if (time_now.compare(last_battery_hour) >= 60*60) { // 60 min
+    		last_battery_hour = time_now;
+    		var current_battery = System.getSystemStats().battery;
+    		last_hour_consumtion = last_battery_percent-current_battery;
+    		if (last_hour_consumtion < 0) {
+    			last_hour_consumtion = -1;
+    		}
+			if (last_hour_consumtion>0) {
+    			App.getApp().setProperty("last_hour_consumtion", last_hour_consumtion);
+    			
+				var consumtion_history = App.getApp().getProperty("consumtion_history");
+				if (consumtion_history == null) {
+					App.getApp().setProperty("consumtion_history", [last_hour_consumtion]);
+				} else {
+//					System.println(consumtion_history);
+//					System.println(last_hour_consumtion);
+					consumtion_history.add(last_hour_consumtion);
+					if (consumtion_history.size() > 24) {
+						var object0 = consumtion_history[0];
+						consumtion_history.remove(object0);
+					}
+					App.getApp().setProperty("consumtion_history", consumtion_history);
+				}
+//				System.println("consumtion_history_set");
+//				System.println(App.getApp().getProperty("consumtion_history"));
+    		}
+    		last_battery_percent = current_battery;
+    	} else {
+    		//System.println(time_now.compare(last_battery_hour));
+    	}
+    	
     	force_render_component = true;
     	if (Application.getApp().getProperty("power_save_mode")) {
     		if (restore_from_resume) {
-				var current_mili = System.getTimer();
+				var current_mili = current_tick;
 				force_render_component = true;
 				// will allow watch face to refresh in 5s when resumed (`onShow()` called)
 				if ((current_mili-last_resume_mili) > 5000) {
@@ -141,7 +205,7 @@ class HuwaiiView extends WatchUi.WatchFace {
     		last_draw_minute = -1;
     		// normal power mode
     		if (restore_from_resume) {
-    			var current_mili = System.getTimer();
+    			var current_mili = current_tick;
 				force_render_component = true;
 				// will allow watch face to refresh in 5s when resumed (`onShow()` called)
 				if ((current_mili-last_resume_mili) > 5000) {
@@ -160,11 +224,7 @@ class HuwaiiView extends WatchUi.WatchFace {
     }
 
 	function mainDrawComponents(dc) {
-		var start = System.getTimer();
-		
 		checkTheme();
-		
-//		System.println("3");
 		
 		if (force_render_component) {
 			dc.setColor(Graphics.COLOR_TRANSPARENT, gbackground_color);
@@ -181,11 +241,11 @@ class HuwaiiView extends WatchUi.WatchFace {
 			if (current_is_analogue) {
 				// turned to digital
 				analogDisplay.removeFont();
-				digitalDisplay.checkCurrentFont();
+//				digitalDisplay.checkCurrentFont();
 			} else {
 				// turned to analogue
 				digitalDisplay.removeFont();
-				analogDisplay.checkCurrentFont();
+//				analogDisplay.checkCurrentFont();
 			}
 		}
 		
@@ -237,35 +297,54 @@ class HuwaiiView extends WatchUi.WatchFace {
         	digitalDisplay.draw(dc);
         }
         
-//		System.println("13");
-//        View.onUpdate(dc);
-        var end = System.getTimer();
-        
-        System.println("global draw " + (end-start) + "ms");
-        System.println("");
 	}
 
 	function onPartialUpdate(dc) {
-		if (Application.getApp().getProperty("always_on_second") && !((Application.getApp().getProperty("use_analog")))) {
-			// var start = System.getTimer();
+		if (!((Application.getApp().getProperty("use_analog")))) {
+			if (Application.getApp().getProperty("always_on_second")) {
+				// var start = System.getTimer();
+				
+				
+				var clockTime = System.getClockTime(); 
+				var second_text = clockTime.sec.format("%02d");
+				var ss = dc.getTextDimensions(second_text, second_digi_font);
+				
+				dc.setClip(second_x, second_y, second_clip_size[0], second_clip_size[1]);
+				dc.setColor(Graphics.COLOR_TRANSPARENT, gbackground_color);
+				dc.clear();
+				dc.setColor(gmain_color, Graphics.COLOR_TRANSPARENT);
+				dc.drawText(second_x, second_y-font_padding, 
+							second_digi_font, 
+							second_text, 
+							Graphics.TEXT_JUSTIFY_LEFT);
+				dc.clearClip();
+				
+				// var end = System.getTimer();
+				
+				// System.println("spatial draw " + (end-start) + "ms");
+			}
 			
-			dc.setClip(second_x, second_y, second_clip_size[0], second_clip_size[1]);
-			dc.setColor(Graphics.COLOR_TRANSPARENT, gbackground_color);
-			dc.clear();
-			var clockTime = System.getClockTime(); 
-			var second_text = clockTime.sec.format("%02d");
-			var ss = dc.getTextDimensions(second_text, second_digi_font);
-			
-			dc.setColor(gmain_color, Graphics.COLOR_TRANSPARENT);
-			dc.drawText(second_x, second_y-font_padding, 
-						second_digi_font, 
-						second_text, 
-						Graphics.TEXT_JUSTIFY_LEFT);
-			dc.clearClip();
-			
-			// var end = System.getTimer();
-			
-			// System.println("spatial draw " + (end-start) + "ms");
+			if (Application.getApp().getProperty("always_on_heart")) {
+				
+				var h = _retrieveHeartrate();
+				var heart_text = "--";
+				if (h != null) {
+					heart_text = h.format("%d");
+				}
+				var ss = dc.getTextDimensions(heart_text, second_digi_font);
+				var s = (ss[0]*1.2).toNumber();
+				var s2 = (second_clip_size[0]*1.25).toNumber();
+				dc.setClip(heart_x-s2-1, second_y, s2+2, second_clip_size[1]);
+				dc.setColor(Graphics.COLOR_TRANSPARENT, gbackground_color);
+//				dc.setColor(Graphics.COLOR_TRANSPARENT, 0x555555);
+				dc.clear();
+				dc.setColor(gmain_color, Graphics.COLOR_TRANSPARENT);
+				dc.drawText(heart_x-1, second_y-font_padding, 
+							second_digi_font, 
+							heart_text, 
+							Graphics.TEXT_JUSTIFY_RIGHT);
+				dc.clearClip();
+			}
 		}
 	}
 
@@ -280,8 +359,8 @@ class HuwaiiView extends WatchUi.WatchFace {
     
     // The user has just looked at their watch. Timers and animations may be started here.
     function onExitSleep() {
-    	var dialDisplay = View.findDrawableById("analog");
-    	dialDisplay.enableSecondHand();
+//    	var dialDisplay = View.findDrawableById("analog");
+//    	dialDisplay.enableSecondHand();
     	
     	if (HuwaiiApp has :checkPendingWebRequests) { // checkPendingWebRequests() can be excluded to save memory.
 			App.getApp().checkPendingWebRequests(); // Depends on mDataFields.hasField().
@@ -290,8 +369,8 @@ class HuwaiiView extends WatchUi.WatchFace {
 
     // Terminate any active timers and prepare for slow updates.
     function onEnterSleep() {
-    	var dialDisplay = View.findDrawableById("analog");
-		dialDisplay.disableSecondHand();
+//    	var dialDisplay = View.findDrawableById("analog");
+//		dialDisplay.disableSecondHand();
     }
 
 	function checkTheme() {
@@ -314,7 +393,7 @@ class HuwaiiView extends WatchUi.WatchFace {
 			garc_color = 0xAAAAAA;
 			gbar_color_indi = 0x555555;
 			gbar_color_back = 0xAAAAAA;
-			gbar_color_0 = 0xFFFF00;
+			gbar_color_0 = 0xAA5500;
 			gbar_color_1 = 0x0000FF;
 		} else if (theme_code == 2) {
 			// Ocean
@@ -346,29 +425,7 @@ class HuwaiiView extends WatchUi.WatchFace {
 			gbar_color_back = 0xAAAAAA;
 			gbar_color_0 = 0xFF0000;
 			gbar_color_1 = 0x0000FF;
-		} 
-//		else if (theme_code == 5) {
-//			// flashlight
-//			gbackground_color = 0x000000;
-//			gmain_color = 0xFFFF00;
-//			gsecondary_color = 0xAAAAAA;
-//			garc_color = 0x555555;
-//			gbar_color_indi = 0x555555;
-//			gbar_color_back = 0xAAAAAA;
-//			gbar_color_0 = 0xFF0000;
-//			gbar_color_1 = 0x0000FF;
-//		} else if (theme_code == 6) {
-//			// Dusk
-//			gbackground_color = 0xAAAA00;
-//			gmain_color = 0xFFFF00;
-//			gsecondary_color = 0xAAAAAA;
-//			garc_color = 0x555555;
-//			gbar_color_indi = 0x555555;
-//			gbar_color_back = 0xAAAAAA;
-//			gbar_color_0 = 0xFF0000;
-//			gbar_color_1 = 0x0000FF;
-//		} 
-		else if (theme_code == 7) {
+		}  else if (theme_code == 7) {
 			// dark blue
 			gbackground_color = 0x000000;
 			gmain_color = 0xFFFFFF;
@@ -386,7 +443,7 @@ class HuwaiiView extends WatchUi.WatchFace {
 			garc_color = 0x555555;
 			gbar_color_indi = 0x555555;
 			gbar_color_back = 0xAAAAAA;
-			gbar_color_0 = 0xFFFF00;
+			gbar_color_0 = 0xAA5500;
 			gbar_color_1 = 0x0000FF;
 		} else if (theme_code == 9) {
 			// gray
@@ -406,7 +463,7 @@ class HuwaiiView extends WatchUi.WatchFace {
 			garc_color = 0x555555;
 			gbar_color_indi = 0x000000;
 			gbar_color_back = 0x555555;
-			gbar_color_0 = 0xFFFF00;
+			gbar_color_0 = 0xAA5500;
 			gbar_color_1 = 0x0000FF;
 		} else if (theme_code == 11) {
 			// pink
@@ -428,6 +485,56 @@ class HuwaiiView extends WatchUi.WatchFace {
 			gbar_color_back = 0x0000AA;
 			gbar_color_0 = 0xFFFF00;
 			gbar_color_1 = 0x00AAFF;
+		} else if (theme_code == 13) {
+			// dark
+			gbackground_color = 0x000000;
+			gmain_color = 0xFFFFFF;
+			gsecondary_color = 0xFF0000;
+			garc_color = 0xAAAAAA;
+			gbar_color_indi = 0xFFFFFF;
+			gbar_color_back = 0x550000;
+			gbar_color_0 = 0xFFFFFF;
+			gbar_color_1 = 0xFFFFFF;
+		} else if (theme_code == 14) {
+			// light contrast
+			gbackground_color = 0xFFFFFF;
+			gmain_color = 0x000000;
+			gsecondary_color = 0xFF0000;
+			garc_color = 0x555555;
+			gbar_color_indi = 0x000000;
+			gbar_color_back = 0xAAAAAA;
+			gbar_color_0 = 0x000000;
+			gbar_color_1 = 0x000000;
+		} else if (theme_code == 15) {
+			// camo
+			gbackground_color = 0x55AA00;
+			gmain_color = 0x000000;
+			gsecondary_color = 0xFFFF00;
+			garc_color = 0x555500;
+			gbar_color_indi = 0xFFFF00;
+			gbar_color_back = 0x555500;
+			gbar_color_0 = 0x000000;
+			gbar_color_1 = 0x000000;
+		} else if (theme_code == 16) {
+			// solar
+			gbackground_color = 0x000000;
+			gmain_color = 0xFFFFFF;
+			gsecondary_color = 0xFF5500;
+			garc_color = 0x555555;
+			gbar_color_indi = 0xAAAAAA;
+			gbar_color_back = 0x550000;
+			gbar_color_0 = 0xFF5500;
+			gbar_color_1 = 0xFF5500;
+		} else if (theme_code == 17) {
+			// lime
+			gbackground_color = 0x000000;
+			gmain_color = 0xFFFFFF;
+			gsecondary_color = 0x55FF55;
+			garc_color = 0x555555;
+			gbar_color_indi = 0xFFFFFF;
+			gbar_color_back = 0x005500;
+			gbar_color_0 = 0x00FF00;
+			gbar_color_1 = 0x00FF00;
 		} 
 	}
 

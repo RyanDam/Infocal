@@ -1,9 +1,5 @@
 <settings>
 
-	<!-- <setting propertyKey="@Properties.white_background" title="@Strings.white_background">
-        <settingConfig type="boolean" />
-    </setting> -->
-    
     <setting propertyKey="@Properties.theme_code" title="@Strings.theme_code">
         <settingConfig type="list">
         	<listEntry value="0">@Strings.theme_dark</listEntry>
@@ -11,21 +7,34 @@
         	<listEntry value="2">@Strings.theme_ocean</listEntry>
         	<listEntry value="3">@Strings.theme_orange</listEntry>
         	<listEntry value="4">@Strings.theme_radioactive</listEntry>
-        	<!-- <listEntry value="5">@Strings.theme_flashlight</listEntry>
-        	<listEntry value="6">@Strings.theme_dusk</listEntry> -->
         	<listEntry value="7">@Strings.theme_dark_blue</listEntry>
         	<listEntry value="8">@Strings.theme_light_blue</listEntry>
         	<listEntry value="9">@Strings.theme_gray</listEntry>
         	<listEntry value="10">@Strings.theme_lgray</listEntry>
         	<listEntry value="11">@Strings.theme_pink</listEntry>
         	<listEntry value="12">@Strings.theme_deep_ocean</listEntry>
+        	<listEntry value="13">@Strings.theme_dcontrast</listEntry>
+        	<listEntry value="14">@Strings.theme_lcontrast</listEntry>
+        	<listEntry value="15">@Strings.theme_camo</listEntry>
+        	<listEntry value="16">@Strings.theme_solar</listEntry>
+        	<listEntry value="17">@Strings.theme_lime</listEntry>
         </settingConfig>
     </setting>
     
 	<setting propertyKey="@Properties.power_save_mode" title="@Strings.power_save_mode">
         <settingConfig type="boolean" />
     </setting>
+    <setting propertyKey="@Properties.sleep_time_behaviour" title="@Strings.sleep_time_behaviour">
+        <settingConfig type="list">
+        	<listEntry value="0">@Strings.default_render</listEntry>
+        	<listEntry value="1">@Strings.no_render</listEntry>
+        </settingConfig>
+    </setting>
+    
     <setting propertyKey="@Properties.always_on_second" title="@Strings.always_on_second">
+        <settingConfig type="boolean" />
+    </setting>
+    <setting propertyKey="@Properties.always_on_heart" title="@Strings.always_on_heart">
         <settingConfig type="boolean" />
     </setting>
     
@@ -39,6 +48,9 @@
         	<listEntry value="3">@Strings.digital_style_medium</listEntry>
         	<listEntry value="1">@Strings.digital_style_small</listEntry>
         </settingConfig>
+    </setting>
+    <setting propertyKey="@Properties.zero_leading_digital" title="@Strings.zero_leading_digital">
+        <settingConfig type="boolean" />
     </setting>
     <setting propertyKey="@Properties.always_on_style" title="@Strings.always_on_style">
         <settingConfig type="list">
@@ -61,9 +73,7 @@
     <setting propertyKey="@Properties.left_digital_info" title="@Strings.left_digital_info">
         <settingConfig type="boolean" />
     </setting>
-    <!-- <setting propertyKey="@Properties.render_arc_line" title="@Strings.render_arc_line">
-        <settingConfig type="boolean" />
-    </setting> -->
+
     <setting propertyKey="@Properties.ticks_style" title="@Strings.ticks_style">
         <settingConfig type="list">
         	<listEntry value="0">@Strings.empty</listEntry>
@@ -75,6 +85,7 @@
         <settingConfig type="list">
         	<listEntry value="9">@Strings.empty</listEntry>
         	<listEntry value="7">@Strings.date</listEntry>
+            <listEntry value="22">@Strings.weeknum</listEntry>
             <listEntry value="8">@Strings.time</listEntry>
             <listEntry value="19">@Strings.time_secondary</listEntry>
             <listEntry value="1">@Strings.battery</listEntry>
@@ -101,6 +112,7 @@
         <settingConfig type="list">
         	<listEntry value="9">@Strings.empty</listEntry>
         	<listEntry value="7">@Strings.date</listEntry>
+            <listEntry value="22">@Strings.weeknum</listEntry>
             <listEntry value="8">@Strings.time</listEntry>
             <listEntry value="19">@Strings.time_secondary</listEntry>
             <listEntry value="1">@Strings.battery</listEntry>
@@ -127,6 +139,7 @@
         <settingConfig type="list">
         	<listEntry value="9">@Strings.empty</listEntry>
         	<listEntry value="7">@Strings.date</listEntry>
+            <listEntry value="22">@Strings.weeknum</listEntry>
             <listEntry value="8">@Strings.time</listEntry>
             <listEntry value="19">@Strings.time_secondary</listEntry>
             <listEntry value="1">@Strings.battery</listEntry>
@@ -153,6 +166,7 @@
         <settingConfig type="list">
         	<listEntry value="9">@Strings.empty</listEntry>
         	<listEntry value="7">@Strings.date</listEntry>
+            <listEntry value="22">@Strings.weeknum</listEntry>
             <listEntry value="8">@Strings.time</listEntry>
             <listEntry value="19">@Strings.time_secondary</listEntry>
             <listEntry value="1">@Strings.battery</listEntry>
@@ -179,6 +193,7 @@
         <settingConfig type="list">
         	<listEntry value="9">@Strings.empty</listEntry>
         	<listEntry value="7">@Strings.date</listEntry>
+            <listEntry value="22">@Strings.weeknum</listEntry>
             <listEntry value="8">@Strings.time</listEntry>
             <listEntry value="19">@Strings.time_secondary</listEntry>
             <listEntry value="1">@Strings.battery</listEntry>
@@ -205,6 +220,7 @@
         <settingConfig type="list">
         	<listEntry value="9">@Strings.empty</listEntry>
         	<listEntry value="7">@Strings.date</listEntry>
+            <listEntry value="22">@Strings.weeknum</listEntry>
             <listEntry value="8">@Strings.time</listEntry>
             <listEntry value="19">@Strings.time_secondary</listEntry>
             <listEntry value="1">@Strings.battery</listEntry>
@@ -231,6 +247,7 @@
         <settingConfig type="list">
         	<listEntry value="9">@Strings.empty</listEntry>
         	<listEntry value="7">@Strings.date</listEntry>
+            <listEntry value="22">@Strings.weeknum</listEntry>
             <listEntry value="8">@Strings.time</listEntry>
             <listEntry value="19">@Strings.time_secondary</listEntry>
             <listEntry value="1">@Strings.battery</listEntry>
@@ -257,6 +274,7 @@
         <settingConfig type="list">
         	<listEntry value="9">@Strings.empty</listEntry>
         	<listEntry value="7">@Strings.date</listEntry>
+            <listEntry value="22">@Strings.weeknum</listEntry>
             <listEntry value="8">@Strings.time</listEntry>
             <listEntry value="19">@Strings.time_secondary</listEntry>
             <listEntry value="1">@Strings.battery</listEntry>
@@ -298,7 +316,15 @@
             <listEntry value="4">@Strings.temperature</listEntry>
         </settingConfig>
     </setting>
-    
+    <!-- <setting propertyKey="@Properties.baro_period" title="@Strings.baro_period">
+        <settingConfig type="list">
+        	<listEntry value="1">@Strings.h1</listEntry>
+        	<listEntry value="2">@Strings.h2</listEntry>
+        	<listEntry value="3">@Strings.h3</listEntry>
+        	<listEntry value="4">@Strings.h4</listEntry>
+        	<listEntry value="5">@Strings.h5</listEntry>
+        </settingConfig>
+    </setting> -->
     <setting propertyKey="@Properties.utc_timezone" title="@Strings.utc_timezone">
         <settingConfig type="list">
         	<listEntry value="0">@Strings.utc0</listEntry>
@@ -338,10 +364,18 @@
         	<listEntry value="2">@Strings.datef21</listEntry>
         	<listEntry value="3">@Strings.datef3</listEntry>
         	<listEntry value="4">@Strings.datef31</listEntry>
+        	<listEntry value="5">@Strings.datef4</listEntry>
+        	<listEntry value="6">@Strings.datef41</listEntry>
         </settingConfig>
     </setting>
     <setting propertyKey="@Properties.force_date_english" title="@Strings.force_date_english">
         <settingConfig type="boolean" />
+    </setting>
+    <setting propertyKey="@Properties.battery_format" title="@Strings.battery_format">
+        <settingConfig type="list">
+        	<listEntry value="0">@Strings.battery_format_1</listEntry>
+        	<listEntry value="1">@Strings.battery_format_2</listEntry>
+        </settingConfig>
     </setting>
     <setting propertyKey="@Properties.countdown_date" title="@Strings.countdown_date">
         <settingConfig type="date">

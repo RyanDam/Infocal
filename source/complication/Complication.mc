@@ -23,19 +23,20 @@ class Complication extends ArcTextComplication {
 	}
 	
 	function getSettingDataKey() {
-		if (angle==12) {
-        	return Application.getApp().getProperty("comp12h");
-        } else if (angle==2) {
-        	return Application.getApp().getProperty("comp2h");
-        } else if (angle==4) {
-        	return Application.getApp().getProperty("comp4h");
-        } else if (angle==6) {
-        	return Application.getApp().getProperty("comp6h");
-        } else if (angle==8) {
-        	return Application.getApp().getProperty("comp8h");
-        } else if (angle==10) {
-        	return Application.getApp().getProperty("comp10h");
-        }
+		return Application.getApp().getProperty("comp"+angle+"h");
+//		if (angle==12) {
+//        	return Application.getApp().getProperty("comp12h");
+//        } else if (angle==2) {
+//        	return Application.getApp().getProperty("comp2h");
+//        } else if (angle==4) {
+//        	return Application.getApp().getProperty("comp4h");
+//        } else if (angle==6) {
+//        	return Application.getApp().getProperty("comp6h");
+//        } else if (angle==8) {
+//        	return Application.getApp().getProperty("comp8h");
+//        } else if (angle==10) {
+//        	return Application.getApp().getProperty("comp10h");
+//        }
 	}
 
 	function need_draw() {

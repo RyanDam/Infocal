@@ -16,6 +16,13 @@
     <string id="compgraphb">Bottom graph complication</string>
     
     <string id="always_on_second">Always-on second (for digital)</string>
+    <string id="always_on_heart">Always-on heart rate (for digital)</string>
+    
+    <string id="sleep_time_behaviour">Sleep time behaviour (Currently disabled)</string>
+    <string id="default_render">Default (still render screen)</string>
+    <string id="no_render">Off screen to save power</string>
+    
+    
     <string id="minimal_data">Full number instead of reduced (K)</string>
     <string id="big_num_stripes">Render stripes on big number</string>
     <string id="left_digital_info">Move right digital info to left</string>
@@ -23,6 +30,7 @@
     
     <string id="force_date_english">Force date to English (prevent rectangle on unsupported chars)</string>
     
+    <string id="zero_leading_digital">Zero leading digital style</string>
     <string id="big_number_type">Center number</string>
     <string id="minute_major">Minute</string>
     <string id="hour_major">Hour</string>
@@ -64,6 +72,7 @@
     <string id="floorclimbed">Floor climbed</string>
     <string id="groupnoti">Group notification</string>
     <string id="barometer">Barometer (hector pascal)</string>
+    <string id="weeknum">Week of year</string>
     
     <string id="date_format">Date format</string>
     <string id="datef1">ddd d (TUE 2)</string>
@@ -71,6 +80,8 @@
     <string id="datef21">mm.dd (9.2)</string>
     <string id="datef3">dd.mm.yy (2.9.19)</string>
     <string id="datef31">mm.dd.yy (9.2.19)</string>
+    <string id="datef4">dd mmm (2 OCT)</string>
+    <string id="datef41">mmm dd (OCT 2)</string>
     
     <string id="utc_timezone">Secondary timezone</string>
     <string id="utc_shift">Shift timezone for +30min</string>
@@ -100,6 +111,10 @@
     <string id="utc11m">UTC -11</string>
     <string id="utc12m">UTC -12</string>
     
+    <string id="battery_format">Battery format</string>
+    <string id="battery_format_1">Percent</string>
+    <string id="battery_format_2">Days left (need at least 1 hour to work)</string>
+    
     <string id="theme_code">Theme color</string>
     <string id="theme_dark">Dark</string>
     <string id="theme_light">Light</string>
@@ -114,4 +129,10 @@
     <string id="theme_lgray">Light gray</string>
     <string id="theme_pink">Pink</string>
     <string id="theme_deep_ocean">Deep ocean</string>
+    <string id="theme_dcontrast">High contrast (Dark)</string>
+    <string id="theme_lcontrast">High contrast (Light)</string>
+    <string id="theme_camo">Camo</string>
+    <string id="theme_solar">Solar</string>
+    <string id="theme_lime">Lime</string>
+    
 </strings>

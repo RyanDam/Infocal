@@ -10,17 +10,14 @@ using Toybox.SensorHistory as SensorHistory;
 
 class GraphComplication extends Ui.Drawable {
 
-	hidden var centerX;
-    hidden var centerY;
     hidden var position;
     hidden var position_x, position_y;
     hidden var graph_width, graph_height;
+    var settings;
     
     function initialize(params) {
     	Drawable.initialize(params);
-    	var size = Application.getApp().getView().getViewSize();
-        centerX = size[0]/2;
-    	centerY = size[1]/2;
+    	
     	position = params.get(:position);
     	if (position==0) {
     		// top
@@ -29,12 +26,11 @@ class GraphComplication extends Ui.Drawable {
     	} else {
     		// bottom
     		position_x = centerX;
-    		position_y = 1.5*centerY;
+    		position_y = 1.45*centerY;
     	}
     	
     	graph_width = 90;
-    	graph_height = 20;
-    	
+    	graph_height = Math.round(0.25*centerX);
     }
 	
 	function get_data_type() {
@@ -70,16 +66,40 @@ class GraphComplication extends Ui.Drawable {
 		return get_data_type() > 0;
 	}
     
+    function parse_data_value(type, value) {
+    	if (type==1) {
+			return value;
+	    } else if (type==2) {
+			if (settings.elevationUnits == System.UNIT_METRIC) {
+				// Metres (no conversion necessary).
+				return value;
+			} else {
+				// Feet.
+				return  value*3.28084;
+			}
+	    } else if (type==3) {
+	    	return value/100.0;
+	    } else if (type==4) {
+		    if (settings.temperatureUnits == System.UNIT_STATUTE) {
+				return (value * (9.0 / 5)) + 32; // Convert to Farenheit: ensure floating point division.
+			} else {
+				return value;
+			}
+	    }
+    }
+    
     function draw(dc) {
     	if (!need_draw()) {
     		return;
     	}
-    
+    	settings = System.getDeviceSettings();
+    	
 //    	var start = System.getTimer();
 		var primaryColor = position == 1 ? gbar_color_1 : gbar_color_0;
     	
     	//Calculation
-        var HistoryIter = get_data_interator(get_data_type());
+    	var targetdatatype = get_data_type();
+        var HistoryIter = get_data_interator(targetdatatype);
         
         if (HistoryIter == null) {
         	dc.setColor(gmain_color, Graphics.COLOR_TRANSPARENT);
@@ -89,21 +109,44 @@ class GraphComplication extends Ui.Drawable {
         
         var HistoryMin = HistoryIter.getMin();
         var HistoryMax = HistoryIter.getMax();
+        
+        System.println("" + HistoryMin + ", " + HistoryMax);
+        
+        if (HistoryMin == null || HistoryMax == null) {
+        	dc.setColor(gmain_color, Graphics.COLOR_TRANSPARENT);
+        	dc.drawText(position_x, position_y, smallDigitalFont, "--", Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
+        	return;
+        }
+        
         var minMaxDiff = (HistoryMax - HistoryMin).toFloat();
+        
         var xStep = graph_width;
         var height = graph_height;
         var HistoryPresent = null;
 //        System.println("a");
-    	HistoryPresent = HistoryIter.next().data;
-        
+
 		var HistoryNew = 0;
-		
-		dc.setPenWidth(2);
-		dc.setColor(primaryColor, Graphics.COLOR_TRANSPARENT);
-		
 		var lastyStep = 0;
 		var step_max = -1;
 		var step_min = -1;
+		
+		var latest_sample = HistoryIter.next();
+		if (latest_sample != null) {
+    		HistoryPresent = latest_sample.data;
+    		if (HistoryPresent != null) {
+	    		// draw diagram
+				var historyDifPers = ((HistoryPresent - HistoryMin))/minMaxDiff;
+				var yStep = historyDifPers * height;
+				yStep = yStep>height?height:yStep;
+				yStep = yStep<0?0:yStep;
+				lastyStep = yStep;
+			} else {
+				lastyStep = null;
+			}
+    	}
+        
+		dc.setPenWidth(2);
+		dc.setColor(primaryColor, Graphics.COLOR_TRANSPARENT);
 		
 //        System.println("b");
 		//Build and draw Iteration
@@ -141,64 +184,26 @@ class GraphComplication extends Ui.Drawable {
 			}
 			xStep--;
 		}
-//        System.println("c");
-		
-//		dc.setPenWidth(1);
-//		dc.setColor(gsecondary_color, Graphics.COLOR_TRANSPARENT);
-//		dc.drawLine(position_x-(step_max-graph_width/2), 
-//					position_y - graph_height/2 - 2, 
-//					position_x-(step_max-graph_width/2), 
-//					position_y - graph_height/2 - 5);
-//		dc.drawLine(position_x-(step_min-graph_width/2), 
-//					position_y + graph_height/2 + 2, 
-//					position_x-(step_min-graph_width/2), 
-//					position_y + graph_height/2 + 5);
-//		
-//		dc.setColor(gmain_color, Graphics.COLOR_TRANSPARENT);
-////		dc.drawText(position_x-(step_max-graph_width/2), 
-////					position_y - graph_height/2 - 13, 
-////					smallDigitalFont, 
-////					HistoryMax.toString(), 
-////					Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
-//		dc.drawText(position_x + graph_width/2 + 15, 
-//					position_y,// - graph_height/2 - 6, 
-//					smallDigitalFont, 
-//					HistoryMax.toString(), 
-//					Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
-////		dc.drawText(position_x-(step_min-graph_width/2), 
-////					position_y + graph_height/2 + 2, 
-////					smallDigitalFont, 
-////					HistoryMin.toString(), 
-////					Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
-//		dc.drawText(position_x - graph_width/2 - 15, 
-//					position_y,// + graph_height/2 - 6, 
-//					smallDigitalFont, 
-//					HistoryMin.toString(), 
-//					Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
-
-//		dc.drawText(position_x+graph_width/2 + 2, 
-//					position_y, 
-//					smallDigitalFont, 
-//					HistoryPresent.toString(), 
-//					Graphics.TEXT_JUSTIFY_VCENTER);
-
 		
 		dc.setColor(gmain_color, Graphics.COLOR_TRANSPARENT);
 
 		if (HistoryPresent == null) {
         	dc.drawText(position_x, 
-					position_y + graph_height/2 + 10, 
+					position_y + (position==1?(graph_height/2 + 10):(-graph_height/2-16)), 
 					smallDigitalFont, 
 					"--", 
 					Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
         	return;
         }
+        var value_label = parse_data_value(targetdatatype, HistoryPresent);
+        var labelll = value_label.format("%d");
 		dc.drawText(position_x, 
 					position_y + (position==1?(graph_height/2 + 10):(-graph_height/2-16)), 
 					smallDigitalFont, 
-					HistoryPresent.toString(), 
+					labelll, 
 					Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
 					
 //        System.println("d");
+		settings = null;
     }
 }

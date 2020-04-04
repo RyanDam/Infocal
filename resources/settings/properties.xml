@@ -1,11 +1,14 @@
 <properties>
     <property id="theme_code" type="number">0</property>
 	<property id="power_save_mode" type="boolean">false</property>
+    <property id="sleep_time_behaviour" type="number">0</property>
 	
     <property id="white_background" type="boolean">false</property>
     <property id="always_on_second" type="boolean">false</property>
+    <property id="always_on_heart" type="boolean">false</property>
     <property id="use_analog" type="boolean">false</property>
     <property id="digital_style" type="number">0</property>
+    <property id="zero_leading_digital" type="boolean">true</property>
     <property id="always_on_style" type="number">0</property>
     <property id="minimal_data" type="boolean">false</property>
     <property id="big_num_stripes" type="boolean">true</property>
@@ -30,9 +33,13 @@
     <property id="compgrapht" type="number">0</property>
     <property id="compgraphb" type="number">0</property>
     
+    <property id="baro_period" type="number">3</property>
+    
     <property id="utc_timezone" type="number">0</property>
     <property id="utc_shift" type="boolean">false</property>
     <property id="date_format" type="number">0</property>
+    
+    <property id="battery_format" type="number">0</property>
     
     <property id="countdown_date" type="number">1546300800</property>
 </properties>

@@ -6,25 +6,21 @@ using Toybox.Application;
 
 class BarComplication extends Ui.Drawable {
 
-	hidden var centerX;
-    hidden var centerY;
     hidden var position, position_y_draw;
     hidden var font, fontInfo, arrFont, arrInfo;
     hidden var textFont;
     
     function initialize(params) {
     	Drawable.initialize(params);
-    	var size = Application.getApp().getView().getViewSize();
-        centerX = size[0]/2;
-    	centerY = size[1]/2;
     	position = params.get(:position);
     }
 	
 	function load_font() {
 		if (position == 0) {
     		// up
+    		font = Ui.loadResource(Rez.Fonts.cur_up);
+    		arrFont = Ui.loadResource(Rez.Fonts.arr_up);
     		if (centerX == 120) {
-	    		font = Ui.loadResource(Rez.Fonts.cur_up);
 	    		fontInfo = [
 	    			[0x213130,0x223142,0x234330],
 					[0x244923,0x255b23],
@@ -32,7 +28,6 @@ class BarComplication extends Ui.Drawable {
 					[0x288823,0x299a23],
 					[0x2aa430,0x2ba442,0x2cb630,0x2db642],
 	    		];
-	    		arrFont = Ui.loadResource(Rez.Fonts.arr_up);
 	    		arrInfo = [
 	    			[0x213e3f],
 					[0x22552e],
@@ -42,7 +37,6 @@ class BarComplication extends Ui.Drawable {
 	    		];
 	    		position_y_draw = centerY - 36 - 18 - 14; // font height 14
     		} else if (centerX == 130) {
-    			font = Ui.loadResource(Rez.Fonts.cur_up_big);
 	    		fontInfo = [
 	    			[0x213736,0x223748,0x234936],
 					[0x245028,0x256228],
@@ -50,7 +44,6 @@ class BarComplication extends Ui.Drawable {
 					[0x289328,0x29a528],
 					[0x2ab136,0x2bb148,0x2cc336,0x2dc348],
 	    		];
-	    		arrFont = Ui.loadResource(Rez.Fonts.arr_up_big);
 	    		arrInfo = [
 	    			[0x214544],
 					[0x225d33],
@@ -60,7 +53,6 @@ class BarComplication extends Ui.Drawable {
 	    		];
 	    		position_y_draw = centerY - 36 - 18 - 14 - 4; // font height 14
     		} else if (centerX == 140) {
-    			font = Ui.loadResource(Rez.Fonts.cur_up_xbig);
 	    		fontInfo = [
 	    			[0x213938,0x22394a,0x234b38],
 					[0x245528,0x25553a,0x266728],
@@ -68,7 +60,6 @@ class BarComplication extends Ui.Drawable {
 					[0x299f28,0x2ab128,0x2bb13a],
 					[0x2cc138,0x2dc14a,0x2ed338,0x2fd34a],
 	    		];
-	    		arrFont = Ui.loadResource(Rez.Fonts.arr_up_xbig);
 	    		arrInfo = [
 	    			[0x214847],
 					[0x226233],
@@ -78,7 +69,6 @@ class BarComplication extends Ui.Drawable {
 	    		];
 	    		position_y_draw = centerY - 36 - 18 - 14 - 8; // font height 14
     		} else {
-    			font = Ui.loadResource(Rez.Fonts.cur_up_sm);
 	    		fontInfo = [
 	    			[0x212d2d,0x222d3f,0x233f2d],
 					[0x244321,0x255521],
@@ -86,7 +76,6 @@ class BarComplication extends Ui.Drawable {
 					[0x287b21,0x298d21],
 					[0x2a942d,0x2b943f,0x2ca62d,0x2da63f],
 	    		];
-	    		arrFont = Ui.loadResource(Rez.Fonts.arr_up_sm);
 	    		arrInfo = [
 	    			[0x213a39],
 					[0x224e2b],
@@ -99,8 +88,9 @@ class BarComplication extends Ui.Drawable {
     		
     	} else {
     		// down
+    		font = Ui.loadResource(Rez.Fonts.cur_bo);
+    		arrFont = Ui.loadResource(Rez.Fonts.arr_bo);
     		if (centerX == 120) {
-	    		font = Ui.loadResource(Rez.Fonts.cur_bo);
 	    		fontInfo = [
 	    			[0x2131a5,0x2231b7,0x2343a5,0x2443b7],
 					[0x2549ba,0x265bba],
@@ -108,7 +98,6 @@ class BarComplication extends Ui.Drawable {
 					[0x2988ba,0x2a9aba],
 					[0x2ba4a5,0x2ca4b7,0x2db6a5],
 	    		];
-	    		arrFont = Ui.loadResource(Rez.Fonts.arr_bo);
 	    		arrInfo = [
 	    			[0x213ea4],
 					[0x2255b5],
@@ -118,7 +107,6 @@ class BarComplication extends Ui.Drawable {
 	    		];
 	    		position_y_draw = centerY + 36;
     		} else if (centerX == 130) {
-    			font = Ui.loadResource(Rez.Fonts.cur_bo_big);
 	    		fontInfo = [
 	    			[0x2137b2,0x2237c4,0x2349b2,0x2449c4],
 					[0x2550c8,0x2662c8],
@@ -126,7 +114,6 @@ class BarComplication extends Ui.Drawable {
 					[0x2993c8,0x2aa5c8],
 					[0x2bb1b2,0x2cb1c4,0x2dc3b2],
 	    		];
-	    		arrFont = Ui.loadResource(Rez.Fonts.arr_bo_big);
 	    		arrInfo = [
 	    			[0x2145b1],
 					[0x225dc3],
@@ -136,7 +123,6 @@ class BarComplication extends Ui.Drawable {
 	    		];
 	    		position_y_draw = centerY + 36 + 4;
     		} else if (centerX == 140) {
-    			font = Ui.loadResource(Rez.Fonts.cur_bo_xbig);
 	    		fontInfo = [
 	    			[0x2139c2,0x2239d4,0x234bc2,0x244bd4],
 					[0x2555db,0x2667db,0x2767ed],
@@ -144,7 +130,6 @@ class BarComplication extends Ui.Drawable {
 					[0x2a9fdb,0x2b9fed,0x2cb1db],
 					[0x2dc1c1,0x2ec1d3,0x2fd3c1],
 	    		];
-	    		arrFont = Ui.loadResource(Rez.Fonts.arr_bo_xbig);
 	    		arrInfo = [
 	    			[0x2148c2],
 					[0x2262d6],
@@ -154,7 +139,6 @@ class BarComplication extends Ui.Drawable {
 	    		];
 	    		position_y_draw = centerY + 36 + 8;
     		} else {
-    			font = Ui.loadResource(Rez.Fonts.cur_bo_sm);
 	    		fontInfo = [
 	    			[0x212d94,0x222da6,0x233f94,0x243fa6],
 					[0x2543a7,0x2655a7],
@@ -162,7 +146,6 @@ class BarComplication extends Ui.Drawable {
 					[0x297ba7,0x2a8da7],
 					[0x2b9494,0x2c94a6,0x2da694],
 	    		];
-	    		arrFont = Ui.loadResource(Rez.Fonts.arr_bo_sm);
 	    		arrInfo = [
 	    			[0x213a93],
 					[0x224ea2],
@@ -208,9 +191,9 @@ class BarComplication extends Ui.Drawable {
     	
     	var bonus_padding = 0;
     	if (bar_data()) {
-	    	var mi = min_val().toFloat();
-	    	var ma = max_val().toFloat();
-	    	var cu = cur_val().toFloat();
+	    	var mi = min_val().toFloat(); // 0
+	    	var ma = max_val().toFloat(); // 5
+	    	var cu = cur_val().toFloat(); // 1
 	    	
 	    	var i = 0;
 	    	if (cu >= ma) {
@@ -219,13 +202,13 @@ class BarComplication extends Ui.Drawable {
 	    		i = -1;
 	    	} else {
 	    		var fraction = (cu-mi)/(ma-mi);
-	    		if (fraction >= 0.8) {
+	    		if (fraction > 0.81) {
 	    			i = 4;
-	    		} else if (fraction >= 0.6) {
+	    		} else if (fraction > 0.61) {
 	    			i = 3;
-	    		} else if (fraction >= 0.4) {
+	    		} else if (fraction > 0.41) {
 	    			i = 2;
-	    		} else if (fraction >= 0.2) {
+	    		} else if (fraction > 0.21) {
 	    			i = 1;
 	    		} else {
 	    			i = 0;

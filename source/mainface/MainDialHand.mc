@@ -21,28 +21,13 @@ class MainDialHand extends Ui.Drawable {
 	///////////////////////////////
     /// non-antialias variables ///
     ///////////////////////////////
-	hidden var centerX;
-    hidden var centerY;
 	
 	hidden var alignment;
 	
 	function initialize(params) {
         Drawable.initialize(params);
-        
-        var size = Application.getApp().getView().getViewSize();
-        centerX = size[0]/2;
-    	centerY = size[1]/2;
         barRadius = centerX - 10;
-        
         alignment = Graphics.TEXT_JUSTIFY_VCENTER|Graphics.TEXT_JUSTIFY_CENTER;
-    }
-    
-    function disableSecondHand() {
-    	secondHandDisabled = true;
-    }
-    
-    function enableSecondHand() {
-    	secondHandDisabled = false;
     }
     
     function removeFont() {
@@ -130,6 +115,10 @@ class MainDialHand extends Ui.Drawable {
         }    
 		var minute = clockTime.min;
 		
+		
+		var leading_zeros = Application.getApp().getProperty("zero_leading_digital");
+		var number_formater = leading_zeros ? "%02d" : "%d";
+		
 		var digital_style = Application.getApp().getProperty("digital_style");
 		var alwayon_style = Application.getApp().getProperty("always_on_style");
 		if (digital_style == 0 || digital_style == 2) { // big or extra big
@@ -139,7 +128,7 @@ class MainDialHand extends Ui.Drawable {
 			var target_center_font = digital_style == 0 ? digitalFont : xdigitalFont;
 			
 			// DRAW CENTER
-	    	var bigText = bignumber.format("%02d");
+	    	var bigText = bignumber.format(number_formater);
 	    	dc.setPenWidth(1);     
 	    	dc.setColor(gmain_color, Graphics.COLOR_TRANSPARENT);
 	    	var h = dc.getFontHeight(target_center_font);
@@ -156,6 +145,7 @@ class MainDialHand extends Ui.Drawable {
 	    	var f_align = digital_style == 0 ? 62 : 71;
 	    	
 	    	second_x = centerX+w/2 + 3;
+	    	heart_x = centerX-w/2 - 3;
 	    	
 	    	if (centerX==109 && digital_style == 2) {
 	    		second_y  = centerY - second_font_height_half/2 - (alwayon_style == 0 ? 3 : 6);
@@ -201,7 +191,7 @@ class MainDialHand extends Ui.Drawable {
 	    	// draw secondary info
 	    	dc.setColor(gmain_color, Graphics.COLOR_TRANSPARENT);
 	    	var h2 = dc.getFontHeight(midDigitalFont);
-	    	dc.drawText(target_info_x+bonus_alignment, centerY*0.7-h2/4 + 5 + vertical_alignment, midDigitalFont, smallnumber.format("%02d"), alignment);
+	    	dc.drawText(target_info_x+bonus_alignment, centerY*0.7-h2/4 + 5 + vertical_alignment, midDigitalFont, smallnumber.format(number_formater), alignment);
 	    	
 	    	if (centerX==109 && digital_style == 2) {
 	    		return;
@@ -219,60 +209,31 @@ class MainDialHand extends Ui.Drawable {
 			dc.setColor(gsecondary_color, Graphics.COLOR_TRANSPARENT);
 			dc.drawLine(target_info_x-bonus_alignment-w3/2+extra_info_alignment, centerY*0.5 + 7, target_info_x-bonus_alignment+w3/2+extra_info_alignment, centerY*0.5 + 7);
 			
-		} else if (digital_style == 1) {
-			var hourText = hour.format("%02d");
-			var minuText = minute.format("%02d");
-			var hourW = dc.getTextWidthInPixels(hourText, midBoldFont).toFloat();
-			var h = dc.getFontHeight(midBoldFont).toFloat();
-			var minuW = dc.getTextWidthInPixels(minuText, midSemiFont).toFloat();
+		} else if (digital_style == 1 || digital_style == 3) {
+			var hourText = hour.format(number_formater);
+			var minuText = minute.format(number_formater);
+			
+			var bonus = digital_style == 3 ? -13 : 0;
+			var boldF = digital_style == 3 ? xmidBoldFont : midBoldFont;
+			var normF = digital_style == 3 ? xmidSemiFont : midSemiFont;
+			
+			var hourW = dc.getTextWidthInPixels(hourText, boldF).toFloat();
+			var h = dc.getFontHeight(boldF).toFloat();
+			var minuW = dc.getTextWidthInPixels(minuText, normF).toFloat();
 			var half = (hourW+minuW + 6.0)/2.0;
 			var left = centerX-half;
 			
 			dc.setColor(gmain_color, Graphics.COLOR_TRANSPARENT);
-			dc.drawText(left.toNumber(), centerY-70, midBoldFont, hourText, Graphics.TEXT_JUSTIFY_LEFT);
-			dc.drawText((left+hourW+6.0).toNumber(), centerY-70, midSemiFont, minuText, Graphics.TEXT_JUSTIFY_LEFT);
+			dc.drawText(left.toNumber(), centerY-70+bonus, boldF, hourText, Graphics.TEXT_JUSTIFY_LEFT);
+			dc.drawText((left+hourW+6.0).toNumber(), centerY-70+bonus, normF, minuText, Graphics.TEXT_JUSTIFY_LEFT);
 			
 			var f_align = 40;
 	    	second_x = centerX+half+1;
+	    	heart_x = centerX-half-1;
 	    	
 	    	second_y  = centerY - second_font_height_half/2 - (alwayon_style == 0 ? 3 : 6);
-		} else {
-			var hourText = hour.format("%02d");
-			var minuText = minute.format("%02d");
-			var hourW = dc.getTextWidthInPixels(hourText, xmidBoldFont).toFloat();
-			var h = dc.getFontHeight(xmidBoldFont).toFloat();
-			var minuW = dc.getTextWidthInPixels(minuText, xmidSemiFont).toFloat();
-			var half = (hourW+minuW + 6.0)/2.0;
-			var left = centerX-half;
-			
-			dc.setColor(gmain_color, Graphics.COLOR_TRANSPARENT);
-			dc.drawText(left.toNumber(), centerY-83, xmidBoldFont, hourText, Graphics.TEXT_JUSTIFY_LEFT);
-			dc.drawText((left+hourW+6.0).toNumber(), centerY-83, xmidSemiFont, minuText, Graphics.TEXT_JUSTIFY_LEFT);
-			
-			var f_align = 40;
-	    	second_x = centerX+half+1;
-	    	second_y  = centerY - second_font_height_half/2 - (alwayon_style == 0 ? 3 : 6);
-		}
+		} 
 		
 		removeFont();
-		
-//		var end = System.getTimer();
-//        System.println("digital draw  " + (end-start) + "ms");
-    }
-    
-    hidden function degreesToRadians(degrees) {
-    	return degrees * Math.PI / 180;
-    }  
-    
-    hidden function radiansToDegrees(radians) {
-    	return radians * 180 / Math.PI;
-    }  
-    
-    hidden function convertCoorX(radians, radius) {
-		return centerX + radius*Math.cos(radians);
-    }
-    
-    hidden function convertCoorY(radians, radius) {
-		return centerY + radius*Math.sin(radians);
     }
 }

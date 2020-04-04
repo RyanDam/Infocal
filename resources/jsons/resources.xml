@@ -1,0 +1,15 @@
+<resources>
+	<jsonData id="hour_1_data" filename="hour_1.json"/>
+	<jsonData id="hour_2_data" filename="hour_2.json"/>
+	<jsonData id="hour_3_data" filename="hour_3.json"/>
+	<jsonData id="hour_4_data" filename="hour_4.json"/>
+	<jsonData id="hour_5_data" filename="hour_5.json"/>
+	<jsonData id="hour_6_data" filename="hour_6.json"/>
+	
+	<jsonData id="minu_1_data" filename="minu_1.json"/>
+	<jsonData id="minu_2_data" filename="minu_2.json"/>
+	<jsonData id="minu_3_data" filename="minu_3.json"/>
+	<jsonData id="minu_4_data" filename="minu_4.json"/>
+	<jsonData id="minu_5_data" filename="minu_5.json"/>
+	<jsonData id="minu_6_data" filename="minu_6.json"/>
+</resources>

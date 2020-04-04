@@ -2,6 +2,7 @@ using Toybox.Application;
 using Toybox.Activity as Activity;
 using Toybox.System as Sys;
 using Toybox.Time;
+using Toybox.Math;
 using Toybox.Time.Gregorian as Date;
 
 // In-memory current location.
@@ -12,10 +13,30 @@ using Toybox.Time.Gregorian as Date;
 var gLocationLat = null;
 var gLocationLng = null;
 
+var centerX;
+var centerY;
+
+hidden function degreesToRadians(degrees) {
+	return degrees * Math.PI / 180;
+}  
+
+hidden function radiansToDegrees(radians) {
+	return radians * 180 / Math.PI;
+}  
+
+hidden function convertCoorX(radians, radius) {
+	return centerX + radius*Math.cos(radians);
+}
+
+hidden function convertCoorY(radians, radius) {
+	return centerY + radius*Math.sin(radians);
+}
+
 class HuwaiiApp extends Application.AppBase {
 
 	var mView;
 	var days;
+	var months;
 	
     function initialize() {
         AppBase.initialize();
@@ -26,20 +47,30 @@ class HuwaiiApp extends Application.AppBase {
 				Date.DAY_FRIDAY => "FRI", 
 				Date.DAY_SATURDAY => "SAT", 
 				Date.DAY_SUNDAY => "SUN"};
+		months = {Date.MONTH_JANUARY => "JAN",
+				Date.MONTH_FEBRUARY => "FEB",
+				Date.MONTH_MARCH => "MAR",
+				Date.MONTH_APRIL => "APR",
+				Date.MONTH_MAY => "MAY",
+				Date.MONTH_JUNE => "JUN",
+				Date.MONTH_JULY => "JUL",
+				Date.MONTH_AUGUST => "AUG",
+				Date.MONTH_SEPTEMBER => "SEP",
+				Date.MONTH_OCTOBER => "OCT",
+				Date.MONTH_NOVEMBER => "NOV",
+				Date.MONTH_DECEMBER => "DEC"};
     }
 
     // onStart() is called on application start up
     function onStart(state) {
-    	// var clockTime = Sys.getClockTime(); 
-    	 Sys.println("start");
-    	// Sys.println("" + clockTime.min + ":" + clockTime.sec);
+//    	// var clockTime = Sys.getClockTime(); 
+//    	// Sys.println("" + clockTime.min + ":" + clockTime.sec);
     }
 
     // onStop() is called when your application is exiting
     function onStop(state) {
-    	// var clockTime = Sys.getClockTime(); 
-    	 System.println("stop");
-    	// Sys.println("" + clockTime.min + ":" + clockTime.sec);
+//    	// var clockTime = Sys.getClockTime(); 
+//    	// Sys.println("" + clockTime.min + ":" + clockTime.sec);
     }
 
     // Return the initial view of your application here
@@ -95,10 +126,10 @@ class HuwaiiApp extends Application.AppBase {
 	
 	function getFormatedDate() {
 		var now = Time.now();
+		var date = Date.info(now, Time.FORMAT_SHORT);
 		var date_formater = Application.getApp().getProperty("date_format");
 		if (date_formater == 0) {
 			if (Application.getApp().getProperty("force_date_english")) {
-				var date = Date.info(now, Time.FORMAT_SHORT);
 				var day_of_weak = date.day_of_week;
 				return Lang.format("$1$ $2$",[days[day_of_weak], date.day.format("%d")]);
 			} else {
@@ -108,26 +139,44 @@ class HuwaiiApp extends Application.AppBase {
 			}
 		} else if (date_formater == 1) {
 			// dd/mm
-			var date = Date.info(now, Time.FORMAT_SHORT);
 			return Lang.format("$1$.$2$",[date.day.format("%d"), date.month.format("%d")]);
 		} else if (date_formater == 2) {
 			// mm/dd
-			var date = Date.info(now, Time.FORMAT_SHORT);
 			return Lang.format("$1$.$2$",[date.month.format("%d"), date.day.format("%d")]);
 		} else if (date_formater == 3) {
 			// dd/mm/yyyy
-			var date = Date.info(now, Time.FORMAT_SHORT);
 			var year = date.year;
 			var yy = year/100.0;
 			yy = Math.round((yy-yy.toNumber())*100.0);
 			return Lang.format("$1$.$2$.$3$",[date.day.format("%d"), date.month.format("%d"), yy.format("%d")]);
 		} else if (date_formater == 4) {
 			// mm/dd/yyyy
-			var date = Date.info(now, Time.FORMAT_SHORT);
 			var year = date.year;
 			var yy = year/100.0;
 			yy = Math.round((yy-yy.toNumber())*100.0);
 			return Lang.format("$1$.$2$.$3$",[date.month.format("%d"), date.day.format("%d"), yy.format("%d")]);
+		} else if (date_formater == 5 || date_formater == 6) {
+			// dd mmm
+			var day = null;
+			var month = null;
+			if (Application.getApp().getProperty("force_date_english")) {
+				day = date.day;
+				month = months[date.month];
+			} else {
+				var date = Date.info(now, Time.FORMAT_MEDIUM);
+				day = date.day;
+				month = months[date.month];
+			}
+			if (date_formater == 5) {
+				return Lang.format("$1$ $2$",[day.format("%d"), month]);
+			} else {
+				return Lang.format("$1$ $2$",[month, day.format("%d")]);
+			}
 		}
+	}
+	
+	function toKValue(value) {
+		var valK = value/1000.0;
+		return valK.format("%0.1f");
 	}
 }

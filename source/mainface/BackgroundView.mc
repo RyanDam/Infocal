@@ -7,43 +7,32 @@ using Toybox.Time.Gregorian as Date;
 class BackgroundView extends Ui.Drawable {
 
 	hidden var bgcir_font, bgcir_info;
-	
-	hidden var centerX;
-    hidden var centerY;
-    
+
     var radius;
 	
     function initialize(params) {
         Drawable.initialize(params);
-        
-        var size = Application.getApp().getView().getViewSize();
-        centerX = size[0]/2;
-    	centerY = size[1]/2;
-        radius = (size[0]/2) - 10;
+        radius = centerX - (10*centerX/120).toNumber();
     }
 
     function draw(dc) {
 //    	var start = System.getTimer();
-    
-    	drawDialBackground(dc, false);
+
+    	var isFull = false;
     	
-//    	var end = System.getTimer();
-//        System.println("background draw " + (end-start) + "ms");
-    }
-    
-    function drawDialBackground(dc, isFull) {
-//    	dc.setColor(gbackground_color, Graphics.COLOR_TRANSPARENT);
-//    	dc.fillRectangle(0,0,centerX*2,centerY*2);
-    
-		dc.setPenWidth(4);
+    	dc.setPenWidth(4);
 		dc.setColor(gsecondary_color, Graphics.COLOR_TRANSPARENT);
+		var mark_length = 10;
+		if (centerX==195) {
+			mark_length = 20;
+		}
     	for(var i = 0; i < 6; i += 1) {
 		    var rad = (i.toFloat()/(6.0))*2*Math.PI;
 	    	dc.drawLine(
-			    convertCoorX(rad, radius - 5), 
-			    convertCoorY(rad, radius - 5), 
-			    convertCoorX(rad, radius + 5), 
-			    convertCoorY(rad, radius + 5)
+			    convertCoorX(rad, radius - mark_length/2), 
+			    convertCoorY(rad, radius - mark_length/2), 
+			    convertCoorX(rad, radius + mark_length/2), 
+			    convertCoorY(rad, radius + mark_length/2)
 		    );
 		}
 		
@@ -117,21 +106,7 @@ class BackgroundView extends Ui.Drawable {
 			    );
 			}
 		}
-    }
-	
-	hidden function degreesToRadians(degrees) {
-    	return degrees * Math.PI / 180;
-    }  
-    
-    hidden function radiansToDegrees(radians) {
-    	return radians * 180 / Math.PI;
-    }  
-    
-    hidden function convertCoorX(radians, radius) {
-		return centerX + radius*Math.cos(radians);
-    }
-    
-    hidden function convertCoorY(radians, radius) {
-		return centerY + radius*Math.sin(radians);
+//    	var end = System.getTimer();
+//        System.println("background draw " + (end-start) + "ms");
     }
 }

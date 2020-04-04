@@ -4,10 +4,50 @@ using Toybox.Graphics;
 using Toybox.System;
 using Toybox.Application;
 
+var kerning_ratios = {
+    	' ' => 0.40,
+    	'%' => 0.91,
+		'+' => 0.70,
+		'-' => 0.38,
+		'.' => 0.25,
+		'0' => 0.67,
+		'1' => 0.41,
+		'2' => 0.60,
+		'3' => 0.63,
+		'4' => 0.67,
+		'5' => 0.63,
+		'6' => 0.65,
+		'7' => 0.53,
+		'8' => 0.67,
+		'9' => 0.65,
+		':' => 0.25,
+		'A' => 0.69,
+		'B' => 0.69,
+		'C' => 0.67,
+		'D' => 0.68,
+		'E' => 0.59,
+		'F' => 0.56,
+		'H' => 0.72,
+		'I' => 0.33,
+		'J' => 0.64,
+		'K' => 0.69,
+		'L' => 0.56,
+		'M' => 0.90,
+		'N' => 0.73,
+		'O' => 0.68,
+		'P' => 0.65,
+		'R' => 0.68,
+		'S' => 0.67,
+		'T' => 0.54,
+		'U' => 0.69,
+		'V' => 0.64,
+		'W' => 1.00,
+		'Y' => 0.64,
+		'°' => 0.47
+    };
+
 class ArcTextComplication extends Ui.Drawable {
 
-	hidden var centerX;
-    hidden var centerY;
     hidden var barRadius;
     hidden var baseRadian;
     hidden var baseDegree;
@@ -24,15 +64,12 @@ class ArcTextComplication extends Ui.Drawable {
     
     function initialize(params) {
         Drawable.initialize(params);
-        var size = Application.getApp().getView().getViewSize();
-        centerX = size[0]/2;
-    	centerY = size[1]/2;
-    	barRadius = (size[0]/2) - 13;
+    	barRadius = centerX - (13*centerX/120).toNumber();
     	
-    	if (size[0] == 218) {
+    	if (centerX == 109) {
     		kerning = 1.1;
-    		barRadius = (size[0]/2)-11;
-    	} else if (size[0] == 260) {
+    		barRadius = centerX-11;
+    	} else if (centerX == 130) {
     		kerning = 0.95;
     	}
     	
@@ -42,8 +79,8 @@ class ArcTextComplication extends Ui.Drawable {
     	
     	text = params.get(:text);
     	angle = params.get(:angle);
-    	perCharRadius = kerning*3.25*Math.PI/100;
-    	barRadius += (baseDegree < 180 ? 8 : -3);
+    	perCharRadius = kerning*4.70*Math.PI/100;
+    	barRadius += ((baseDegree < 180 ? 8 : -3)*centerX/120).toNumber();
     	accumulation_sign = (baseDegree < 180 ? -1 : 1);
     	
     	alignment = Graphics.TEXT_JUSTIFY_VCENTER|Graphics.TEXT_JUSTIFY_CENTER;
@@ -75,7 +112,8 @@ class ArcTextComplication extends Ui.Drawable {
     		dc.setColor(gbackground_color, Graphics.COLOR_TRANSPARENT);
 //    		dc.setColor(0x555555, Graphics.COLOR_TRANSPARENT);
     		dc.setPenWidth(20);
-			dc.drawArc(centerX, centerY, barRadius-(baseDegree < 180 ? 6 : -3), Graphics.ARC_CLOCKWISE, 360.0-(baseDegree-30.0), 360.0-(baseDegree+30.0));
+    		var target_r = barRadius-((baseDegree < 180 ? 6 : -3)*centerX/120).toNumber();
+			dc.drawArc(centerX, centerY, target_r, Graphics.ARC_CLOCKWISE, 360.0-(baseDegree-30.0), 360.0-(baseDegree+30.0));
 			
 			dc.setPenWidth(1);
 			dc.setColor(gmain_color, Graphics.COLOR_TRANSPARENT);
@@ -88,69 +126,36 @@ class ArcTextComplication extends Ui.Drawable {
 //        System.println("arc text draw " + (end-start) + "ms: " + text + " Text draw2: " + (end-start2));
     }
     
-    hidden function degreesToRadians(degrees) {
-    	return degrees * Math.PI / 180.0;
-    }  
-    
-    hidden function radiansToDegrees(radians) {
-    	return radians * 180.0 / Math.PI;
-    }  
-    
-    hidden function convertCoorX(radians) {
-		return centerX + barRadius*Math.cos(radians);
-    }
-    
-    hidden function convertCoorY(radians) {
-		return centerY + barRadius*Math.sin(radians);
-    }
-    
     hidden function drawArcText(dc, text) {
     	var totalChar = text.length().toFloat();
     	var charArray = text.toUpper().toCharArray();
     	
     	var totalRad = 0.0;
     	for (var i=0; i<totalChar; i++) {
-    		var ra = (charArray[i] == ',' or charArray[i] == ' ') ? 0.7*perCharRadius : perCharRadius;
+//    		System.println("=> '" + charArray[i] + "'");
+    		var ra = perCharRadius*kerning_ratios[charArray[i]];
     		totalRad += ra;
     	}
     	var lastRad = -totalRad/2.0;
-    	
-//    	System.print("baseRadian ");
-//    	System.print(radiansToDegrees(baseRadian));
-//    	System.print(" totalRad ");
-//    	System.print(radiansToDegrees(totalRad));
-//    	System.print(" lastRad ");
-//    	System.println(radiansToDegrees(lastRad));
-    	
+
     	for (var i=0; i<totalChar; i++) {
-//    		var start = System.getTimer();
-    		var ra = (charArray[i] == ',' or charArray[i] == ' ') ? 0.7*perCharRadius : perCharRadius;
+    		var ra = perCharRadius*kerning_ratios[charArray[i]];
+    		
 			lastRad += ra;
 			if (charArray[i] == ' ') {
 			} else {
 				var centering = ra/2.0;
 	    		var targetRadian = baseRadian + (lastRad-ra/2.0)*accumulation_sign;
-//	    		System.print(charArray[i]);
-//	    		System.print(": ");
-//	    		System.print(radiansToDegrees(targetRadian));
-//	    		System.print(" (");
-//	    		System.print(radiansToDegrees(ra));
-//	    		System.print("), ");
-	    		var labelCurX = convertCoorX(targetRadian);
-	    		var labelCurY = convertCoorY(targetRadian);
+
+	    		var labelCurX = convertCoorX(targetRadian, barRadius);
+	    		var labelCurY = convertCoorY(targetRadian, barRadius);
 	    		
-//	    		var startx = System.getTimer();
 	    		set_font(targetRadian);
-//	    		var endx = System.getTimer();
-//    			System.println("load font " + (endx-startx) + "ms");
     		
 	    		dc.drawText(labelCurX, labelCurY, font, charArray[i], alignment);
 	    		font = null;
     		}
-//    		var end = System.getTimer();
-//    		System.println("arc char draw " + (end-start) + "ms: " + charArray[i]);
     	}
-//    	System.println(" END");
     }
     
     function set_font(current_rad) {

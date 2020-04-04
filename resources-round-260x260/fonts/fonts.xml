@@ -1,0 +1,102 @@
+<fonts>
+	<font id="hour_1" filename="hour_hand_1.fnt" antialias="true"/>
+	<font id="hour_2" filename="hour_hand_2.fnt" antialias="true"/>
+	<font id="hour_3" filename="hour_hand_3.fnt" antialias="true"/>
+	<font id="hour_4" filename="hour_hand_4.fnt" antialias="true"/>
+	<font id="hour_5" filename="hour_hand_5.fnt" antialias="true"/>
+	<font id="hour_6" filename="hour_hand_6.fnt" antialias="true"/>
+	
+	<font id="minu_1" filename="minu_hand_1.fnt" antialias="true"/>
+	<font id="minu_2" filename="minu_hand_2.fnt" antialias="true"/>
+	<font id="minu_3" filename="minu_hand_3.fnt" antialias="true"/>
+	<font id="minu_4" filename="minu_hand_4.fnt" antialias="true"/>
+	<font id="minu_5" filename="minu_hand_5.fnt" antialias="true"/>
+	<font id="minu_6" filename="minu_hand_6.fnt" antialias="true"/>
+
+	<font id="seco_1" filename="seco_hand_1.fnt" antialias="true"/>
+	<font id="seco_2" filename="seco_hand_2.fnt" antialias="true"/>
+	<font id="seco_3" filename="seco_hand_3.fnt" antialias="true"/>
+	<font id="seco_4" filename="seco_hand_4.fnt" antialias="true"/>
+	<font id="seco_5" filename="seco_hand_5.fnt" antialias="true"/>
+	<font id="seco_6" filename="seco_hand_6.fnt" antialias="true"/>
+
+	<font id="smadigi" filename="smadigi2.fntc" antialias="true" filter=" -+%,.:0123456789QWERTYUIJOPASDFGHJKLZXCVBNM°"/>
+	
+	<font id="secodigi" filename="secodigi.fntc" antialias="true" filter="0123456789"/>
+	<font id="xsecodigi" filename="xsecodigi.fntc" antialias="true" filter="0123456789"/>
+	
+	<font id="middigi" filename="middigi.fntc" antialias="true" filter="0123456789"/>
+	<font id="bigdigi" filename="bigdigigarmin.fntc" antialias="true" filter="0123456789\\"/>
+	<font id="xbigdigi" filename="xbigdigigarmin.fntc" antialias="true" filter="0123456789\\"/>
+	<font id="midbold" filename="midbold.fntc" antialias="true" filter="0123456789"/>
+	<font id="midsemi" filename="midsemi.fntc" antialias="true" filter="0123456789"/>
+	<font id="xmidbold" filename="xmidbold.fntc" antialias="true" filter="0123456789"/>
+	<font id="xmidsemi" filename="xmidsemi.fntc" antialias="true" filter="0123456789"/>
+	
+	<font id="cur_bo" filename="cur_bo_big.fnt" antialias="true"/>
+	<font id="cur_up" filename="cur_up_big.fnt" antialias="true"/>
+	<font id="arr_bo" filename="arr_bo_big.fnt" antialias="true"/>
+	<font id="arr_up" filename="arr_up_big.fnt" antialias="true"/>
+	
+	<font id="e0" filename="e0.fnt" antialias="true" filter=" %+-.0123456789:ABCDEFHIJKLMNOPRSTUVWY°"/>
+	<font id="e1" filename="e1.fnt" antialias="true" filter=" %+-.0123456789:ABCDEFHIJKLMNOPRSTUVWY°"/>
+	<font id="e2" filename="e2.fnt" antialias="true" filter=" %+-.0123456789:ABCDEFHIJKLMNOPRSTUVWY°"/>
+	<font id="e3" filename="e3.fnt" antialias="true" filter=" %+-.0123456789:ABCDEFHIJKLMNOPRSTUVWY°"/>
+	<font id="e4" filename="e4.fnt" antialias="true" filter=" %+-.0123456789:ABCDEFHIJKLMNOPRSTUVWY°"/>
+	<font id="e5" filename="e5.fnt" antialias="true" filter=" %+-.0123456789:ABCDEFHIJKLMNOPRSTUVWY°"/>
+	<font id="e6" filename="e6.fnt" antialias="true" filter=" %+-.0123456789:ABCDEFHIJKLMNOPRSTUVWY°"/>
+	<font id="e7" filename="e7.fnt" antialias="true" filter=" %+-.0123456789:ABCDEFHIJKLMNOPRSTUVWY°"/>
+	<font id="e8" filename="e8.fnt" antialias="true" filter=" %+-.0123456789:ABCDEFHIJKLMNOPRSTUVWY°"/>
+	<font id="e9" filename="e9.fnt" antialias="true" filter=" %+-.0123456789:ABCDEFHIJKLMNOPRSTUVWY°"/>
+	<font id="e10" filename="e10.fnt" antialias="true" filter=" %+-.0123456789:ABCDEFHIJKLMNOPRSTUVWY°"/>
+	<font id="e11" filename="e11.fnt" antialias="true" filter=" %+-.0123456789:ABCDEFHIJKLMNOPRSTUVWY°"/>
+	<font id="e12" filename="e12.fnt" antialias="true" filter=" %+-.0123456789:ABCDEFHIJKLMNOPRSTUVWY°"/>
+	<font id="e13" filename="e13.fnt" antialias="true" filter=" %+-.0123456789:ABCDEFHIJKLMNOPRSTUVWY°"/>
+	<font id="e14" filename="e14.fnt" antialias="true" filter=" %+-.0123456789:ABCDEFHIJKLMNOPRSTUVWY°"/>
+	<font id="e15" filename="e15.fnt" antialias="true" filter=" %+-.0123456789:ABCDEFHIJKLMNOPRSTUVWY°"/>
+	<font id="e16" filename="e16.fnt" antialias="true" filter=" %+-.0123456789:ABCDEFHIJKLMNOPRSTUVWY°"/>
+	<font id="e17" filename="e17.fnt" antialias="true" filter=" %+-.0123456789:ABCDEFHIJKLMNOPRSTUVWY°"/>
+	<font id="e18" filename="e18.fnt" antialias="true" filter=" %+-.0123456789:ABCDEFHIJKLMNOPRSTUVWY°"/>
+	<font id="e19" filename="e19.fnt" antialias="true" filter=" %+-.0123456789:ABCDEFHIJKLMNOPRSTUVWY°"/>
+	<font id="e20" filename="e20.fnt" antialias="true" filter=" %+-.0123456789:ABCDEFHIJKLMNOPRSTUVWY°"/>
+	<font id="e21" filename="e21.fnt" antialias="true" filter=" %+-.0123456789:ABCDEFHIJKLMNOPRSTUVWY°"/>
+	<font id="e22" filename="e22.fnt" antialias="true" filter=" %+-.0123456789:ABCDEFHIJKLMNOPRSTUVWY°"/>
+	<font id="e23" filename="e23.fnt" antialias="true" filter=" %+-.0123456789:ABCDEFHIJKLMNOPRSTUVWY°"/>
+	<font id="e24" filename="e24.fnt" antialias="true" filter=" %+-.0123456789:ABCDEFHIJKLMNOPRSTUVWY°"/>
+	<font id="e25" filename="e25.fnt" antialias="true" filter=" %+-.0123456789:ABCDEFHIJKLMNOPRSTUVWY°"/>
+	<font id="e26" filename="e26.fnt" antialias="true" filter=" %+-.0123456789:ABCDEFHIJKLMNOPRSTUVWY°"/>
+	<font id="e27" filename="e27.fnt" antialias="true" filter=" %+-.0123456789:ABCDEFHIJKLMNOPRSTUVWY°"/>
+	<font id="e28" filename="e28.fnt" antialias="true" filter=" %+-.0123456789:ABCDEFHIJKLMNOPRSTUVWY°"/>
+	<font id="e29" filename="e29.fnt" antialias="true" filter=" %+-.0123456789:ABCDEFHIJKLMNOPRSTUVWY°"/>
+	<font id="e30" filename="e30.fnt" antialias="true" filter=" %+-.0123456789:ABCDEFHIJKLMNOPRSTUVWY°"/>
+	<font id="e31" filename="e31.fnt" antialias="true" filter=" %+-.0123456789:ABCDEFHIJKLMNOPRSTUVWY°"/>
+	<font id="e32" filename="e32.fnt" antialias="true" filter=" %+-.0123456789:ABCDEFHIJKLMNOPRSTUVWY°"/>
+	<font id="e33" filename="e33.fnt" antialias="true" filter=" %+-.0123456789:ABCDEFHIJKLMNOPRSTUVWY°"/>
+	<font id="e34" filename="e34.fnt" antialias="true" filter=" %+-.0123456789:ABCDEFHIJKLMNOPRSTUVWY°"/>
+	<font id="e35" filename="e35.fnt" antialias="true" filter=" %+-.0123456789:ABCDEFHIJKLMNOPRSTUVWY°"/>
+	<font id="e36" filename="e36.fnt" antialias="true" filter=" %+-.0123456789:ABCDEFHIJKLMNOPRSTUVWY°"/>
+	<font id="e37" filename="e37.fnt" antialias="true" filter=" %+-.0123456789:ABCDEFHIJKLMNOPRSTUVWY°"/>
+	<font id="e38" filename="e38.fnt" antialias="true" filter=" %+-.0123456789:ABCDEFHIJKLMNOPRSTUVWY°"/>
+	<font id="e39" filename="e39.fnt" antialias="true" filter=" %+-.0123456789:ABCDEFHIJKLMNOPRSTUVWY°"/>
+	<font id="e40" filename="e40.fnt" antialias="true" filter=" %+-.0123456789:ABCDEFHIJKLMNOPRSTUVWY°"/>
+	<font id="e41" filename="e41.fnt" antialias="true" filter=" %+-.0123456789:ABCDEFHIJKLMNOPRSTUVWY°"/>
+	<font id="e42" filename="e42.fnt" antialias="true" filter=" %+-.0123456789:ABCDEFHIJKLMNOPRSTUVWY°"/>
+	<font id="e43" filename="e43.fnt" antialias="true" filter=" %+-.0123456789:ABCDEFHIJKLMNOPRSTUVWY°"/>
+	<font id="e44" filename="e44.fnt" antialias="true" filter=" %+-.0123456789:ABCDEFHIJKLMNOPRSTUVWY°"/>
+	<font id="e45" filename="e45.fnt" antialias="true" filter=" %+-.0123456789:ABCDEFHIJKLMNOPRSTUVWY°"/>
+	<font id="e46" filename="e46.fnt" antialias="true" filter=" %+-.0123456789:ABCDEFHIJKLMNOPRSTUVWY°"/>
+	<font id="e47" filename="e47.fnt" antialias="true" filter=" %+-.0123456789:ABCDEFHIJKLMNOPRSTUVWY°"/>
+	<font id="e48" filename="e48.fnt" antialias="true" filter=" %+-.0123456789:ABCDEFHIJKLMNOPRSTUVWY°"/>
+	<font id="e49" filename="e49.fnt" antialias="true" filter=" %+-.0123456789:ABCDEFHIJKLMNOPRSTUVWY°"/>
+	<font id="e50" filename="e50.fnt" antialias="true" filter=" %+-.0123456789:ABCDEFHIJKLMNOPRSTUVWY°"/>
+	<font id="e51" filename="e51.fnt" antialias="true" filter=" %+-.0123456789:ABCDEFHIJKLMNOPRSTUVWY°"/>
+	<font id="e52" filename="e52.fnt" antialias="true" filter=" %+-.0123456789:ABCDEFHIJKLMNOPRSTUVWY°"/>
+	<font id="e53" filename="e53.fnt" antialias="true" filter=" %+-.0123456789:ABCDEFHIJKLMNOPRSTUVWY°"/>
+	<font id="e54" filename="e54.fnt" antialias="true" filter=" %+-.0123456789:ABCDEFHIJKLMNOPRSTUVWY°"/>
+	<font id="e55" filename="e55.fnt" antialias="true" filter=" %+-.0123456789:ABCDEFHIJKLMNOPRSTUVWY°"/>
+	<font id="e56" filename="e56.fnt" antialias="true" filter=" %+-.0123456789:ABCDEFHIJKLMNOPRSTUVWY°"/>
+	<font id="e57" filename="e57.fnt" antialias="true" filter=" %+-.0123456789:ABCDEFHIJKLMNOPRSTUVWY°"/>
+	<font id="e58" filename="e58.fnt" antialias="true" filter=" %+-.0123456789:ABCDEFHIJKLMNOPRSTUVWY°"/>
+	<font id="e59" filename="e59.fnt" antialias="true" filter=" %+-.0123456789:ABCDEFHIJKLMNOPRSTUVWY°"/>
+	<font id="e60" filename="e60.fnt" antialias="true" filter=" %+-.0123456789:ABCDEFHIJKLMNOPRSTUVWY°"/>
+</fonts>  
