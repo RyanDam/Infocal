@@ -35,7 +35,11 @@ enum /* FIELD_TYPES */ {
 	FIELD_TYPE_TIME_SECONDARY,
 	FIELD_TYPE_PHONE_STATUS,
 	FIELD_TYPE_COUNTDOWN,
-	FIELD_TYPE_WEEKCOUNT
+	FIELD_TYPE_WEEKCOUNT,
+	
+	FIELD_TYPE_TEMPERATURE_OUT = 23,
+	FIELD_TYPE_TEMPERATURE_HL,
+	FIELD_TYPE_WEATHER
 }
 
 function buildFieldObject(type) {
@@ -85,6 +89,12 @@ function buildFieldObject(type) {
 		return new CountdownField(FIELD_TYPE_COUNTDOWN);
 	} else if (type==FIELD_TYPE_WEEKCOUNT) {
 		return new WeekCountField(FIELD_TYPE_WEEKCOUNT);
+	} else if (type==FIELD_TYPE_TEMPERATURE_OUT) {
+		return new TemparatureOutField(FIELD_TYPE_TEMPERATURE_OUT);
+	} else if (type==FIELD_TYPE_TEMPERATURE_HL) {
+		return new TemparatureHLField(FIELD_TYPE_TEMPERATURE_HL);
+	} else if (type==FIELD_TYPE_WEATHER) {
+		return new WeatherField(FIELD_TYPE_WEATHER);
 	}
 	
 	return new EmptyDataField(FIELD_TYPE_EMPTY);
@@ -153,6 +163,141 @@ class EmptyDataField {
 	
 	function need_draw() {
 		return false;
+	}
+}
+
+///////////////////
+// weather stage //
+///////////////////
+
+class WeatherField extends BaseDataField {
+
+	var weather_icon_mapper;
+
+	function initialize(id) {
+		BaseDataField.initialize(id);
+		
+		weather_icon_mapper = {
+    		"01d" => "",
+			"02d" => "",
+			"03d" => "",
+			"04d" => "",
+			"09d" => "",
+			"10d" => "",
+			"11d" => "",
+			"13d" => "",
+			"50d" => "",
+			
+			"01n" => "",
+			"02n" => "",
+			"03n" => "",
+			"04n" => "",
+			"09n" => "",
+			"10n" => "",
+			"11n" => "",
+			"13n" => "",
+			"50n" => "",
+		};
+	}
+	
+	function cur_icon() {
+		var weather_data = App.getApp().getProperty("OpenWeatherMapCurrent");
+		if (weather_data != null) {
+			return weather_icon_mapper[weather_data["icon"]];
+		}
+//		return null;
+	}
+	
+	function cur_label(value) {
+		// WEATHER
+		var need_minimal = App.getApp().getProperty("minimal_data");
+        var weather_data = App.getApp().getProperty("OpenWeatherMapCurrent");
+        if (weather_data != null) {
+	        var description = weather_data.get("des");
+	        if (description != null) {
+	        	return description;
+	        }
+        }
+        return "--";
+	}
+}
+
+///////////////////////////
+// temparature hl stage //
+///////////////////////////
+
+class TemparatureHLField extends BaseDataField {
+
+	function initialize(id) {
+		BaseDataField.initialize(id);
+	}
+	
+	function cur_label(value) {
+		// WEATHER
+		var need_minimal = App.getApp().getProperty("minimal_data");
+        var weather_data = App.getApp().getProperty("OpenWeatherMapCurrent");
+        if (weather_data != null) {
+			var settings = Sys.getDeviceSettings();
+			var temp_min = weather_data["temp_min"];
+			var temp_max = weather_data["temp_max"];
+        	var unit = "°C";
+        	if (settings.temperatureUnits == System.UNIT_STATUTE) {
+				temp_min = (temp_min * (9.0 / 5)) + 32; // Convert to Farenheit: ensure floating point division.
+				temp_max = (temp_max * (9.0 / 5)) + 32; // Convert to Farenheit: ensure floating point division.
+				unit = "°F";
+			}
+			if (need_minimal) {
+				return Lang.format("$1$ $2$",[temp_max.format("%d"), temp_min.format("%d")]);
+			} else {
+				return Lang.format("H $1$ L $2$",[temp_max.format("%d"), temp_min.format("%d")]);
+			}
+        } else {
+        	if (need_minimal) {
+				return "--";
+			} else {
+				return "H - L -";
+			}
+        }
+	}
+}
+
+///////////////////////////
+// temparature out stage //
+///////////////////////////
+
+class TemparatureOutField extends BaseDataField {
+
+	function initialize(id) {
+		BaseDataField.initialize(id);
+	}
+	
+	function cur_label(value) {
+		// WEATHER
+		var need_minimal = App.getApp().getProperty("minimal_data");
+        var weather_data = App.getApp().getProperty("OpenWeatherMapCurrent");
+        if (weather_data != null) {
+			var settings = Sys.getDeviceSettings();
+			var temp = weather_data["temp"];
+        	var unit = "°C";
+        	if (settings.temperatureUnits == System.UNIT_STATUTE) {
+				temp = (temp * (9.0 / 5)) + 32; // Convert to Farenheit: ensure floating point division.
+				unit = "°F";
+			}
+			value = temp.format("%d") + unit;
+			
+			
+			if (need_minimal) {
+				return value;
+			} else {
+				return Lang.format("TEMP $1$",[value]);
+			}
+        } else {
+        	if (need_minimal) {
+				return "--";
+			} else {
+				return "TEMP --";
+			}
+        }
 	}
 }
 

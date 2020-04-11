@@ -104,6 +104,8 @@ class ArcTextComplication extends Ui.Drawable {
     	
     	var text = get_text();
     	
+//    	System.println(text);
+    	
 //    	var start2 = System.getTimer();
     	
     	if (last_draw_text.equals(text) && !force_render_component) {
