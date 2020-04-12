@@ -17,4 +17,6 @@
 	<jsonData id="bar_pos_bottom" filename="bar_pos_bottom.json"/>
 	<jsonData id="bar_font_top" filename="bar_font_top.json"/>
 	<jsonData id="bar_pos_top" filename="bar_pos_top.json"/>
+
+	<jsonData id="theme_pallete" filename="theme.json"/>
 </resources>
