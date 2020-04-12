@@ -213,9 +213,18 @@ class WeatherField extends BaseDataField {
 		var need_minimal = App.getApp().getProperty("minimal_data");
         var weather_data = App.getApp().getProperty("OpenWeatherMapCurrent");
         if (weather_data != null) {
+        	var settings = Sys.getDeviceSettings();
+			var temp = weather_data["temp"];
+        	var unit = "°C";
+        	if (settings.temperatureUnits == System.UNIT_STATUTE) {
+				temp = (temp * (9.0 / 5)) + 32; // Convert to Farenheit: ensure floating point division.
+				unit = "°F";
+			}
+			value = temp.format("%d") + unit;
+        
 	        var description = weather_data.get("des");
 	        if (description != null) {
-	        	return description;
+	        	return description + " " +  value;
 	        }
         }
         return "--";
