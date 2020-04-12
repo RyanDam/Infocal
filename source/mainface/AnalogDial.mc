@@ -19,19 +19,6 @@ class AnalogDial extends Ui.Drawable {
 
 	function initialize(params) {
         Drawable.initialize(params);
-
-//    	if (centerX == 109) {
-//    		offset_x = -11;
-//    		offset_y = -11;
-//    		offset_rad = 10;
-//    	} else if (centerX == 130) {
-//    		offset_x = 11;
-//    		offset_y = 11;
-//    	} else if (centerX == 140) {
-//    		offset_x = 21;
-//    		offset_y = 21;
-//    	}
-    	
     	secondHandDisabled = true;
     }
     
@@ -92,95 +79,23 @@ class AnalogDial extends Ui.Drawable {
     	removeFontHour();
     	var hour_i = getHourHandFragment() % 60;
     	if (hour_i >= 50) {
-//    		hour_font_1 = null;
-//    		hour_1 = null;
-//    		hour_font_2 = null;
-//    		hour_2 = null;
-//    		hour_font_3= null;
-//    		hour_3 = null;
-//    		hour_font_4 = null;
-//    		hour_4 = null;
-//    		hour_font_5 = null;
-//    		hour_5 = null;
-//    		if (hour_font_6 == null) {
-	    		hour_font_6 = Ui.loadResource(Rez.Fonts.hour_6);
-	    		hour_6 = Ui.loadResource(Rez.JsonData.hour_6_data);
-//			}
+			hour_font_6 = Ui.loadResource(Rez.Fonts.hour_6);
+			hour_6 = Ui.loadResource(Rez.JsonData.hour_6_data);
     	} else if (hour_i >= 40) {
-//    		hour_font_1 = null;
-//    		hour_1 = null;
-//    		hour_font_2 = null;
-//    		hour_2 = null;
-//    		hour_font_3= null;
-//    		hour_3 = null;
-//    		hour_font_4 = null;
-//    		hour_4 = null;
-//    		hour_font_6 = null;
-//    		hour_6 = null;
-//    		if (hour_font_5 == null) {
-	    		hour_font_5 = Ui.loadResource(Rez.Fonts.hour_5);
-	    		hour_5 = Ui.loadResource(Rez.JsonData.hour_5_data);
-//			}
+			hour_font_5 = Ui.loadResource(Rez.Fonts.hour_5);
+			hour_5 = Ui.loadResource(Rez.JsonData.hour_5_data);
     	} else if (hour_i >= 30){
-//    		hour_font_1 = null;
-//    		hour_1 = null;
-//    		hour_font_2 = null;
-//    		hour_2 = null;
-//    		hour_font_3= null;
-//    		hour_3 = null;
-//    		hour_font_5 = null;
-//    		hour_5 = null;
-//    		hour_font_6 = null;
-//    		hour_6 = null;
-//    		if (hour_font_4 == null) {
-	    		hour_font_4 = Ui.loadResource(Rez.Fonts.hour_4);
-	    		hour_4 = Ui.loadResource(Rez.JsonData.hour_4_data);
-//			}
+			hour_font_4 = Ui.loadResource(Rez.Fonts.hour_4);
+			hour_4 = Ui.loadResource(Rez.JsonData.hour_4_data);
     	} else if (hour_i >= 20){
-//    		hour_font_1 = null;
-//    		hour_1 = null;
-//    		hour_font_2 = null;
-//    		hour_2 = null;
-//    		hour_font_4= null;
-//    		hour_4 = null;
-//    		hour_font_5 = null;
-//    		hour_5 = null;
-//    		hour_font_6 = null;
-//    		hour_6 = null;
-//    		if (hour_font_3 == null) {
-	    		hour_font_3 = Ui.loadResource(Rez.Fonts.hour_3);
-	    		hour_3 = Ui.loadResource(Rez.JsonData.hour_3_data);
-//			}
+			hour_font_3 = Ui.loadResource(Rez.Fonts.hour_3);
+			hour_3 = Ui.loadResource(Rez.JsonData.hour_3_data);
     	} else if (hour_i >= 10){
-//    		hour_font_1 = null;
-//    		hour_1 = null;
-//    		hour_font_3 = null;
-//    		hour_3 = null;
-//    		hour_font_4= null;
-//    		hour_4 = null;
-//    		hour_font_5 = null;
-//    		hour_5 = null;
-//    		hour_font_6 = null;
-//    		hour_6 = null;
-//    		if (hour_font_2 == null) {
-	    		hour_font_2 = Ui.loadResource(Rez.Fonts.hour_2);
-	    		hour_2 = Ui.loadResource(Rez.JsonData.hour_2_data);
-//			}
+			hour_font_2 = Ui.loadResource(Rez.Fonts.hour_2);
+			hour_2 = Ui.loadResource(Rez.JsonData.hour_2_data);
     	} else if (hour_i >= 0){
-//    		hour_font_2 = null;
-//    		hour_2 = null;
-//    		hour_font_3 = null;
-//    		hour_3 = null;
-//    		hour_font_4= null;
-//    		hour_4 = null;
-//    		hour_font_5 = null;
-//    		hour_5 = null;
-//    		hour_font_6 = null;
-//    		hour_6 = null;
-//    		if (hour_font_1 == null) {
-	    		hour_font_1 = Ui.loadResource(Rez.Fonts.hour_1);
-	    		hour_1 = Ui.loadResource(Rez.JsonData.hour_1_data);
-//			}
+			hour_font_1 = Ui.loadResource(Rez.Fonts.hour_1);
+			hour_1 = Ui.loadResource(Rez.JsonData.hour_1_data);
     	}
     }
     
@@ -188,96 +103,23 @@ class AnalogDial extends Ui.Drawable {
     	removeFontMinute();
     	var minu_i = getMinuteHandFragment() % 60;
     	if (minu_i >= 50) {
-//    		minu_font_1 = null;
-//    		minu_1 = null;
-//    		minu_font_2 = null;
-//    		minu_2 = null;
-//    		minu_font_3 = null;
-//    		minu_3 = null;
-//    		minu_font_4 = null;
-//    		minu_4 = null;
-//    		minu_font_5 = null;
-//    		minu_5 = null;
-//    		if (minu_font_6 == null) {
-	    		minu_font_6 = Ui.loadResource(Rez.Fonts.minu_6);
-				minu_6 = Ui.loadResource(Rez.JsonData.minu_6_data);
-//			}
-    		
+			minu_font_6 = Ui.loadResource(Rez.Fonts.minu_6);
+			minu_6 = Ui.loadResource(Rez.JsonData.minu_6_data);
     	} else if (minu_i >= 40) {
-//    		minu_font_1 = null;
-//    		minu_1 = null;
-//    		minu_font_2 = null;
-//    		minu_2 = null;
-//    		minu_font_3 = null;
-//    		minu_3 = null;
-//    		minu_font_4 = null;
-//    		minu_4 = null;
-//    		minu_font_6 = null;
-//    		minu_6 = null;
-//    		if (minu_font_5 == null) {
-	    		minu_font_5 = Ui.loadResource(Rez.Fonts.minu_5);
-	    		minu_5 = Ui.loadResource(Rez.JsonData.minu_5_data);
-//    		}
+			minu_font_5 = Ui.loadResource(Rez.Fonts.minu_5);
+			minu_5 = Ui.loadResource(Rez.JsonData.minu_5_data);
     	} else if (minu_i >= 30) {
-//    		minu_font_1 = null;
-//    		minu_1 = null;
-//    		minu_font_2 = null;
-//    		minu_2 = null;
-//    		minu_font_3 = null;
-//    		minu_3 = null;
-//    		minu_font_5 = null;
-//    		minu_5 = null;
-//    		minu_font_6 = null;
-//    		minu_6 = null;
-//    		if (minu_font_4 == null) {
-	    		minu_font_4 = Ui.loadResource(Rez.Fonts.minu_4);
-	    		minu_4 = Ui.loadResource(Rez.JsonData.minu_4_data);
-//    		}
+			minu_font_4 = Ui.loadResource(Rez.Fonts.minu_4);
+			minu_4 = Ui.loadResource(Rez.JsonData.minu_4_data);
     	} else if (minu_i >= 20) {
-//    		minu_font_1 = null;
-//    		minu_1 = null;
-//    		minu_font_2 = null;
-//    		minu_2 = null;
-//    		minu_font_4 = null;
-//    		minu_4 = null;
-//    		minu_font_5 = null;
-//    		minu_5 = null;
-//    		minu_font_6 = null;
-//    		minu_6 = null;
-//    		if (minu_font_3 == null) {
-	    		minu_font_3 = Ui.loadResource(Rez.Fonts.minu_3);
-	    		minu_3 = Ui.loadResource(Rez.JsonData.minu_3_data);
-//    		}
+			minu_font_3 = Ui.loadResource(Rez.Fonts.minu_3);
+			minu_3 = Ui.loadResource(Rez.JsonData.minu_3_data);
     	} else if (minu_i >= 10) {
-//    		minu_font_1 = null;
-//    		minu_1 = null;
-//    		minu_font_3 = null;
-//    		minu_3 = null;
-//    		minu_font_4 = null;
-//    		minu_4 = null;
-//    		minu_font_5 = null;
-//    		minu_5 = null;
-//    		minu_font_6 = null;
-//    		minu_6 = null;
-//    		if (minu_font_2 == null) {
-	    		minu_font_2 = Ui.loadResource(Rez.Fonts.minu_2);
-	    		minu_2 = Ui.loadResource(Rez.JsonData.minu_2_data);
-//    		}
+			minu_font_2 = Ui.loadResource(Rez.Fonts.minu_2);
+			minu_2 = Ui.loadResource(Rez.JsonData.minu_2_data);
     	} else if (minu_i >= 0) {
-//    		minu_font_2 = null;
-//    		minu_2 = null;
-//    		minu_font_3 = null;
-//    		minu_3 = null;
-//    		minu_font_4 = null;
-//    		minu_4 = null;
-//    		minu_font_5 = null;
-//    		minu_5 = null;
-//    		minu_font_6 = null;
-//    		minu_6 = null;
-//    		if (minu_font_1 == null) {
-	    		minu_font_1 = Ui.loadResource(Rez.Fonts.minu_1);
-	    		minu_1 = Ui.loadResource(Rez.JsonData.minu_1_data);
-//    		}
+			minu_font_1 = Ui.loadResource(Rez.Fonts.minu_1);
+			minu_1 = Ui.loadResource(Rez.JsonData.minu_1_data);
     	}
     }
     
@@ -350,8 +192,6 @@ class AnalogDial extends Ui.Drawable {
     		drawTiles(minu_1[minu_i.toNumber()], minu_font_1, dc, minu_i);
     	}
     	removeFont() ;
-    	
-    	//System.println(""+hour_i+":"+minu_i);
     }
     
     function drawSecondHand(dc) {
@@ -379,7 +219,6 @@ class AnalogDial extends Ui.Drawable {
 		var char = (val >> 16) & 255;
 		var xpos = (val >> 8) & 255;
 		var ypos = (val >> 0) & 255;
-//		System.println("char " + char + " xpos " + xpos + " ypos");
         dc.drawText((xpos+offset_x-offset_rad_x).toNumber(),(ypos+offset_y-offset_rad_y).toNumber(),font,char.toNumber().toChar(),Graphics.TEXT_JUSTIFY_LEFT);
       }
     }

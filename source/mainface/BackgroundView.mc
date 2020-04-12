@@ -16,8 +16,6 @@ class BackgroundView extends Ui.Drawable {
     }
 
     function draw(dc) {
-//    	var start = System.getTimer();
-
     	var isFull = false;
     	
     	dc.setPenWidth(4);
@@ -106,7 +104,5 @@ class BackgroundView extends Ui.Drawable {
 			    );
 			}
 		}
-//    	var end = System.getTimer();
-//        System.println("background draw " + (end-start) + "ms");
     }
 }

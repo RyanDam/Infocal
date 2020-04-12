@@ -92,7 +92,7 @@ class BarComplication extends Ui.Drawable {
 	}
     
     function draw(dc) {
-////    	var start = System.getTimer();
+		
 		var is_bar_data = bar_data();
 		if (is_bar_data) {
 			load_font();
@@ -103,7 +103,7 @@ class BarComplication extends Ui.Drawable {
     	} else {
     		weatherFont = null;
     	}
-//		
+		
 		var primaryColor = position == 1 ? gbar_color_1 : gbar_color_0;
     	
     	var bonus_padding = 0;

@@ -97,35 +97,27 @@ class ArcTextComplication extends Ui.Drawable {
 	}
     
     function draw(dc) {
-//    	var start = System.getTimer();
-    	
-//    	textColor = Application.getApp().getProperty("white_background") ? 0x000000 : 0xFFFFFF;
+		
     	dc.setPenWidth(1);
     	
     	var text = get_text();
-    	
-//    	System.println(text);
-    	
-//    	var start2 = System.getTimer();
+		
     	
     	if (last_draw_text.equals(text) && !force_render_component) {
     		// do not draw
     	} else {
     		dc.setColor(gbackground_color, Graphics.COLOR_TRANSPARENT);
-//    		dc.setColor(0x555555, Graphics.COLOR_TRANSPARENT);
+			
     		dc.setPenWidth(20);
     		var target_r = barRadius-((baseDegree < 180 ? 6 : -3)*centerX/120).toNumber();
 			dc.drawArc(centerX, centerY, target_r, Graphics.ARC_CLOCKWISE, 360.0-(baseDegree-30.0), 360.0-(baseDegree+30.0));
 			
 			dc.setPenWidth(1);
 			dc.setColor(gmain_color, Graphics.COLOR_TRANSPARENT);
-//			System.println(text);
+			
     		drawArcText(dc, text);
     		last_draw_text = text;
     	}
-    	
-//    	var end = System.getTimer();
-//        System.println("arc text draw " + (end-start) + "ms: " + text + " Text draw2: " + (end-start2));
     }
     
     hidden function drawArcText(dc, text) {
@@ -134,7 +126,6 @@ class ArcTextComplication extends Ui.Drawable {
     	
     	var totalRad = 0.0;
     	for (var i=0; i<totalChar; i++) {
-//    		System.println("=> '" + charArray[i] + "'");
     		var ra = perCharRadius*kerning_ratios[charArray[i]];
     		totalRad += ra;
     	}

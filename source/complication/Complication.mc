@@ -46,10 +46,6 @@ class Complication extends ArcTextComplication {
 		if (field_type != dt_field.field_id()) {
 			dt_field = buildFieldObject(field_type);
 		}
-    
-//    	System.println(field_type);
-    
-		
 		if (need_draw()) {
 			ArcTextComplication.draw(dc);
 		}

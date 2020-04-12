@@ -94,7 +94,6 @@ class GraphComplication extends Ui.Drawable {
     	}
     	settings = System.getDeviceSettings();
     	
-//    	var start = System.getTimer();
 		var primaryColor = position == 1 ? gbar_color_1 : gbar_color_0;
     	
     	//Calculation
@@ -110,8 +109,6 @@ class GraphComplication extends Ui.Drawable {
         var HistoryMin = HistoryIter.getMin();
         var HistoryMax = HistoryIter.getMax();
         
-//        System.println("" + HistoryMin + ", " + HistoryMax);
-        
         if (HistoryMin == null || HistoryMax == null) {
         	dc.setColor(gmain_color, Graphics.COLOR_TRANSPARENT);
         	dc.drawText(position_x, position_y, smallDigitalFont, "--", Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
@@ -123,7 +120,6 @@ class GraphComplication extends Ui.Drawable {
         var xStep = graph_width;
         var height = graph_height;
         var HistoryPresent = null;
-//        System.println("a");
 
 		var HistoryNew = 0;
 		var lastyStep = 0;
@@ -148,14 +144,12 @@ class GraphComplication extends Ui.Drawable {
 		dc.setPenWidth(2);
 		dc.setColor(primaryColor, Graphics.COLOR_TRANSPARENT);
 		
-//        System.println("b");
 		//Build and draw Iteration
 		for(var i = 90; i > 0; i--){
 			var sample = HistoryIter.next();
 			
 			if (sample != null) {
 				HistoryNew = sample.data;
-//				System.println(""+i+": "+HistoryNew);
 				if (HistoryNew == HistoryMax) {
 					step_max = xStep;
 				} else if (HistoryNew == HistoryMin) {
@@ -203,7 +197,6 @@ class GraphComplication extends Ui.Drawable {
 					labelll, 
 					Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
 					
-//        System.println("d");
 		settings = null;
     }
 }
