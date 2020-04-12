@@ -65,9 +65,6 @@ class HuwaiiView extends WatchUi.WatchFace {
     	current_is_analogue = Application.getApp().getProperty("use_analog");
     	
         setLayout(Rez.Layouts.WatchFace(dc));
-        if (HuwaiiApp has :checkPendingWebRequests) { // checkPendingWebRequests() can be excluded to save memory.
-			App.getApp().checkPendingWebRequests(); // Depends on mDataFields.hasField().
-		}
     }
 
     // Called when this View is brought to the foreground. Restore
@@ -79,6 +76,10 @@ class HuwaiiView extends WatchUi.WatchFace {
     	last_draw_minute = -1;
     	restore_from_resume = true;
     	last_resume_mili = System.getTimer();
+    	
+    	if (HuwaiiApp has :checkPendingWebRequests) { // checkPendingWebRequests() can be excluded to save memory.
+			App.getApp().checkPendingWebRequests(); // Depends on mDataFields.hasField().
+		}
     }
 
     // Update the view

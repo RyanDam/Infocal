@@ -110,7 +110,7 @@ class GraphComplication extends Ui.Drawable {
         var HistoryMin = HistoryIter.getMin();
         var HistoryMax = HistoryIter.getMax();
         
-        System.println("" + HistoryMin + ", " + HistoryMax);
+//        System.println("" + HistoryMin + ", " + HistoryMax);
         
         if (HistoryMin == null || HistoryMax == null) {
         	dc.setColor(gmain_color, Graphics.COLOR_TRANSPARENT);

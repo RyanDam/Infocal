@@ -211,7 +211,7 @@ class MainDialHand extends Ui.Drawable {
 			
 		} else if (digital_style == 1 || digital_style == 3) {
 			var hourText = hour.format(number_formater);
-			var minuText = minute.format(number_formater);
+			var minuText = minute.format("%02d");
 			
 			var bonus = digital_style == 3 ? -13 : 0;
 			var boldF = digital_style == 3 ? xmidBoldFont : midBoldFont;

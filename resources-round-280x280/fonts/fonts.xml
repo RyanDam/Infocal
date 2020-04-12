@@ -1,4 +1,6 @@
 <fonts>
+	<font id="weather" filename="weather.fntc" antialias="true"/>
+
 	<font id="hour_1" filename="hour_hand_1.fnt" antialias="true"/>
 	<font id="hour_2" filename="hour_hand_2.fnt" antialias="true"/>
 	<font id="hour_3" filename="hour_hand_3.fnt" antialias="true"/>

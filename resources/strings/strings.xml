@@ -68,11 +68,14 @@
     <string id="phonestatus">Phone connection status</string>
     <string id="altitude">Altitude</string>
     <string id="temperature">Temperature (on device sensor)</string>
+    <string id="temperature_out">Temperature (outsite)</string>
+    <string id="temperature_hl">Temperature (high/low)</string>
     <string id="sunriseset">Sun time</string>
     <string id="floorclimbed">Floor climbed</string>
     <string id="groupnoti">Group notification</string>
     <string id="barometer">Barometer (hector pascal)</string>
     <string id="weeknum">Week of year</string>
+    <string id="weather">Weather</string>
     
     <string id="date_format">Date format</string>
     <string id="datef1">ddd d (TUE 2)</string>
