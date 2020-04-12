@@ -7,7 +7,7 @@ Infocal watchface for Garmin devices
 
 My work will stay free, If you want donate for my work, it will help me a lot:
 
-[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](paypal.me/pyryandam)
+[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.me/pyryandam)
 
 ## Code contribution
 1. Fork the project
@@ -76,3 +76,8 @@ Not all complication data is supported for any device, it depends on your device
 - Square appeared instead of character?
 
 **Currently this watch face only support English (or latin character), more languare support will come in the next release.**
+
+# Credits
+
+- Special thanks to **[warmsound](https://github.com/warmsound)** for awesome [Crystal Watchface](https://github.com/warmsound/crystal-face). Without Crystal, I'm not able to add some features (suntime, sensor history, weather...) to this watchface.
+- Special thanks to **[sunpazed](https://github.com/sunpazed)** for his awesome github projects. I learned a lot from him for anti-alising and get inspired to create curved text, which makes Infocal today.
