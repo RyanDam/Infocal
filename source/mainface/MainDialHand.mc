@@ -97,8 +97,6 @@ class MainDialHand extends Ui.Drawable {
     }
     
     function draw(dc) {
-//    	var start = System.getTimer();
-    	
     	// possibly remove all font to save memory
     	checkCurrentFont();
     
@@ -179,7 +177,6 @@ class MainDialHand extends Ui.Drawable {
 	    	// this is a need to prevent power save mode not re-render
 	    	
 	    	dc.setColor(gbackground_color, Graphics.COLOR_TRANSPARENT);
-//    		dc.setColor(0x555555, Graphics.COLOR_TRANSPARENT);
     		dc.setPenWidth(20);
 	    	if (Application.getApp().getProperty("left_digital_info")) {
 				dc.drawArc(centerX, centerY, barRadius, Graphics.ARC_CLOCKWISE, 180-10, 120+10);

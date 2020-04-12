@@ -47,7 +47,6 @@ class BarDataComplication extends BarComplication {
 	
 	function get_weather_icon() {
     	return dt_field.cur_icon();
-//		return null;
     }
 	
 	function getSettingDataKey() {

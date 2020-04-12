@@ -50,6 +50,8 @@ class HuwaiiView extends WatchUi.WatchFace {
 	
 	var did_clear = false;
 	
+	var last_theme_code = -1;
+	
     function initialize() {
         WatchFace.initialize();
     }
@@ -219,8 +221,6 @@ class HuwaiiView extends WatchUi.WatchFace {
     	}
     	force_render_component = false;
     	
-//    	System.println("2");
-    	
     	onPartialUpdate(dc);
     }
 
@@ -242,11 +242,9 @@ class HuwaiiView extends WatchUi.WatchFace {
 			if (current_is_analogue) {
 				// turned to digital
 				analogDisplay.removeFont();
-//				digitalDisplay.checkCurrentFont();
 			} else {
 				// turned to analogue
 				digitalDisplay.removeFont();
-//				analogDisplay.checkCurrentFont();
 			}
 		}
 		
@@ -261,36 +259,24 @@ class HuwaiiView extends WatchUi.WatchFace {
 		var bbar2 = View.findDrawableById("tUBarDisplay");
 		
 		bar1.draw(dc);
-//		System.println("4");
 		bar2.draw(dc);
-//		System.println("5");
 		bar3.draw(dc);
-//		System.println("6");
 		bar4.draw(dc);
-//		System.println("7");
 		bar5.draw(dc);
-//		System.println("8");
 		bar6.draw(dc);
-//		System.println("9");
 		
         dc.setColor(gbackground_color, Graphics.COLOR_TRANSPARENT);
-//        dc.setColor(0x555555, Graphics.COLOR_TRANSPARENT);
         dc.fillCircle(centerX, centerY, face_radius);
 		
 		backgroundView.draw(dc);
-//		System.println("10");
-		
 		bbar1.draw(dc);
 		bbar2.draw(dc);
-//		System.println("11");
-
 
 		var bgraph1 = View.findDrawableById("tGraphDisplay");
 		var bgraph2 = View.findDrawableById("bGraphDisplay");
 		bgraph1.draw(dc);
 		bgraph2.draw(dc);
-//		System.println("12");
-        
+		
         // Call the parent onUpdate function to redraw the layout
         if (Application.getApp().getProperty("use_analog")) {
         	analogDisplay.draw(dc);
@@ -303,9 +289,6 @@ class HuwaiiView extends WatchUi.WatchFace {
 	function onPartialUpdate(dc) {
 		if (!((Application.getApp().getProperty("use_analog")))) {
 			if (Application.getApp().getProperty("always_on_second")) {
-				// var start = System.getTimer();
-				
-				
 				var clockTime = System.getClockTime(); 
 				var second_text = clockTime.sec.format("%02d");
 				var ss = dc.getTextDimensions(second_text, second_digi_font);
@@ -319,10 +302,6 @@ class HuwaiiView extends WatchUi.WatchFace {
 							second_text, 
 							Graphics.TEXT_JUSTIFY_LEFT);
 				dc.clearClip();
-				
-				// var end = System.getTimer();
-				
-				// System.println("spatial draw " + (end-start) + "ms");
 			}
 			
 			if (Application.getApp().getProperty("always_on_heart")) {
@@ -337,7 +316,7 @@ class HuwaiiView extends WatchUi.WatchFace {
 				var s2 = (second_clip_size[0]*1.25).toNumber();
 				dc.setClip(heart_x-s2-1, second_y, s2+2, second_clip_size[1]);
 				dc.setColor(Graphics.COLOR_TRANSPARENT, gbackground_color);
-//				dc.setColor(Graphics.COLOR_TRANSPARENT, 0x555555);
+				
 				dc.clear();
 				dc.setColor(gmain_color, Graphics.COLOR_TRANSPARENT);
 				dc.drawText(heart_x-1, second_y-font_padding, 
@@ -360,8 +339,8 @@ class HuwaiiView extends WatchUi.WatchFace {
     
     // The user has just looked at their watch. Timers and animations may be started here.
     function onExitSleep() {
-//    	var dialDisplay = View.findDrawableById("analog");
-//    	dialDisplay.enableSecondHand();
+		var dialDisplay = View.findDrawableById("analog");
+		dialDisplay.enableSecondHand();
     	
     	if (HuwaiiApp has :checkPendingWebRequests) { // checkPendingWebRequests() can be excluded to save memory.
 			App.getApp().checkPendingWebRequests(); // Depends on mDataFields.hasField().
@@ -370,173 +349,24 @@ class HuwaiiView extends WatchUi.WatchFace {
 
     // Terminate any active timers and prepare for slow updates.
     function onEnterSleep() {
-//    	var dialDisplay = View.findDrawableById("analog");
-//		dialDisplay.disableSecondHand();
+   		var dialDisplay = View.findDrawableById("analog");
+		dialDisplay.disableSecondHand();
     }
 
 	function checkTheme() {
 		var theme_code = Application.getApp().getProperty("theme_code");
-		if (theme_code == 0) {
-			// dark
-			gbackground_color = 0x000000;
-			gmain_color = 0xFFFFFF;
-			gsecondary_color = 0xFF0000;
-			garc_color = 0x555555;
-			gbar_color_indi = 0xAAAAAA;
-			gbar_color_back = 0x550000;
-			gbar_color_0 = 0xFFFF00;
-			gbar_color_1 = 0x0000FF;
-		} else if (theme_code == 1) {
-			// light
-			gbackground_color = 0xFFFFFF;
-			gmain_color = 0x000000;
-			gsecondary_color = 0xFF0000;
-			garc_color = 0xAAAAAA;
-			gbar_color_indi = 0x555555;
-			gbar_color_back = 0xAAAAAA;
-			gbar_color_0 = 0xAA5500;
-			gbar_color_1 = 0x0000FF;
-		} else if (theme_code == 2) {
-			// Ocean
-			gbackground_color = 0x0055AA;
-			gmain_color = 0xFFFFFF;
-			gsecondary_color = 0x000055;
-			garc_color = 0x555555;
-			gbar_color_indi = 0x000055;
-			gbar_color_back = 0x00AAFF;
-			gbar_color_0 = 0xFFFF00;
-			gbar_color_1 = 0x0000FF;
-		} else if (theme_code == 3) {
-			// Orange
-			gbackground_color = 0xFF5500;
-			gmain_color = 0xFFFFFF;
-			gsecondary_color = 0x000055;
-			garc_color = 0x555555;
-			gbar_color_indi = 0xFFFFFF;
-			gbar_color_back = 0x000055;
-			gbar_color_0 = 0xFFFF00;
-			gbar_color_1 = 0x0000FF;
-		} else if (theme_code == 4) {
-			// radio active
-			gbackground_color = 0xFFFF00;
-			gmain_color = 0x000000;
-			gsecondary_color = 0xAAAAAA;
-			garc_color = 0x555555;
-			gbar_color_indi = 0x555555;
-			gbar_color_back = 0xAAAAAA;
-			gbar_color_0 = 0xFF0000;
-			gbar_color_1 = 0x0000FF;
-		}  else if (theme_code == 7) {
-			// dark blue
-			gbackground_color = 0x000000;
-			gmain_color = 0xFFFFFF;
-			gsecondary_color = 0x0000FF;
-			garc_color = 0x555555;
-			gbar_color_indi = 0xFFFFFF;
-			gbar_color_back = 0x000055;
-			gbar_color_0 = 0xFFFF00;
-			gbar_color_1 = 0x00AAFF;
-		} else if (theme_code == 8) {
-			// light blue
-			gbackground_color = 0xFFFFFF;
-			gmain_color = 0x000000;
-			gsecondary_color = 0x0000FF;
-			garc_color = 0x555555;
-			gbar_color_indi = 0x555555;
-			gbar_color_back = 0xAAAAAA;
-			gbar_color_0 = 0xAA5500;
-			gbar_color_1 = 0x0000FF;
-		} else if (theme_code == 9) {
-			// gray
-			gbackground_color = 0x555555;
-			gmain_color = 0xFFFFFF;
-			gsecondary_color = 0x000000;
-			garc_color = 0x000000;
-			gbar_color_indi = 0xFFFFFF;
-			gbar_color_back = 0xAAAAAA;
-			gbar_color_0 = 0xFFFF00;
-			gbar_color_1 = 0x0000FF;
-		} else if (theme_code == 10) {
-			// light gray
-			gbackground_color = 0xAAAAAA;
-			gmain_color = 0x000000;
-			gsecondary_color = 0x555555;
-			garc_color = 0x555555;
-			gbar_color_indi = 0x000000;
-			gbar_color_back = 0x555555;
-			gbar_color_0 = 0xAA5500;
-			gbar_color_1 = 0x0000FF;
-		} else if (theme_code == 11) {
-			// pink
-			gbackground_color = 0xFF0055;
-			gmain_color = 0xFFFFFF;
-			gsecondary_color = 0xAAAAAA;
-			garc_color = 0xAAAAAA;
-			gbar_color_indi = 0xFFFFFF;
-			gbar_color_back = 0xAA0055;
-			gbar_color_0 = 0xFFFF00;
-			gbar_color_1 = 0x0000FF;
-		} else if (theme_code == 12) {
-			// deep ocean
-			gbackground_color = 0x000055;
-			gmain_color = 0xFFFFFF;
-			gsecondary_color = 0x0000FF;
-			garc_color = 0x0000AA;
-			gbar_color_indi = 0xFFFFFF;
-			gbar_color_back = 0x0000AA;
-			gbar_color_0 = 0xFFFF00;
-			gbar_color_1 = 0x00AAFF;
-		} else if (theme_code == 13) {
-			// dark
-			gbackground_color = 0x000000;
-			gmain_color = 0xFFFFFF;
-			gsecondary_color = 0xFF0000;
-			garc_color = 0xAAAAAA;
-			gbar_color_indi = 0xFFFFFF;
-			gbar_color_back = 0x550000;
-			gbar_color_0 = 0xFFFFFF;
-			gbar_color_1 = 0xFFFFFF;
-		} else if (theme_code == 14) {
-			// light contrast
-			gbackground_color = 0xFFFFFF;
-			gmain_color = 0x000000;
-			gsecondary_color = 0xFF0000;
-			garc_color = 0x555555;
-			gbar_color_indi = 0x000000;
-			gbar_color_back = 0xAAAAAA;
-			gbar_color_0 = 0x000000;
-			gbar_color_1 = 0x000000;
-		} else if (theme_code == 15) {
-			// camo
-			gbackground_color = 0x55AA00;
-			gmain_color = 0x000000;
-			gsecondary_color = 0xFFFF00;
-			garc_color = 0x555500;
-			gbar_color_indi = 0xFFFF00;
-			gbar_color_back = 0x555500;
-			gbar_color_0 = 0x000000;
-			gbar_color_1 = 0x000000;
-		} else if (theme_code == 16) {
-			// solar
-			gbackground_color = 0x000000;
-			gmain_color = 0xFFFFFF;
-			gsecondary_color = 0xFF5500;
-			garc_color = 0x555555;
-			gbar_color_indi = 0xAAAAAA;
-			gbar_color_back = 0x550000;
-			gbar_color_0 = 0xFF5500;
-			gbar_color_1 = 0xFF5500;
-		} else if (theme_code == 17) {
-			// lime
-			gbackground_color = 0x000000;
-			gmain_color = 0xFFFFFF;
-			gsecondary_color = 0x55FF55;
-			garc_color = 0x555555;
-			gbar_color_indi = 0xFFFFFF;
-			gbar_color_back = 0x005500;
-			gbar_color_0 = 0x00FF00;
-			gbar_color_1 = 0x00FF00;
-		} 
+		if (last_theme_code == -1 || last_theme_code != theme_code) {
+			var theme_pallete = WatchUi.loadResource(Rez.JsonData.theme_pallete);
+			var theme = theme_pallete[""+theme_code];
+			gbackground_color = theme[0];
+			gmain_color = theme[1];
+			gsecondary_color = theme[2];
+			garc_color = theme[3];
+			gbar_color_indi = theme[4];
+			gbar_color_back = theme[5];
+			gbar_color_0 = theme[6];
+			gbar_color_1 = theme[7];
+		}
 	}
 
 }

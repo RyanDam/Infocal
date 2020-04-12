@@ -205,7 +205,7 @@ class WeatherField extends BaseDataField {
 		if (weather_data != null) {
 			return weather_icon_mapper[weather_data["icon"]];
 		}
-//		return null;
+		return null;
 	}
 	
 	function cur_label(value) {
@@ -372,25 +372,7 @@ class WeekCountField extends BaseDataField {
 		var week_num = iso_week_number(date.year, date.month, date.day);
 		return Lang.format("WEEK $1$",[week_num]);
 	}
-	
-//	function cur_label(value) {
-//		var now = Time.now();
-//		
-//		var date = Date.info(now, Time.FORMAT_SHORT);
-//		var options = {
-//		    :year   => date.year,
-//		    :month  => 1, // 3.x devices can also use :month => Gregorian.MONTH_MAY
-//		    :day    => 1,
-//		    :hour   => 0
-//		};
-//		var dayone = Date.moment(options);
-//		
-//		var delta = now.compare(dayone).toFloat(); // second
-//		
-//		var num_week = Math.round((delta/(3600.0*24.0*7.0)) + 0.5).toNumber();
-//		
-//		return Lang.format("WEEK $1$",[num_week]);
-//	}
+
 }
 
 /////////////////////////
@@ -446,14 +428,7 @@ class TimeSecondaryField extends BaseDataField {
 		var now_target_zone_delta = new Time.Duration(secondary_zone_delta);
 		var now_target_zone = now.add(now_target_zone_delta);
 		var target_zone = Date.info(now_target_zone, Time.FORMAT_SHORT);
-		
-//		System.print("UTC "+target+", ");
-//		System.print(target_zone.hour);  // 2003
-//		System.print(", ");
-//		System.print(target_zone.min); // May
-//		System.print(", ");
-//		System.println(target_zone.sec);   // 16
-    	        		
+		  		
     	var hour = target_zone.hour;
     	var minute = target_zone.min;      		
     	var mark = "";
@@ -526,8 +501,7 @@ class BarometerField extends BaseDataField {
 	}
 	
 	function _retrieveBarometer() {
-//		var trend_iter = _getIteratorDurate(App.getApp().getProperty("baro_period"));
-		var trend_iter = _getIteratorDurate(3);
+		var trend_iter = _getIteratorDurate(3); // 3 hour
 		var trending = null;
 		if (trend_iter!= null) {
 			// get 5 sample
@@ -627,7 +601,6 @@ class WeekDistanceField extends BaseDataField {
 		if (need_minimal) {
 			return Lang.format("$1$ $2$",[kilo.format("%0.1f"), unit]);
 		} else {
-//			var valKp = App.getApp().toKValue(kilo);
 	    	var valKp = App.getApp().toKValue(kilo*1000);
 	    	return Lang.format("DIS $1$$2$",[valKp, unit]);
     	}
@@ -802,10 +775,8 @@ class SunField extends BaseDataField {
 	
 			// Convert to same format as sunTimes, for easier comparison. Add a minute, so that e.g. if sun rises at
 			// 07:38:17, then 07:38 is already consided daytime (seconds not shown to user).
-//			now = now.hour + ((now.min + 1) / 60.0);
 			now = now.hour + ((now.min) / 60.0);
-			//Sys.println(now);
-	
+			
 			// Get today's sunrise/sunset times in current time zone.
 			var sunTimes = getSunTimes(gLocationLat, gLocationLng, null, /* tomorrow */ false);
 			//Sys.println(sunTimes);
@@ -1278,15 +1249,6 @@ class DistanceField extends BaseDataField {
 	function cur_val() {
 		var activityInfo = ActivityMonitor.getInfo();
 		var value = activityInfo.distance.toFloat();
-//		var settings = Sys.getDeviceSettings();
-//		if (settings.distanceUnits == System.UNIT_METRIC) {					
-//		} else {
-//			value *= 0.621371;
-//		}
-//		var maxx = max_val();
-//		if (value>maxx) {
-//			return maxx-0.01;
-//		}
 		return value;
 	}
 	
@@ -1300,7 +1262,6 @@ class DistanceField extends BaseDataField {
 	function cur_label(value) {
 		var need_minimal = App.getApp().getProperty("minimal_data");
 		var settings = Sys.getDeviceSettings();
-//		var activityInfo = ActivityMonitor.getInfo();
 		
 		var value2 = value;
 		var kilo = value2/100000;
@@ -1380,24 +1341,6 @@ class CaloField extends BaseDataField {
 		var nonActiveCalories = 1.003*bmr*current_segment; // method 2
 		var activeCalories = value - nonActiveCalories;
 		activeCalories = (activeCalories>0 ? activeCalories : 0).toNumber();
-//		Sys.print("hour ");
-//		Sys.print(date.hour);
-//		Sys.print("min ");
-//		Sys.print(date.min);
-//		Sys.print("bonus ");
-//		Sys.print(bonus);
-//		Sys.print("age ");
-//		Sys.print(age);
-//		Sys.print("weight ");
-//		Sys.print(weight);
-//		Sys.print("bmr ");
-//		Sys.print(bmr);
-//		Sys.print("current_segment ");
-//		Sys.print(current_segment);
-//		Sys.print("nonActiveCalories ");
-//		Sys.print(nonActiveCalories);
-//		Sys.print("activeCalories ");
-//		Sys.println(activeCalories);
 		return activeCalories;
 	}
 
@@ -1614,9 +1557,6 @@ class HRField extends BaseDataField {
 	
 	function cur_label(value) {
 		var heartRate = value;
-//		if(doesDeviceSupportHeartrate()) {
-//			heartRate = _retrieveHeartrate();
-//		}
 		if (heartRate<=1) {
 			return "HR --";
 		}
