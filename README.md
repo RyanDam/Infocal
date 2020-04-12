@@ -17,7 +17,7 @@ My work will stay free, If you want donate for my work, it will help me a lot:
 
 # Description
 
-Infocal is a ditgital and analogue watchface, carefully made with high quality rendering. It's both customizable and functional. With up to 8 complications on the screen, each complication can show variety of data:
+Infocal is a digital and analogue watchface, carefully made with high quality rendering. It's both customizable and functional. With up to 8 complications on the screen, each complication can show variety of data:
 
 - Date
 - Digital time/2nd timezone
