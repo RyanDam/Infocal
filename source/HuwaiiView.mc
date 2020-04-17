@@ -52,7 +52,7 @@ class HuwaiiView extends WatchUi.WatchFace {
 	
 	var last_theme_code = -1;
 
-    var screenbuffer;
+    var screenbuffer = null;
 	
     function initialize() {
         WatchFace.initialize();
@@ -108,25 +108,6 @@ class HuwaiiView extends WatchUi.WatchFace {
     	var clockTime = System.getClockTime();
     	var current_tick = System.getTimer();
 
-        // if this device has the clear dc bug
-        // use a screen buffer to save having to redraw
-        // everything on every update
-        if (Application.getApp().getProperty("power_save_mode")
-                && screenbuffer != null) {
-            var current_minute = clockTime.min;
-            // if minute has changed, draw to the buffer
-            if (current_minute!=last_draw_minute) {
-                last_draw_minute = current_minute;
-                force_render_component = true;
-                mainDrawComponents(screenbuffer.getDc());
-                force_render_component = false;
-            }
-            // copy buffer to screen
-            dc.drawBitmap(0,0,screenbuffer);
-            return;
-        } 
-    	
-    	
 //		System.println("" + current_time_duration + ", " + sleep_time + ", " + wake_time);
 		
 ////		System.println("" + is_in_sleep + ", " + Application.getApp().getProperty("sleep_time_behaviour") + ", " + did_clear);
@@ -164,16 +145,6 @@ class HuwaiiView extends WatchUi.WatchFace {
 //			}
 //		}
     	
-    	var always_on_style = Application.getApp().getProperty("always_on_style");
-    	if (always_on_style == 0) {
-    		second_digi_font = WatchUi.loadResource(Rez.Fonts.secodigi);
-    		second_font_height_half = 7;
-    		second_clip_size = [20, 15];
-    	} else {
-    		second_digi_font = WatchUi.loadResource(Rez.Fonts.xsecodigi);
-    		second_font_height_half = 14;
-    		second_clip_size = [26, 22];
-    	}
 //    	System.println("1");
     	
 //    	System.println("update");
@@ -213,6 +184,35 @@ class HuwaiiView extends WatchUi.WatchFace {
     		last_battery_percent = current_battery;
     	} else {
     		//System.println(time_now.compare(last_battery_hour));
+    	}
+        
+        // if this device has the clear dc bug
+        // use a screen buffer to save having to redraw
+        // everything on every update
+        if (Application.getApp().getProperty("power_save_mode")
+                && screenbuffer != null) {
+            var current_minute = clockTime.min;
+            // if minute has changed, draw to the buffer
+            if (current_minute!=last_draw_minute) {
+                last_draw_minute = current_minute;
+                force_render_component = true;
+                mainDrawComponents(screenbuffer.getDc());
+                force_render_component = false;
+            }
+            // copy buffer to screen
+            dc.drawBitmap(0,0,screenbuffer);
+            return;
+        } 
+    	
+        var always_on_style = Application.getApp().getProperty("always_on_style");
+    	if (always_on_style == 0) {
+    		second_digi_font = WatchUi.loadResource(Rez.Fonts.secodigi);
+    		second_font_height_half = 7;
+    		second_clip_size = [20, 15];
+    	} else {
+    		second_digi_font = WatchUi.loadResource(Rez.Fonts.xsecodigi);
+    		second_font_height_half = 14;
+    		second_clip_size = [26, 22];
     	}
     	
     	force_render_component = true;
