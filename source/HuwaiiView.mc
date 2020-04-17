@@ -51,6 +51,8 @@ class HuwaiiView extends WatchUi.WatchFace {
 	var did_clear = false;
 	
 	var last_theme_code = -1;
+
+    var screenbuffer;
 	
     function initialize() {
         WatchFace.initialize();
@@ -67,6 +69,22 @@ class HuwaiiView extends WatchUi.WatchFace {
     	current_is_analogue = Application.getApp().getProperty("use_analog");
     	
         setLayout(Rez.Layouts.WatchFace(dc));
+
+        // vivoactive4(s) sometimes clears the watch dc before onupdate
+        if(WatchUi.loadResource(Rez.Strings.clearbufferbug).equals("yes")) {
+            // create a buffer to draw to 
+            // so it can be pasted straight to
+            // the screen instead of redrawing
+            System.println("device has clearbufferbug");
+            if (Toybox.Graphics has :BufferedBitmap) {
+                screenbuffer = new Graphics.BufferedBitmap(
+                        {:width=>dc.getWidth(),
+                        :height=>dc.getHeight(),
+                        } );
+            } else {
+                screenbuffer = null;
+            }
+        }
     }
 
     // Called when this View is brought to the foreground. Restore
@@ -87,10 +105,27 @@ class HuwaiiView extends WatchUi.WatchFace {
     // Update the view
     function onUpdate(dc) {
     	
-    	var clockTime = System.getClockTime(); 
-    	
-    	
+    	var clockTime = System.getClockTime();
     	var current_tick = System.getTimer();
+
+        // if this device has the clear dc bug
+        // use a screen buffer to save having to redraw
+        // everything on every update
+        if (Application.getApp().getProperty("power_save_mode")
+                && screenbuffer != null) {
+            var current_minute = clockTime.min;
+            // if minute has changed, draw to the buffer
+            if (current_minute!=last_draw_minute) {
+                last_draw_minute = current_minute;
+                force_render_component = true;
+                mainDrawComponents(screenbuffer.getDc());
+                force_render_component = false;
+            }
+            // copy buffer to screen
+            dc.drawBitmap(0,0,screenbuffer);
+            return;
+        } 
+    	
     	
 //		System.println("" + current_time_duration + ", " + sleep_time + ", " + wake_time);
 		
