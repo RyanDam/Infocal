@@ -71,7 +71,7 @@ class HuwaiiView extends WatchUi.WatchFace {
         setLayout(Rez.Layouts.WatchFace(dc));
 
         // vivoactive4(s) sometimes clears the watch dc before onupdate
-        if(WatchUi.loadResource(Rez.Strings.clearbufferbug).equals("yes")) {
+        if(Application.getApp().getProperty("enable_buffering")) {
             // create a buffer to draw to 
             // so it can be pasted straight to
             // the screen instead of redrawing
@@ -81,8 +81,6 @@ class HuwaiiView extends WatchUi.WatchFace {
                         {:width=>dc.getWidth(),
                         :height=>dc.getHeight(),
                         } );
-            } else {
-                screenbuffer = null;
             }
         }
     }

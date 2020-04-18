@@ -1,0 +1,3 @@
+<properties>
+    <property id="clearbufferbug" type="boolean">false</property>
+</properties>
