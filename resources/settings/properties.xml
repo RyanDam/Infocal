@@ -42,4 +42,5 @@
     <property id="battery_format" type="number">0</property>
     
     <property id="countdown_date" type="number">1546300800</property>
+    <property id="enable_buffering" type="boolean">false</property>
 </properties>

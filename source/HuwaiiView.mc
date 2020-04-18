@@ -51,6 +51,8 @@ class HuwaiiView extends WatchUi.WatchFace {
 	var did_clear = false;
 	
 	var last_theme_code = -1;
+
+    var screenbuffer = null;
 	
     function initialize() {
         WatchFace.initialize();
@@ -67,6 +69,20 @@ class HuwaiiView extends WatchUi.WatchFace {
     	current_is_analogue = Application.getApp().getProperty("use_analog");
     	
         setLayout(Rez.Layouts.WatchFace(dc));
+
+        // vivoactive4(s) sometimes clears the watch dc before onupdate
+        if(Application.getApp().getProperty("enable_buffering")) {
+            // create a buffer to draw to 
+            // so it can be pasted straight to
+            // the screen instead of redrawing
+            System.println("device has clearbufferbug");
+            if (Toybox.Graphics has :BufferedBitmap) {
+                screenbuffer = new Graphics.BufferedBitmap(
+                        {:width=>dc.getWidth(),
+                        :height=>dc.getHeight(),
+                        } );
+            }
+        }
     }
 
     // Called when this View is brought to the foreground. Restore
@@ -87,11 +103,9 @@ class HuwaiiView extends WatchUi.WatchFace {
     // Update the view
     function onUpdate(dc) {
     	
-    	var clockTime = System.getClockTime(); 
-    	
-    	
+    	var clockTime = System.getClockTime();
     	var current_tick = System.getTimer();
-    	
+
 //		System.println("" + current_time_duration + ", " + sleep_time + ", " + wake_time);
 		
 ////		System.println("" + is_in_sleep + ", " + Application.getApp().getProperty("sleep_time_behaviour") + ", " + did_clear);
@@ -129,16 +143,6 @@ class HuwaiiView extends WatchUi.WatchFace {
 //			}
 //		}
     	
-    	var always_on_style = Application.getApp().getProperty("always_on_style");
-    	if (always_on_style == 0) {
-    		second_digi_font = WatchUi.loadResource(Rez.Fonts.secodigi);
-    		second_font_height_half = 7;
-    		second_clip_size = [20, 15];
-    	} else {
-    		second_digi_font = WatchUi.loadResource(Rez.Fonts.xsecodigi);
-    		second_font_height_half = 14;
-    		second_clip_size = [26, 22];
-    	}
 //    	System.println("1");
     	
 //    	System.println("update");
@@ -178,6 +182,35 @@ class HuwaiiView extends WatchUi.WatchFace {
     		last_battery_percent = current_battery;
     	} else {
     		//System.println(time_now.compare(last_battery_hour));
+    	}
+        
+        // if this device has the clear dc bug
+        // use a screen buffer to save having to redraw
+        // everything on every update
+        if (Application.getApp().getProperty("power_save_mode")
+                && screenbuffer != null) {
+            var current_minute = clockTime.min;
+            // if minute has changed, draw to the buffer
+            if (current_minute!=last_draw_minute) {
+                last_draw_minute = current_minute;
+                force_render_component = true;
+                mainDrawComponents(screenbuffer.getDc());
+                force_render_component = false;
+            }
+            // copy buffer to screen
+            dc.drawBitmap(0,0,screenbuffer);
+            return;
+        } 
+    	
+        var always_on_style = Application.getApp().getProperty("always_on_style");
+    	if (always_on_style == 0) {
+    		second_digi_font = WatchUi.loadResource(Rez.Fonts.secodigi);
+    		second_font_height_half = 7;
+    		second_clip_size = [20, 15];
+    	} else {
+    		second_digi_font = WatchUi.loadResource(Rez.Fonts.xsecodigi);
+    		second_font_height_half = 14;
+    		second_clip_size = [26, 22];
     	}
     	
     	force_render_component = true;
