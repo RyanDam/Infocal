@@ -15,13 +15,6 @@
 	<font id="minu_5" filename="minu_hand_5.fnt" antialias="true"/>
 	<font id="minu_6" filename="minu_hand_6.fnt" antialias="true"/>
 
-	<font id="seco_1" filename="seco_hand_1.fnt" antialias="true"/>
-	<font id="seco_2" filename="seco_hand_2.fnt" antialias="true"/>
-	<font id="seco_3" filename="seco_hand_3.fnt" antialias="true"/>
-	<font id="seco_4" filename="seco_hand_4.fnt" antialias="true"/>
-	<font id="seco_5" filename="seco_hand_5.fnt" antialias="true"/>
-	<font id="seco_6" filename="seco_hand_6.fnt" antialias="true"/>
-
 	<font id="smadigi" filename="smadigi2.fntc" antialias="true" filter=" -+%,.:0123456789QWERTYUIJOPASDFGHJKLZXCVBNM°"/>
 	
 	<font id="secodigi" filename="secodigi.fntc" antialias="true" filter="0123456789"/>
