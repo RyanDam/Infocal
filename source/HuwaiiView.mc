@@ -95,9 +95,7 @@ class HuwaiiView extends WatchUi.WatchFace {
     	restore_from_resume = true;
     	last_resume_mili = System.getTimer();
     	
-    	if (HuwaiiApp has :checkPendingWebRequests) { // checkPendingWebRequests() can be excluded to save memory.
-			App.getApp().checkPendingWebRequests(); // Depends on mDataFields.hasField().
-		}
+		checkBackgroundRequest();
     }
 
     // Update the view
@@ -148,6 +146,7 @@ class HuwaiiView extends WatchUi.WatchFace {
 //    	System.println("update");
 //    	System.println("" + clockTime.min + ":" + clockTime.sec);
     	
+    	// Calculate battery consumtion in days
     	var time_now = Time.now();
     	if (last_battery_hour == null) {
     		last_battery_hour = time_now;
@@ -223,6 +222,7 @@ class HuwaiiView extends WatchUi.WatchFace {
 					restore_from_resume = false;
 				}
 				// in resume time
+				checkBackgroundRequest();
 				mainDrawComponents(dc);
 				force_render_component = false;
     		} else {
@@ -231,6 +231,7 @@ class HuwaiiView extends WatchUi.WatchFace {
 	    			// continue
 	    			last_draw_minute = current_minute;
 	    			// minute turn
+	    			checkBackgroundRequest();
 	    			mainDrawComponents(dc);
 	    		} else {
 	    			// only draw spatial
@@ -238,7 +239,6 @@ class HuwaiiView extends WatchUi.WatchFace {
 	    		}
     		}
     	} else {
-    		last_draw_minute = -1;
     		// normal power mode
     		if (restore_from_resume) {
     			var current_mili = current_tick;
@@ -249,7 +249,12 @@ class HuwaiiView extends WatchUi.WatchFace {
 				}
 			}
 			force_render_component = true;
+			if (clockTime.min != last_draw_minute) {
+				// Only check background web request every 1 minute
+				checkBackgroundRequest();
+			}
     		mainDrawComponents(dc);
+    		last_draw_minute = clockTime.min;
     		force_render_component = false;
     	}
     	force_render_component = false;
@@ -258,6 +263,7 @@ class HuwaiiView extends WatchUi.WatchFace {
     }
 
 	function mainDrawComponents(dc) {
+	
 		checkTheme();
 		
 		if (force_render_component) {
@@ -375,9 +381,7 @@ class HuwaiiView extends WatchUi.WatchFace {
 		var dialDisplay = View.findDrawableById("analog");
 		dialDisplay.enableSecondHand();
     	
-    	if (HuwaiiApp has :checkPendingWebRequests) { // checkPendingWebRequests() can be excluded to save memory.
-			App.getApp().checkPendingWebRequests(); // Depends on mDataFields.hasField().
-		}
+    	checkBackgroundRequest();
     }
 
     // Terminate any active timers and prepare for slow updates.
@@ -399,6 +403,12 @@ class HuwaiiView extends WatchUi.WatchFace {
 			gbar_color_back = theme[5];
 			gbar_color_0 = theme[6];
 			gbar_color_1 = theme[7];
+		}
+	}
+	
+	function checkBackgroundRequest() {
+		if (HuwaiiApp has :checkPendingWebRequests) { // checkPendingWebRequests() can be excluded to save memory.
+			App.getApp().checkPendingWebRequests(); // Depends on mDataFields.hasField().
 		}
 	}
 
