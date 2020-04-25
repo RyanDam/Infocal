@@ -18,31 +18,31 @@ class BarComplication extends Ui.Drawable {
     		// up
     		if (centerX == 120) {
 	    		position_y_draw = 52;//centerY - 36 - 18 - 14; // font height 14
-	    		position_y_draw_bonus = -15;
+	    		position_y_draw_bonus = -13;
     		} else if (centerX == 130) {
 	    		position_y_draw = 58;//centerY - 36 - 18 - 14 - 4; // font height 14
-	    		position_y_draw_bonus = -20;
+	    		position_y_draw_bonus = -18;
     		} else if (centerX == 140) {
 	    		position_y_draw = 64;//centerY - 36 - 18 - 14 - 8; // font height 14
-	    		position_y_draw_bonus = -20;
+	    		position_y_draw_bonus = -18;
     		} else {
-	    		position_y_draw = 46;//centerY - 36 - 18 - 14 + 5; // font height 14
-	    		position_y_draw_bonus = -15;
+	    		position_y_draw = 44;//centerY - 36 - 18 - 14 + 5; // font height 14
+	    		position_y_draw_bonus = -13;
     		}
     	} else {
     		// down
     		if (centerX == 120) {
 	    		position_y_draw = 156;//centerY + 36;
-	    		position_y_draw_bonus = 31;
+	    		position_y_draw_bonus = 29;
     		} else if (centerX == 130) {
 	    		position_y_draw = 170;//centerY + 36 + 4;
-	    		position_y_draw_bonus = 35;
+	    		position_y_draw_bonus = 33;
     		} else if (centerX == 140) {
 	    		position_y_draw = 184;//centerY + 36 + 8;
-	    		position_y_draw_bonus = 35;
+	    		position_y_draw_bonus = 33;
     		} else {
 	    		position_y_draw = 140;//centerY + 36 - 5;
-	    		position_y_draw_bonus = 31;
+	    		position_y_draw_bonus = 29;
     		}
     	}
     }
@@ -152,6 +152,7 @@ class BarComplication extends Ui.Drawable {
 	    		dc.setColor(gmain_color, Graphics.COLOR_TRANSPARENT);
 		    	dc.drawText(centerX, position_y_draw + position_y_draw_bonus, weatherFont, icon, Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
     		}
+    		bonus_padding = position == 0 ? 2 : -2;
     	} else {
     		bonus_padding = position == 0 ? -7 : 5;
     	}
