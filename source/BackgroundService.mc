@@ -25,7 +25,7 @@ class BackgroundService extends Sys.ServiceDelegate {
 					{
 						"lat" => App.getApp().getProperty("LastLocationLat"),
 						"lon" => App.getApp().getProperty("LastLocationLng"),
-						"appid" => "d72271af214d870eb94fe8f9af450db4",
+						"appid" => "333d6a4283794b870f5c717cc48890b5",
 						"units" => "metric" // Celcius.
 					},
 					method(:onReceiveOpenWeatherMapCurrent)
