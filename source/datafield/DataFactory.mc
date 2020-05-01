@@ -39,7 +39,9 @@ enum /* FIELD_TYPES */ {
 	
 	FIELD_TYPE_TEMPERATURE_OUT = 23,
 	FIELD_TYPE_TEMPERATURE_HL,
-	FIELD_TYPE_WEATHER
+	FIELD_TYPE_WEATHER,
+	
+	FIELD_TYPE_AMPM_INDICATOR = 26
 }
 
 function buildFieldObject(type) {
@@ -95,6 +97,8 @@ function buildFieldObject(type) {
 		return new TemparatureHLField(FIELD_TYPE_TEMPERATURE_HL);
 	} else if (type==FIELD_TYPE_WEATHER) {
 		return new WeatherField(FIELD_TYPE_WEATHER);
+	} else if (type==FIELD_TYPE_AMPM_INDICATOR) {
+		return new AMPMField(FIELD_TYPE_AMPM_INDICATOR);
 	}
 	
 	return new EmptyDataField(FIELD_TYPE_EMPTY);
@@ -228,6 +232,27 @@ class WeatherField extends BaseDataField {
 	        }
         }
         return "--";
+	}
+}
+
+/////////////////
+// AM/PM stage //
+/////////////////
+
+class AMPMField extends BaseDataField {
+
+	function initialize(id) {
+		BaseDataField.initialize(id);
+	}
+	
+	function cur_label(value) {
+    	var clockTime = Sys.getClockTime();        		
+    	var hour = clockTime.hour;
+		if (hour>=12) {
+			return "pm";
+		} else {
+			return "am";
+		}
 	}
 }
 

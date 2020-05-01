@@ -109,6 +109,7 @@
             <listEntry value="18">@Strings.barometer</listEntry>
             <listEntry value="21">@Strings.countdown</listEntry>
             <listEntry value="25">@Strings.weather</listEntry>
+            <listEntry value="26">@Strings.ampm</listEntry>
         </settingConfig>
     </setting>
     <setting propertyKey="@Properties.comp2h" title="@Strings.comp2h">
@@ -139,6 +140,7 @@
             <listEntry value="18">@Strings.barometer</listEntry>
             <listEntry value="21">@Strings.countdown</listEntry>
             <listEntry value="25">@Strings.weather</listEntry>
+            <listEntry value="26">@Strings.ampm</listEntry>
         </settingConfig>
     </setting>
     <setting propertyKey="@Properties.comp4h" title="@Strings.comp4h">
@@ -169,6 +171,7 @@
             <listEntry value="18">@Strings.barometer</listEntry>
             <listEntry value="21">@Strings.countdown</listEntry>
             <listEntry value="25">@Strings.weather</listEntry>
+            <listEntry value="26">@Strings.ampm</listEntry>
         </settingConfig>
     </setting>
     <setting propertyKey="@Properties.comp6h" title="@Strings.comp6h">
@@ -199,6 +202,7 @@
             <listEntry value="18">@Strings.barometer</listEntry>
             <listEntry value="21">@Strings.countdown</listEntry>
             <listEntry value="25">@Strings.weather</listEntry>
+            <listEntry value="26">@Strings.ampm</listEntry>
         </settingConfig>
     </setting>
     <setting propertyKey="@Properties.comp8h" title="@Strings.comp8h">
@@ -229,6 +233,7 @@
             <listEntry value="18">@Strings.barometer</listEntry>
             <listEntry value="21">@Strings.countdown</listEntry>
             <listEntry value="25">@Strings.weather</listEntry>
+            <listEntry value="26">@Strings.ampm</listEntry>
         </settingConfig>
     </setting>
     <setting propertyKey="@Properties.comp10h" title="@Strings.comp10h">
@@ -259,6 +264,7 @@
             <listEntry value="18">@Strings.barometer</listEntry>
             <listEntry value="21">@Strings.countdown</listEntry>
             <listEntry value="25">@Strings.weather</listEntry>
+            <listEntry value="26">@Strings.ampm</listEntry>
         </settingConfig>
     </setting>
     <setting propertyKey="@Properties.compbart" title="@Strings.compbart">
@@ -289,6 +295,7 @@
             <listEntry value="18">@Strings.barometer</listEntry>
             <listEntry value="21">@Strings.countdown</listEntry>
             <listEntry value="25">@Strings.weather</listEntry>
+            <listEntry value="26">@Strings.ampm</listEntry>
         </settingConfig>
     </setting>
     <setting propertyKey="@Properties.compbarb" title="@Strings.compbarb">
@@ -319,6 +326,7 @@
             <listEntry value="18">@Strings.barometer</listEntry>
             <listEntry value="21">@Strings.countdown</listEntry>
             <listEntry value="25">@Strings.weather</listEntry>
+            <listEntry value="26">@Strings.ampm</listEntry>
         </settingConfig>
     </setting>
     
