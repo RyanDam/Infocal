@@ -471,11 +471,21 @@ class BarometerField extends BaseDataField {
 			return "BARO --";
 		} else {
 			var hector_pascal = value1/100.0;
+			
+			var unit = App.getApp().getProperty("barometer_unit");
+			if (unit == 1) {
+				// convert to inHg
+				hector_pascal = hector_pascal*0.000295301;
+			}
 			var signal = "";
 			if (value2==1) {
 				signal = "+";
 			} else if (value2==-1) {
 				signal = "-";
+			}
+			
+			if (unit == 1) {
+				return Lang.format("BAR $1$$2$",[hector_pascal.format("%0.4f"), signal]);
 			}
 			return Lang.format("BAR $1$$2$",[hector_pascal.format("%d"), signal]);
 		}

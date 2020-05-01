@@ -405,4 +405,10 @@
         <settingConfig type="date">
         </settingConfig>
     </setting>
+    <setting propertyKey="@Properties.barometer_unit" title="@Strings.barometer_unit">
+        <settingConfig type="list">
+        	<listEntry value="0">@Strings.barometer_unit_0</listEntry>
+        	<listEntry value="1">@Strings.barometer_unit_1</listEntry>
+        </settingConfig>
+    </setting>
 </settings>
