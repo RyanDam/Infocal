@@ -45,4 +45,6 @@
     <property id="enable_buffering" type="boolean">false</property>
     
     <property id="barometer_unit" type="number">0</property>
+    
+    <property id="openweathermap_api" type="string"></property>
 </properties>

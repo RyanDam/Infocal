@@ -17,15 +17,21 @@ class BackgroundService extends Sys.ServiceDelegate {
 	(:background_method)
 	function onTemporalEvent() {
 		Sys.println("onTemporalEvent");
+		
 		var pendingWebRequests = App.getApp().getProperty("PendingWebRequests");
 		if (pendingWebRequests != null) {
 			if (pendingWebRequests["OpenWeatherMapCurrent"] != null) {
+			
+				var api_key = App.getApp().getProperty("openweathermap_api");
+				if (api_key.length() == 0) {
+					api_key = "333d6a4283794b870f5c717cc48890b5"; // default apikey
+				}
 				makeWebRequest(
 					"https://api.openweathermap.org/data/2.5/weather",
 					{
 						"lat" => App.getApp().getProperty("LastLocationLat"),
 						"lon" => App.getApp().getProperty("LastLocationLng"),
-						"appid" => "333d6a4283794b870f5c717cc48890b5",
+						"appid" => api_key,
 						"units" => "metric" // Celcius.
 					},
 					method(:onReceiveOpenWeatherMapCurrent)

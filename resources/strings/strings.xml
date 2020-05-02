@@ -142,4 +142,6 @@
     <string id="barometer_unit">Barometer Unit</string>
     <string id="barometer_unit_0">Hector Pascal (Pa)</string>
     <string id="barometer_unit_1">Inches of Mercury (inHg)</string>
+    
+    <string id="openweathermap_api">OpenWeatherMap API key, read FAQs section for more info</string>
 </strings>

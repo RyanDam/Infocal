@@ -1,5 +1,5 @@
 <settings>
-
+	
     <setting propertyKey="@Properties.theme_code" title="@Strings.theme_code">
         <settingConfig type="list">
         	<listEntry value="0">@Strings.theme_dark</listEntry>
@@ -418,5 +418,8 @@
         	<listEntry value="0">@Strings.barometer_unit_0</listEntry>
         	<listEntry value="1">@Strings.barometer_unit_1</listEntry>
         </settingConfig>
+    </setting>
+    <setting propertyKey="@Properties.openweathermap_api" title="@Strings.openweathermap_api">
+        <settingConfig type="alphaNumeric" />
     </setting>
 </settings>
