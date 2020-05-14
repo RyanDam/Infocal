@@ -500,7 +500,7 @@ class BarometerField extends BaseDataField {
 			var unit = App.getApp().getProperty("barometer_unit");
 			if (unit == 1) {
 				// convert to inHg
-				hector_pascal = hector_pascal*0.000295301;
+				hector_pascal = hector_pascal*0.0295301;
 			}
 			var signal = "";
 			if (value2==1) {
@@ -510,7 +510,7 @@ class BarometerField extends BaseDataField {
 			}
 			
 			if (unit == 1) {
-				return Lang.format("BAR $1$$2$",[hector_pascal.format("%0.4f"), signal]);
+				return Lang.format("BAR $1$$2$",[hector_pascal.format("%0.2f"), signal]);
 			}
 			return Lang.format("BAR $1$$2$",[hector_pascal.format("%d"), signal]);
 		}
