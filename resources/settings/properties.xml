@@ -47,4 +47,8 @@
     <property id="barometer_unit" type="number">0</property>
     
     <property id="openweathermap_api" type="string"></property>
+    
+    <property id="ctext_input" type="string"></property>
+    
+    
 </properties>

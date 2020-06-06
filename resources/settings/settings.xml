@@ -296,6 +296,7 @@
             <listEntry value="21">@Strings.countdown</listEntry>
             <listEntry value="25">@Strings.weather</listEntry>
             <listEntry value="26">@Strings.ampm</listEntry>
+            <listEntry value="27">@Strings.ctext</listEntry>
         </settingConfig>
     </setting>
     <setting propertyKey="@Properties.compbarb" title="@Strings.compbarb">
@@ -327,6 +328,7 @@
             <listEntry value="21">@Strings.countdown</listEntry>
             <listEntry value="25">@Strings.weather</listEntry>
             <listEntry value="26">@Strings.ampm</listEntry>
+            <listEntry value="27">@Strings.ctext</listEntry>
         </settingConfig>
     </setting>
     
@@ -420,6 +422,9 @@
         </settingConfig>
     </setting>
     <setting propertyKey="@Properties.openweathermap_api" title="@Strings.openweathermap_api">
+        <settingConfig type="alphaNumeric" />
+    </setting>
+    <setting propertyKey="@Properties.ctext_input" title="@Strings.ctext">
         <settingConfig type="alphaNumeric" />
     </setting>
 </settings>

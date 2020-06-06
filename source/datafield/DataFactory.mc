@@ -41,7 +41,8 @@ enum /* FIELD_TYPES */ {
 	FIELD_TYPE_TEMPERATURE_HL,
 	FIELD_TYPE_WEATHER,
 	
-	FIELD_TYPE_AMPM_INDICATOR = 26
+	FIELD_TYPE_AMPM_INDICATOR = 26,
+	FIELD_TYPE_CTEXT_INDICATOR
 }
 
 function buildFieldObject(type) {
@@ -99,6 +100,8 @@ function buildFieldObject(type) {
 		return new WeatherField(FIELD_TYPE_WEATHER);
 	} else if (type==FIELD_TYPE_AMPM_INDICATOR) {
 		return new AMPMField(FIELD_TYPE_AMPM_INDICATOR);
+	} else if (type==FIELD_TYPE_CTEXT_INDICATOR) {
+		return new CTextField(FIELD_TYPE_CTEXT_INDICATOR);
 	}
 	
 	return new EmptyDataField(FIELD_TYPE_EMPTY);
@@ -167,6 +170,25 @@ class EmptyDataField {
 	
 	function need_draw() {
 		return false;
+	}
+}
+
+///////////////////////
+// custom text stage //
+///////////////////////
+
+class CTextField extends BaseDataField {
+
+	function initialize(id) {
+		BaseDataField.initialize(id);
+	}
+	
+	function cur_label(value) {
+    	var custom_text = App.getApp().getProperty("ctext_input");
+		if (custom_text.length() == 0) {
+			return "--";
+		}
+		return custom_text;
 	}
 }
 
