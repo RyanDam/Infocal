@@ -12,4 +12,9 @@
 	<jsonData id="minu_4_data" filename="minu_4.json"/>
 	<jsonData id="minu_5_data" filename="minu_5.json"/>
 	<jsonData id="minu_6_data" filename="minu_6.json"/>
+	
+	<jsonData id="bar_font_bottom" filename="bar_font_bottom.json"/>
+	<jsonData id="bar_pos_bottom" filename="bar_pos_bottom.json"/>
+	<jsonData id="bar_font_top" filename="bar_font_top.json"/>
+	<jsonData id="bar_pos_top" filename="bar_pos_top.json"/>
 </resources>

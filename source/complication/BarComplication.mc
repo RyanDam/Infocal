@@ -11,6 +11,8 @@ class BarComplication extends Ui.Drawable {
     hidden var textFont;
     hidden var weatherFont;
     
+    hidden var factor = 1;
+    
     function initialize(params) {
     	Drawable.initialize(params);
     	position = params.get(:position);
@@ -25,6 +27,10 @@ class BarComplication extends Ui.Drawable {
     		} else if (centerX == 140) {
 	    		position_y_draw = 64;//centerY - 36 - 18 - 14 - 8; // font height 14
 	    		position_y_draw_bonus = -18;
+    		} else if (centerX == 195) {
+	    		position_y_draw = 89;//centerY - 36 - 18 - 14 - 8; // font height 14
+	    		position_y_draw_bonus = -36;
+	    		factor = 2;
     		} else {
 	    		position_y_draw = 44;//centerY - 36 - 18 - 14 + 5; // font height 14
 	    		position_y_draw_bonus = -13;
@@ -40,7 +46,11 @@ class BarComplication extends Ui.Drawable {
     		} else if (centerX == 140) {
 	    		position_y_draw = 184;//centerY + 36 + 8;
 	    		position_y_draw_bonus = 33;
-    		} else {
+    		} else if (centerX == 195) {
+	    		position_y_draw = 256;//centerY - 36 - 18 - 14 - 8; // font height 14
+	    		position_y_draw_bonus = 48;
+	    		factor = 2;
+    		}  else {
 	    		position_y_draw = 140;//centerY + 36 - 5;
 	    		position_y_draw_bonus = 29;
     		}
@@ -179,7 +189,10 @@ class BarComplication extends Ui.Drawable {
 			var char = (val >> 16) & 255;
 			var xpos = (val >> 8) & 255;
 			var ypos = (val >> 0) & 255;
-		    dc.drawText((xpos).toNumber(),(ypos).toNumber(),font,char.toNumber().toChar(),Graphics.TEXT_JUSTIFY_LEFT);
+			var flag = (val >> 24) & 255;
+			var xpos_bonus = (flag&0x01)==0x01 ? 1 : 0;
+			var ypos_bonus = (flag&0x10)==0x10 ? 1 : 0;
+		    dc.drawText((xpos*factor+xpos_bonus).toNumber(),(ypos*factor+ypos_bonus).toNumber(),font,char.toNumber().toChar(),Graphics.TEXT_JUSTIFY_LEFT);
 		}
     }
 }

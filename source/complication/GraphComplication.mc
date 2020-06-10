@@ -92,111 +92,124 @@ class GraphComplication extends Ui.Drawable {
     	if (!need_draw()) {
     		return;
     	}
-    	settings = System.getDeviceSettings();
     	
-		var primaryColor = position == 1 ? gbar_color_1 : gbar_color_0;
-    	
-    	//Calculation
-    	var targetdatatype = get_data_type();
-        var HistoryIter = get_data_interator(targetdatatype);
-        
-        if (HistoryIter == null) {
-        	dc.setColor(gmain_color, Graphics.COLOR_TRANSPARENT);
-        	dc.drawText(position_x, position_y, smallDigitalFont, "--", Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
-        	return;
-        }
-        
-        var HistoryMin = HistoryIter.getMin();
-        var HistoryMax = HistoryIter.getMax();
-        
-        if (HistoryMin == null || HistoryMax == null) {
-        	dc.setColor(gmain_color, Graphics.COLOR_TRANSPARENT);
-        	dc.drawText(position_x, position_y, smallDigitalFont, "--", Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
-        	return;
-        }
-        
-        var minMaxDiff = (HistoryMax - HistoryMin).toFloat();
-        
-        var xStep = graph_width;
-        var height = graph_height;
-        var HistoryPresent = null;
-
-		var HistoryNew = 0;
-		var lastyStep = 0;
-		var step_max = -1;
-		var step_min = -1;
-		
-		var latest_sample = HistoryIter.next();
-		if (latest_sample != null) {
-    		HistoryPresent = latest_sample.data;
-    		if (HistoryPresent != null) {
-	    		// draw diagram
-				var historyDifPers = ((HistoryPresent - HistoryMin))/minMaxDiff;
-				var yStep = historyDifPers * height;
-				yStep = yStep>height?height:yStep;
-				yStep = yStep<0?0:yStep;
-				lastyStep = yStep;
-			} else {
-				lastyStep = null;
-			}
-    	}
-        
-		dc.setPenWidth(2);
-		dc.setColor(primaryColor, Graphics.COLOR_TRANSPARENT);
-		
-		//Build and draw Iteration
-		for(var i = 90; i > 0; i--){
-			var sample = HistoryIter.next();
+    	try {
+	    	settings = System.getDeviceSettings();
+	    	
+			var primaryColor = position == 1 ? gbar_color_1 : gbar_color_0;
+	    	
+	    	//Calculation
+	    	var targetdatatype = get_data_type();
+	        var HistoryIter = get_data_interator(targetdatatype);
+	        
+	        if (HistoryIter == null) {
+	        	dc.setColor(gmain_color, Graphics.COLOR_TRANSPARENT);
+	        	dc.drawText(position_x, position_y, smallDigitalFont, "--", Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
+	        	return;
+	        }
+	        
+	        var HistoryMin = HistoryIter.getMin();
+	        var HistoryMax = HistoryIter.getMax();
+	        
+	        if (HistoryMin == null || HistoryMax == null) {
+	        	dc.setColor(gmain_color, Graphics.COLOR_TRANSPARENT);
+	        	dc.drawText(position_x, position_y, smallDigitalFont, "--", Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
+	        	return;
+	        }
+	//         else if (HistoryMin.data == null || HistoryMax.data == null) {
+	//        	dc.setColor(gmain_color, Graphics.COLOR_TRANSPARENT);
+	//        	dc.drawText(position_x, position_y, smallDigitalFont, "--", Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
+	//        	return;
+	//        }
+	        
+	        var minMaxDiff = (HistoryMax - HistoryMin).toFloat();
+	        
+	        var xStep = graph_width;
+	        var height = graph_height;
+	        var HistoryPresent = 0;
+	
+			var HistoryNew = 0;
+			var lastyStep = 0;
+			var step_max = -1;
+			var step_min = -1;
 			
-			if (sample != null) {
-				HistoryNew = sample.data;
-				if (HistoryNew == HistoryMax) {
-					step_max = xStep;
-				} else if (HistoryNew == HistoryMin) {
-					step_min = xStep;
-				}
-				if (HistoryNew == null) {
-					// ignore
-				} else {
-					// draw diagram
-					var historyDifPers = ((HistoryNew - HistoryMin))/minMaxDiff;
+			var latest_sample = HistoryIter.next();
+			if (latest_sample != null) {
+	    		HistoryPresent = latest_sample.data;
+	    		if (HistoryPresent != null) {
+		    		// draw diagram
+					var historyDifPers = (HistoryPresent - HistoryMin)/minMaxDiff;
 					var yStep = historyDifPers * height;
 					yStep = yStep>height?height:yStep;
 					yStep = yStep<0?0:yStep;
-					
-					if (lastyStep == null) {
+					lastyStep = yStep;
+				} else {
+					lastyStep = null;
+				}
+	    	}
+	        
+			dc.setPenWidth(2);
+			dc.setColor(primaryColor, Graphics.COLOR_TRANSPARENT);
+			
+			//Build and draw Iteration
+			for(var i = 90; i > 0; i--){
+				var sample = HistoryIter.next();
+				
+				if (sample != null) {
+					HistoryNew = sample.data;
+					if (HistoryNew == HistoryMax) {
+						step_max = xStep;
+					} else if (HistoryNew == HistoryMin) {
+						step_min = xStep;
+					}
+					if (HistoryNew == null) {
 						// ignore
 					} else {
 						// draw diagram
-						dc.drawLine(position_x+(xStep-graph_width/2), 
-									position_y - (lastyStep-graph_height/2), 
-									position_x+(xStep-graph_width/2), 
-									position_y - (yStep-graph_height/2));
+						var historyDifPers = ((HistoryNew - HistoryMin))/minMaxDiff;
+						var yStep = historyDifPers * height;
+						yStep = yStep>height?height:yStep;
+						yStep = yStep<0?0:yStep;
+						
+						if (lastyStep == null) {
+							// ignore
+						} else {
+							// draw diagram
+							dc.drawLine(position_x+(xStep-graph_width/2), 
+										position_y - (lastyStep-graph_height/2), 
+										position_x+(xStep-graph_width/2), 
+										position_y - (yStep-graph_height/2));
+						}
+						lastyStep = yStep;
 					}
-					lastyStep = yStep;
 				}
+				xStep--;
 			}
-			xStep--;
+			
+			dc.setColor(gmain_color, Graphics.COLOR_TRANSPARENT);
+	
+			if (HistoryPresent == null) {
+	        	dc.drawText(position_x, 
+						position_y + (position==1?(graph_height/2 + 10):(-graph_height/2-16)), 
+						smallDigitalFont, 
+						"--", 
+						Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
+	        	return;
+	        }
+	        var value_label = parse_data_value(targetdatatype, HistoryPresent);
+	        var labelll = value_label.format("%d");
+			dc.drawText(position_x, 
+						position_y + (position==1?(graph_height/2 + 10):(-graph_height/2-16)), 
+						smallDigitalFont, 
+						labelll, 
+						Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
+						
+			settings = null;
+		} catch(ex) { 
+			// currently unkown, weird bug
+			System.println(ex);
+			dc.setColor(gmain_color, Graphics.COLOR_TRANSPARENT);
+        	dc.drawText(position_x, position_y, smallDigitalFont, "--", Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
 		}
-		
-		dc.setColor(gmain_color, Graphics.COLOR_TRANSPARENT);
-
-		if (HistoryPresent == null) {
-        	dc.drawText(position_x, 
-					position_y + (position==1?(graph_height/2 + 10):(-graph_height/2-16)), 
-					smallDigitalFont, 
-					"--", 
-					Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
-        	return;
-        }
-        var value_label = parse_data_value(targetdatatype, HistoryPresent);
-        var labelll = value_label.format("%d");
-		dc.drawText(position_x, 
-					position_y + (position==1?(graph_height/2 + 10):(-graph_height/2-16)), 
-					smallDigitalFont, 
-					labelll, 
-					Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
-					
-		settings = null;
     }
 }

@@ -202,14 +202,26 @@ class HuwaiiView extends WatchUi.WatchFace {
         } 
     	
         var always_on_style = Application.getApp().getProperty("always_on_style");
-    	if (always_on_style == 0) {
-    		second_digi_font = WatchUi.loadResource(Rez.Fonts.secodigi);
-    		second_font_height_half = 7;
-    		second_clip_size = [20, 15];
-    	} else {
-    		second_digi_font = WatchUi.loadResource(Rez.Fonts.xsecodigi);
-    		second_font_height_half = 14;
-    		second_clip_size = [26, 22];
+        if (centerX == 195) {
+        	if (always_on_style == 0) {
+	    		second_digi_font = WatchUi.loadResource(Rez.Fonts.secodigi);
+	    		second_font_height_half = 16;
+	    		second_clip_size = [40, 30];
+	    	} else {
+	    		second_digi_font = WatchUi.loadResource(Rez.Fonts.xsecodigi);
+	    		second_font_height_half = 16;
+	    		second_clip_size = [52, 44];
+	    	}
+        } else {
+	    	if (always_on_style == 0) {
+	    		second_digi_font = WatchUi.loadResource(Rez.Fonts.secodigi);
+	    		second_font_height_half = 7;
+	    		second_clip_size = [20, 15];
+	    	} else {
+	    		second_digi_font = WatchUi.loadResource(Rez.Fonts.xsecodigi);
+	    		second_font_height_half = 14;
+	    		second_clip_size = [26, 22];
+	    	}
     	}
     	
     	force_render_component = true;
@@ -334,6 +346,7 @@ class HuwaiiView extends WatchUi.WatchFace {
 				
 				dc.setClip(second_x, second_y, second_clip_size[0], second_clip_size[1]);
 				dc.setColor(Graphics.COLOR_TRANSPARENT, gbackground_color);
+//				dc.setColor(Graphics.COLOR_TRANSPARENT, 0xffff00);
 				dc.clear();
 				dc.setColor(gmain_color, Graphics.COLOR_TRANSPARENT);
 				dc.drawText(second_x, second_y-font_padding, 
@@ -355,8 +368,9 @@ class HuwaiiView extends WatchUi.WatchFace {
 				var s2 = (second_clip_size[0]*1.25).toNumber();
 				dc.setClip(heart_x-s2-1, second_y, s2+2, second_clip_size[1]);
 				dc.setColor(Graphics.COLOR_TRANSPARENT, gbackground_color);
-				
+//				dc.setColor(Graphics.COLOR_TRANSPARENT, 0xffff00);
 				dc.clear();
+				
 				dc.setColor(gmain_color, Graphics.COLOR_TRANSPARENT);
 				dc.drawText(heart_x-1, second_y-font_padding, 
 							second_digi_font, 

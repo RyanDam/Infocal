@@ -24,10 +24,17 @@ class MainDialHand extends Ui.Drawable {
 	
 	hidden var alignment;
 	
+	hidden var bonusy_smallsize;
+	
 	function initialize(params) {
         Drawable.initialize(params);
         barRadius = centerX - 10;
         alignment = Graphics.TEXT_JUSTIFY_VCENTER|Graphics.TEXT_JUSTIFY_CENTER;
+        
+        bonusy_smallsize = 0;
+        if (centerX == 195) {
+        	bonusy_smallsize = -35;
+        }
     }
     
     function removeFont() {
@@ -141,6 +148,9 @@ class MainDialHand extends Ui.Drawable {
 	    	}
 	    	
 	    	var f_align = digital_style == 0 ? 62 : 71;
+	    	if (centerX == 195) {
+	    		f_align = f_align + 40;
+	    	}
 	    	
 	    	second_x = centerX+w/2 + 3;
 	    	heart_x = centerX-w/2 - 3;
@@ -221,8 +231,8 @@ class MainDialHand extends Ui.Drawable {
 			var left = centerX-half;
 			
 			dc.setColor(gmain_color, Graphics.COLOR_TRANSPARENT);
-			dc.drawText(left.toNumber(), centerY-70+bonus, boldF, hourText, Graphics.TEXT_JUSTIFY_LEFT);
-			dc.drawText((left+hourW+6.0).toNumber(), centerY-70+bonus, normF, minuText, Graphics.TEXT_JUSTIFY_LEFT);
+			dc.drawText(left.toNumber(), centerY-70+bonus+bonusy_smallsize, boldF, hourText, Graphics.TEXT_JUSTIFY_LEFT);
+			dc.drawText((left+hourW+6.0).toNumber(), centerY-70+bonus+bonusy_smallsize, normF, minuText, Graphics.TEXT_JUSTIFY_LEFT);
 			
 			var f_align = 40;
 	    	second_x = centerX+half+1;

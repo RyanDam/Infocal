@@ -36,6 +36,7 @@
             <iq:product id="marqcommander"/>
             <iq:product id="marqdriver"/>
             <iq:product id="marqexpedition"/>
+            <iq:product id="venu"/>
             <iq:product id="vivoactive3"/>
             <iq:product id="vivoactive3d"/>
             <iq:product id="vivoactive3m"/>

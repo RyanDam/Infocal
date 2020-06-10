@@ -16,10 +16,16 @@ class AnalogDial extends Ui.Drawable {
 	var offset_x = 0;
 	var offset_y = 0;
 	var offset_rad = 0;
+	
+	hidden var factor = 1;
 
 	function initialize(params) {
         Drawable.initialize(params);
     	secondHandDisabled = true;
+    	
+    	if (centerX == 195) {
+    		factor = 2;
+    	}
     }
     
     function disableSecondHand() {
@@ -93,7 +99,7 @@ class AnalogDial extends Ui.Drawable {
     	} else if (hour_i >= 10){
 			hour_font_2 = Ui.loadResource(Rez.Fonts.hour_2);
 			hour_2 = Ui.loadResource(Rez.JsonData.hour_2_data);
-    	} else if (hour_i >= 0){
+    	} else {
 			hour_font_1 = Ui.loadResource(Rez.Fonts.hour_1);
 			hour_1 = Ui.loadResource(Rez.JsonData.hour_1_data);
     	}
@@ -117,7 +123,7 @@ class AnalogDial extends Ui.Drawable {
     	} else if (minu_i >= 10) {
 			minu_font_2 = Ui.loadResource(Rez.Fonts.minu_2);
 			minu_2 = Ui.loadResource(Rez.JsonData.minu_2_data);
-    	} else if (minu_i >= 0) {
+    	} else {
 			minu_font_1 = Ui.loadResource(Rez.Fonts.minu_1);
 			minu_1 = Ui.loadResource(Rez.JsonData.minu_1_data);
     	}
@@ -178,6 +184,9 @@ class AnalogDial extends Ui.Drawable {
     	removeFont() ;
     	checkCurrentFontMinute();
     	var minu_i = getMinuteHandFragment() % 60;
+    	
+//    	System.println("" + minu_i + " minu_6:" + minu_6+  " minu_5:" + minu_5 + " minu_4:" + minu_4 + " minu_3:" + minu_3 + " minu_2:" + minu_2 + " minu_1:" + minu_1);
+    	
     	if (minu_i >= 50) {
     		drawTiles(minu_6[(minu_i - 50).toNumber()], minu_font_6, dc, minu_i);
     	} else if (minu_i >= 40) {
@@ -185,6 +194,7 @@ class AnalogDial extends Ui.Drawable {
     	} else if (minu_i >= 30) {
     		drawTiles(minu_4[(minu_i - 30).toNumber()], minu_font_4, dc, minu_i);
     	} else if (minu_i >= 20) {
+//    		System.println("" + minu_i + " " + minu_3 + " " + " " + minu_i);
     		drawTiles(minu_3[(minu_i - 20).toNumber()], minu_font_3, dc, minu_i);
     	} else if (minu_i >= 10) {
     		drawTiles(minu_2[(minu_i - 10).toNumber()], minu_font_2, dc, minu_i);
@@ -210,17 +220,33 @@ class AnalogDial extends Ui.Drawable {
         dc.drawLine(startx, starty, endx, endy);
     }
     
+//    function drawTiles(packed_array,font,dc,index) {
+//      var radian = (index.toFloat()/60.0)*(2*3.1415) - 0.5*3.1415;
+//      var offset_rad_x = convertCoorX(radian, offset_rad)-centerX;
+//      var offset_rad_y = convertCoorY(radian, offset_rad)-centerY;
+//      for(var i = 0; i < packed_array.size(); i++) {
+//      	var val = packed_array[i];
+//		var char = (val >> 16) & 255;
+//		var xpos = (val >> 8) & 255;
+//		var ypos = (val >> 0) & 255;
+//        dc.drawText((xpos+offset_x-offset_rad_x).toNumber(),(ypos+offset_y-offset_rad_y).toNumber(),font,char.toNumber().toChar(),Graphics.TEXT_JUSTIFY_LEFT);
+//      }
+//    }
+    
     function drawTiles(packed_array,font,dc,index) {
-      var radian = (index.toFloat()/60.0)*(2*3.1415) - 0.5*3.1415;
-      var offset_rad_x = convertCoorX(radian, offset_rad)-centerX;
-      var offset_rad_y = convertCoorY(radian, offset_rad)-centerY;
-      for(var i = 0; i < packed_array.size(); i++) {
-      	var val = packed_array[i];
-		var char = (val >> 16) & 255;
-		var xpos = (val >> 8) & 255;
-		var ypos = (val >> 0) & 255;
-        dc.drawText((xpos+offset_x-offset_rad_x).toNumber(),(ypos+offset_y-offset_rad_y).toNumber(),font,char.toNumber().toChar(),Graphics.TEXT_JUSTIFY_LEFT);
-      }
+    	var radian = (index.toFloat()/60.0)*(2*3.1415) - 0.5*3.1415;
+	    var offset_rad_x = convertCoorX(radian, offset_rad)-centerX;
+	    var offset_rad_y = convertCoorY(radian, offset_rad)-centerY;
+		for(var i = 0; i < packed_array.size(); i++) {
+		  	var val = packed_array[i];
+			var char = (val >> 16) & 255;
+			var xpos = (val >> 8) & 255;
+			var ypos = (val >> 0) & 255;
+			var flag = (val >> 24) & 255;
+			var xpos_bonus = (flag&0x01)==0x01 ? 1 : 0;
+			var ypos_bonus = (flag&0x10)==0x10 ? 1 : 0;
+		    dc.drawText((xpos*factor+xpos_bonus+offset_x-offset_rad_x).toNumber(),(ypos*factor+ypos_bonus+offset_y-offset_rad_y).toNumber(),font,char.toNumber().toChar(),Graphics.TEXT_JUSTIFY_LEFT);
+		}
     }
     
     private function getHourHandFragment() {    	

@@ -9,10 +9,14 @@ class BackgroundView extends Ui.Drawable {
 	hidden var bgcir_font, bgcir_info;
 
     var radius;
+	var mark_length = 10;
 	
     function initialize(params) {
         Drawable.initialize(params);
         radius = centerX - (10*centerX/120).toNumber();
+        if (centerX==195) {
+			mark_length = 20;
+		}
     }
 
     function draw(dc) {
@@ -20,10 +24,7 @@ class BackgroundView extends Ui.Drawable {
     	
     	dc.setPenWidth(4);
 		dc.setColor(gsecondary_color, Graphics.COLOR_TRANSPARENT);
-		var mark_length = 10;
-		if (centerX==195) {
-			mark_length = 20;
-		}
+		
     	for(var i = 0; i < 6; i += 1) {
 		    var rad = (i.toFloat()/(6.0))*2*Math.PI;
 	    	dc.drawLine(
@@ -78,6 +79,8 @@ class BackgroundView extends Ui.Drawable {
 				bonus = 3;
 			} else if (centerX==109) {
 				bonus = -2;
+			} else if (centerX==195) {
+				bonus = 8;
 			}
 			for(var i = 0; i < 12*5; i += 1) {
 

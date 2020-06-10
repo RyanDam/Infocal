@@ -65,12 +65,14 @@ class ArcTextComplication extends Ui.Drawable {
     function initialize(params) {
         Drawable.initialize(params);
     	barRadius = centerX - (13*centerX/120).toNumber();
-    	
     	if (centerX == 109) {
     		kerning = 1.1;
     		barRadius = centerX-11;
     	} else if (centerX == 130) {
     		kerning = 0.95;
+    	} else if (centerX == 195) {
+    		kerning = 0.95;
+    		barRadius = barRadius+4;
     	}
     	
     	baseDegree = params.get(:base);
