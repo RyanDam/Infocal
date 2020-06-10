@@ -45,6 +45,14 @@ https://forums.garmin.com/developer/connect-iq/w/wiki/14/changing-your-app-setti
 
 # FAQs
 
+- Why Infocal need user profile permission?
+
+Infocal need your profile to calculate active calories, distance goal (based on your steps and stride length), moving distance for a whole week. Infocal is using your profile for that purposes and will not save it anywhere.
+
+- Why Infocal need internet/background comunication permission?
+
+Infocal use OpenWeatherMap API to fetch weather information, and only for that.
+
 - Battery format in days isn't working?
 
 The battery consumption estimate will need time to make an estimate, it will need at least 1 hour to complete. The estimate updates once every hour. If you restart your watch, or switch from different watchface, it will need to calibrate again.
@@ -61,7 +69,7 @@ Hey, there's a build-in power saving mode in the settings which will reduce the 
 
 By using the group notification complication, if a phone is connected it will show "C" (connected), otherwise is "D" (disconnected).
 
-- If I update the watchface via garmin connect, all the settings reset to default
+- If I update the watchface via garmin connect, all the settings reset to default?
 
 This is a bug of Garmin Connect iOS app, please update Garmin Connect to the latest version.
 
@@ -69,11 +77,29 @@ This is a bug of Garmin Connect iOS app, please update Garmin Connect to the lat
 
 Sunrise/sunset only works if the watch has a GPS signal, try go start any activity and wait for GPS signal, then return to watch face and then everything is good.
 
-- Complication data just shows "--" value?
+- Complication data just show "--" value?
 
 Not all complications are  supported for any device, it depends on your device wether it is supported or not.
 
 - Square appeared instead of character?
+
+Currently this watch face only support English (or latin character), more languare support will come in the next release.
+
+- Why weather/outsite temperature is not shown/update?
+
+Weather/outsite temperature need internet and GPS information to work. Please set your GPS up (as instruction in FAQs), and make sure your watch is connected to your phone (via Carmin Connect) with internet connected.
+
+- What is the source of weather information?
+
+This watchface get weather info from OpenWeatherMap API.
+
+- Why weather is not update properly or showing wrong number?
+
+Infocal use OpenWeatherMap API free tier, which is only allowed for 60 api call per second or 1000 request per day. With many people using Infocal, it exceed the limit. To make weather work better for you, please read API document from OpenWeatherMap here to get your own API key: https://openweathermap.org/guide#how (Your API key will need several hours to be activated by OpenWeatherMap)
+
+- What is OpenWeatherMap API key?
+
+It''s a key to allow you to get weather information from OpenWeatherMap, as describe in "Why weather is not update properly or showing wrong number?".
 
 **Currently this watch face only support English (or latin character), more languare support will come in the next release.**
 
