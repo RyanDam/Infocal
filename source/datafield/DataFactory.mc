@@ -42,7 +42,8 @@ enum /* FIELD_TYPES */ {
 	FIELD_TYPE_WEATHER,
 	
 	FIELD_TYPE_AMPM_INDICATOR = 26,
-	FIELD_TYPE_CTEXT_INDICATOR
+	FIELD_TYPE_CTEXT_INDICATOR,
+	FIELD_TYPE_WIND
 }
 
 function buildFieldObject(type) {
@@ -102,6 +103,8 @@ function buildFieldObject(type) {
 		return new AMPMField(FIELD_TYPE_AMPM_INDICATOR);
 	} else if (type==FIELD_TYPE_CTEXT_INDICATOR) {
 		return new CTextField(FIELD_TYPE_CTEXT_INDICATOR);
+	} else if (type==FIELD_TYPE_WIND) {
+		return new WindField(FIELD_TYPE_WIND);
 	}
 	
 	return new EmptyDataField(FIELD_TYPE_EMPTY);
@@ -170,6 +173,41 @@ class EmptyDataField {
 	
 	function need_draw() {
 		return false;
+	}
+}
+
+///////////////////
+// weather stage //
+///////////////////
+
+class WindField extends BaseDataField {
+
+	var wind_direction_mapper;
+
+	function initialize(id) {
+		BaseDataField.initialize(id);
+		wind_direction_mapper = ["N", "NNE", "NE", "ENE", 
+		"E", "ESE", "SE", "S", "SSW", "SW", 
+		"WSW", "W", "WNW", "NW", "NNW", "N"];
+	}
+	
+	function cur_label(value) {
+		// WEATHER
+		var need_minimal = App.getApp().getProperty("minimal_data");
+        var weather_data = App.getApp().getProperty("OpenWeatherMapCurrent");
+        if (weather_data != null) {
+        	var settings = Sys.getDeviceSettings();
+			var speed = weather_data["wind_speed"]*3.6;
+			var direct = weather_data["wind_direct"];
+			var directLabel = wind_direction_mapper[(direct / 22.5).toNumber() - 1];
+			var unit = "kph";
+			if (settings.distanceUnits == System.UNIT_STATUTE) {	
+				speed *= 0.621371;
+				unit = "mph";				
+			}
+			return directLabel + " " + direct.format("%0.1f") + unit;
+        }
+        return "--";
 	}
 }
 

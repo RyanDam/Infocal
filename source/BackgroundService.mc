@@ -111,6 +111,8 @@ class BackgroundService extends Sys.ServiceDelegate {
 				"temp_min" => data["main"]["temp_min"],
 				"temp_max" => data["main"]["temp_max"],
 				"humidity" => data["main"]["humidity"],
+				"wind_speed" => data["wind"]["speed"],
+				"wind_direct" => data["wind"]["deg"],
 				"icon" => data["weather"][0]["icon"],
 				"des" => data["weather"][0]["main"]
 			};

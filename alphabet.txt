@@ -1,1 +1,1 @@
-''.join(sorted(list(set("ampm baro - dis MON TUE WED THU FRI SAT SUN km mi N A D C FLOOR SUN RISE SET TEMP ft m ALTI ALAR NOTIF ACT DIS K. MOVE BAT HR:°%0123456789 DAYS".upper()))))
+''.join(sorted(list(set("ampm baro - + dis MON TUE WED THU FRI SAT SUN km mi N A D C FLOOR SUN RISE SET TEMP ft m ALTI ALAR NOTIF ACT DIS K. MOVE BAT HR:°%0123456789 DAYS JAN FEB MAR APR MAY JUN JUL AUG SEP OCT NOV DEC".upper()))))
