@@ -1,6 +1,6 @@
 <properties>
     <property id="theme_code" type="number">0</property>
-	<property id="power_save_mode" type="boolean">false</property>
+	<property id="power_save_mode" type="boolean">true</property>
     <property id="sleep_time_behaviour" type="number">0</property>
 	
     <property id="white_background" type="boolean">false</property>
@@ -24,9 +24,8 @@
     <property id="comp4h" type="number">3</property>
     <property id="comp6h" type="number">2</property>
     <property id="comp8h" type="number">5</property>
-    <property id="comp10h" type="number">6</property>
-    <!-- <property id="compbart" type="number">9</property>
-    <property id="compbarb" type="number">9</property> -->
+    <!-- <property id="comp10h" type="number">6</property> -->
+    <property id="comp10h" type="number">28</property>
     <property id="compbart" type="number">9</property>
     <property id="compbarb" type="number">9</property>
     
@@ -37,7 +36,8 @@
     
     <property id="utc_timezone" type="number">0</property>
     <property id="utc_shift" type="boolean">false</property>
-    <property id="date_format" type="number">0</property>
+    <!-- <property id="date_format" type="number">0</property> -->
+    <property id="date_format" type="number">5</property>
     
     <property id="battery_format" type="number">0</property>
     
@@ -46,9 +46,8 @@
     
     <property id="barometer_unit" type="number">0</property>
     
-    <property id="openweathermap_api" type="string"></property>
+    <property id="openweathermap_api" type="string">8c87819e23c9df22296aa2b3b0c2417b</property>
     
     <property id="ctext_input" type="string"></property>
-    
-    
+
 </properties>
