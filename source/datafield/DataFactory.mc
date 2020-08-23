@@ -197,15 +197,15 @@ class WindField extends BaseDataField {
         var weather_data = App.getApp().getProperty("OpenWeatherMapCurrent");
         if (weather_data != null) {
         	var settings = Sys.getDeviceSettings();
-			var speed = weather_data["wind_speed"]*3.6;
+			var speed = weather_data["wind_speed"]*3.6; // kph
 			var direct = weather_data["wind_direct"];
 			var directLabel = wind_direction_mapper[(direct / 22.5).toNumber() - 1];
-			var unit = "kph";
+			var unit = "k";
 			if (settings.distanceUnits == System.UNIT_STATUTE) {	
 				speed *= 0.621371;
-				unit = "mph";				
+				unit = "m";				
 			}
-			return directLabel + " " + direct.format("%0.1f") + unit;
+			return directLabel + " " + speed.format("%0.1f") + unit;
         }
         return "--";
 	}

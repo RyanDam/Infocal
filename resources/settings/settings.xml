@@ -110,6 +110,7 @@
             <listEntry value="21">@Strings.countdown</listEntry>
             <listEntry value="25">@Strings.weather</listEntry>
             <listEntry value="26">@Strings.ampm</listEntry>
+            <listEntry value="28">@Strings.wind</listEntry>
         </settingConfig>
     </setting>
     <setting propertyKey="@Properties.comp2h" title="@Strings.comp2h">
@@ -141,6 +142,7 @@
             <listEntry value="21">@Strings.countdown</listEntry>
             <listEntry value="25">@Strings.weather</listEntry>
             <listEntry value="26">@Strings.ampm</listEntry>
+            <listEntry value="28">@Strings.wind</listEntry>
         </settingConfig>
     </setting>
     <setting propertyKey="@Properties.comp4h" title="@Strings.comp4h">
@@ -172,6 +174,7 @@
             <listEntry value="21">@Strings.countdown</listEntry>
             <listEntry value="25">@Strings.weather</listEntry>
             <listEntry value="26">@Strings.ampm</listEntry>
+            <listEntry value="28">@Strings.wind</listEntry>
         </settingConfig>
     </setting>
     <setting propertyKey="@Properties.comp6h" title="@Strings.comp6h">
@@ -203,6 +206,7 @@
             <listEntry value="21">@Strings.countdown</listEntry>
             <listEntry value="25">@Strings.weather</listEntry>
             <listEntry value="26">@Strings.ampm</listEntry>
+            <listEntry value="28">@Strings.wind</listEntry>
         </settingConfig>
     </setting>
     <setting propertyKey="@Properties.comp8h" title="@Strings.comp8h">
@@ -234,6 +238,7 @@
             <listEntry value="21">@Strings.countdown</listEntry>
             <listEntry value="25">@Strings.weather</listEntry>
             <listEntry value="26">@Strings.ampm</listEntry>
+            <listEntry value="28">@Strings.wind</listEntry>
         </settingConfig>
     </setting>
     <setting propertyKey="@Properties.comp10h" title="@Strings.comp10h">
@@ -265,6 +270,7 @@
             <listEntry value="21">@Strings.countdown</listEntry>
             <listEntry value="25">@Strings.weather</listEntry>
             <listEntry value="26">@Strings.ampm</listEntry>
+            <listEntry value="28">@Strings.wind</listEntry>
         </settingConfig>
     </setting>
     <setting propertyKey="@Properties.compbart" title="@Strings.compbart">
@@ -297,6 +303,7 @@
             <listEntry value="25">@Strings.weather</listEntry>
             <listEntry value="26">@Strings.ampm</listEntry>
             <listEntry value="27">@Strings.ctext</listEntry>
+            <listEntry value="28">@Strings.wind</listEntry>
         </settingConfig>
     </setting>
     <setting propertyKey="@Properties.compbarb" title="@Strings.compbarb">
@@ -329,6 +336,7 @@
             <listEntry value="25">@Strings.weather</listEntry>
             <listEntry value="26">@Strings.ampm</listEntry>
             <listEntry value="27">@Strings.ctext</listEntry>
+            <listEntry value="28">@Strings.wind</listEntry>
         </settingConfig>
     </setting>
     

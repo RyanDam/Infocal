@@ -78,6 +78,7 @@
     <string id="weather">Weather</string>
     <string id="ampm">AM/PM indicator</string>
     <string id="ctext">Custom text</string>
+    <string id="wind">Wind (Kmph or Mph)</string>
     
     <string id="date_format">Date format</string>
     <string id="datef1">ddd d (TUE 2)</string>
