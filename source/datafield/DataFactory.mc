@@ -199,7 +199,9 @@ class WindField extends BaseDataField {
         	var settings = Sys.getDeviceSettings();
 			var speed = weather_data["wind_speed"]*3.6; // kph
 			var direct = weather_data["wind_direct"];
-			var directLabel = wind_direction_mapper[(direct / 22.5).toNumber() - 1];
+			var direct_idx = (direct / 22.5).toNumber();
+			direct_idx = direct_idx == 0 ? direct_idx : direct_idx - 1;
+			var directLabel = wind_direction_mapper[direct_idx];
 			var unit = "k";
 			if (settings.distanceUnits == System.UNIT_STATUTE) {	
 				speed *= 0.621371;
