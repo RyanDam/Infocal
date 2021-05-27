@@ -237,19 +237,21 @@ class HuwaiiApp extends Application.AppBase {
 		} else if (date_formater == 2) {
 			// mm/dd
 			return Lang.format("$1$.$2$",[date.month.format("%d"), date.day.format("%d")]);
-		} else if (date_formater == 3) {
-			// dd/mm/yyyy
+		} else if (date_formater == 3 || date_formater == 4 || date_formater == 5) {
 			var year = date.year;
 			var yy = year/100.0;
 			yy = Math.round((yy-yy.toNumber())*100.0);
-			return Lang.format("$1$.$2$.$3$",[date.day.format("%d"), date.month.format("%d"), yy.format("%d")]);
-		} else if (date_formater == 4) {
-			// mm/dd/yyyy
-			var year = date.year;
-			var yy = year/100.0;
-			yy = Math.round((yy-yy.toNumber())*100.0);
-			return Lang.format("$1$.$2$.$3$",[date.month.format("%d"), date.day.format("%d"), yy.format("%d")]);
-		} else if (date_formater == 5 || date_formater == 6) {
+			if (date_formater == 3) {
+				// dd.mm.yy
+				return Lang.format("$1$.$2$.$3$",[date.day.format("%d"), date.month.format("%d"), yy.format("%d")]);
+			} else if (date_formater == 4) {
+				// mm.dd.yy
+				return Lang.format("$2$.$1$.$3$",[date.day.format("%d"), date.month.format("%d"), yy.format("%d")]);
+			} else {
+				// yy.mm.dd
+				return Lang.format("$3$.$2$.$1$",[date.day.format("%d"), date.month.format("%d"), yy.format("%d")]);
+			}
+		} else if (date_formater == 6 || date_formater == 7) {
 			// dd mmm
 			var day = null;
 			var month = null;
@@ -261,7 +263,7 @@ class HuwaiiApp extends Application.AppBase {
 				day = date.day;
 				month = months[date.month];
 			}
-			if (date_formater == 5) {
+			if (date_formater == 6) {
 				return Lang.format("$1$ $2$",[day.format("%d"), month]);
 			} else {
 				return Lang.format("$1$ $2$",[month, day.format("%d")]);

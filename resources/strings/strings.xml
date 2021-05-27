@@ -81,13 +81,14 @@
     <string id="wind">Wind (Kmph or Mph)</string>
     
     <string id="date_format">Date format</string>
-    <string id="datef1">ddd d (TUE 2)</string>
-    <string id="datef2">dd.mm (2.9)</string>
-    <string id="datef21">mm.dd (9.2)</string>
-    <string id="datef3">dd.mm.yy (2.9.19)</string>
-    <string id="datef31">mm.dd.yy (9.2.19)</string>
-    <string id="datef4">dd mmm (2 OCT)</string>
-    <string id="datef41">mmm dd (OCT 2)</string>
+    <string id="datef1">ddd d (TUE 31)</string>
+    <string id="datef2">dd.mm (31.9)</string>
+    <string id="datef21">mm.dd (9.31)</string>
+    <string id="datef3">dd.mm.yy (31.9.19)</string>
+    <string id="datef31">mm.dd.yy (9.31.19)</string>
+    <string id="datef32">yy.mm.dd (19.9.31)</string>
+    <string id="datef4">dd mmm (31 OCT)</string>
+    <string id="datef41">mmm dd (OCT 31)</string>
     
     <string id="utc_timezone">Secondary timezone</string>
     <string id="utc_shift">Shift timezone for +30min</string>
