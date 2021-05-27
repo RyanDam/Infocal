@@ -406,8 +406,9 @@
         	<listEntry value="2">@Strings.datef21</listEntry>
         	<listEntry value="3">@Strings.datef3</listEntry>
         	<listEntry value="4">@Strings.datef31</listEntry>
-        	<listEntry value="5">@Strings.datef4</listEntry>
-        	<listEntry value="6">@Strings.datef41</listEntry>
+        	<listEntry value="5">@Strings.datef32</listEntry>
+        	<listEntry value="6">@Strings.datef4</listEntry>
+        	<listEntry value="7">@Strings.datef41</listEntry>
         </settingConfig>
     </setting>
     <setting propertyKey="@Properties.force_date_english" title="@Strings.force_date_english">
