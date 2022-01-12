@@ -21,6 +21,7 @@ enum /* FIELD_TYPES */ {
 	
 	FIELD_TYPE_DATE,
 	FIELD_TYPE_TIME,
+	FIELD_TYPE_DAY,
 	FIELD_TYPE_EMPTY,
 	
 	FIELD_TYPE_NOTIFICATIONS = 10,
@@ -65,6 +66,8 @@ function buildFieldObject(type) {
 		return new DateField(FIELD_TYPE_DATE);
 	} else if (type==FIELD_TYPE_TIME) {
 		return new TimeField(FIELD_TYPE_TIME);
+	} else if (type==FIELD_TYPE_DAY) {
+		return new DayField(FIELD_TYPE_DAY);
 	} else if (type==FIELD_TYPE_EMPTY) {
 		return new EmptyDataField(FIELD_TYPE_EMPTY);
 	} else if (type==FIELD_TYPE_NOTIFICATIONS) {
@@ -1286,6 +1289,23 @@ class DateField extends BaseDataField {
 	
 	function cur_label(value) {
 		return Application.getApp().getFormatedDate();
+	}
+}
+
+////////////////
+// day stage //
+////////////////
+
+class DayField extends BaseDataField {
+	
+	function initialize(id) {
+		BaseDataField.initialize(id);
+	}
+	
+	function cur_label(value) {
+		var now = Time.now();
+		var date = Date.info(now, Time.FORMAT_MEDIUM);
+		return date.day_of_week;
 	}
 }
 
