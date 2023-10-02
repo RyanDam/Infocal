@@ -18,19 +18,19 @@ var gLocationLng = null;
 var centerX;
 var centerY;
 
-hidden function degreesToRadians(degrees) {
+function degreesToRadians(degrees) {
 	return degrees * Math.PI / 180;
 }  
 
-hidden function radiansToDegrees(radians) {
+function radiansToDegrees(radians) {
 	return radians * 180 / Math.PI;
 }  
 
-hidden function convertCoorX(radians, radius) {
+function convertCoorX(radians, radius) {
 	return centerX + radius*Math.cos(radians);
 }
 
-hidden function convertCoorY(radians, radius) {
+function convertCoorY(radians, radius) {
 	return centerY + radius*Math.sin(radians);
 }
 
@@ -227,7 +227,7 @@ class HuwaiiApp extends Application.AppBase {
 				var day_of_weak = date.day_of_week;
 				return Lang.format("$1$ $2$",[days[day_of_weak], date.day.format("%d")]);
 			} else {
-				var date = Date.info(now, Time.FORMAT_LONG);
+				date = Date.info(now, Time.FORMAT_LONG);
 				var day_of_weak = date.day_of_week;
 				return Lang.format("$1$ $2$",[day_of_weak.toUpper(), date.day.format("%d")]);
 			}
@@ -257,7 +257,7 @@ class HuwaiiApp extends Application.AppBase {
 				day = date.day;
 				month = months[date.month];
 			} else {
-				var date = Date.info(now, Time.FORMAT_MEDIUM);
+				date = Date.info(now, Time.FORMAT_MEDIUM);
 				day = date.day;
 				month = months[date.month];
 			}
